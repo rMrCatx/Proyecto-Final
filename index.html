@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politecnico Vicente Aquilino Santos - Blog Institucional</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo Politécnico" id="logo-img">
+                <div class="logo-text">
+                    <h1>Politecnico</h1>
+                    <p>Vicente Aquilino Santos</p>
+                </div>
+            </div>
+            
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-th-large"></i> Categorías <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-category="institucional">Información Institucional</a></li>
+                        <li><a href="#" data-category="oferta">Oferta Académica</a></li>
+                        <li><a href="#" data-category="noticias">Noticias y Comunicados</a></li>
+                        <li><a href="#" data-category="actividades">Actividades</a></li>
+                        <li><a href="#" data-category="logros">Logros y Reconocimientos</a></li>
+                        <li><a href="#" data-category="calendario">Calendario Académico</a></li>
+                        <li><a href="#" data-category="galeria">Galería Multimedia</a></li>
+                        <li><a href="#" data-category="estudiantiles">Actividades Estudiantiles</a></li>
+                    </ul>
+                </li>
+                <li><a href="#calendario"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                <li><a href="admin.html" class="admin-link"><i class="fas fa-user-cog"></i> Admin</a></li>
+            </ul>
+            
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Buscar publicaciones...">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner principal -->
+    <header class="hero">
+        <div class="hero-content">
+            <h2>Educación Técnica de Excelencia</h2>
+            <p>Formando profesionales para el desarrollo de nuestra comunidad</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">6</span>
+                    <span class="stat-text">Carreras Técnicas</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">850+</span>
+                    <span class="stat-text">Estudiantes</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">45+</span>
+                    <span class="stat-text">Docentes</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="container">
+        <!-- Sección de publicaciones recientes -->
+        <section class="recent-posts">
+            <div class="section-header">
+                <h2><i class="fas fa-newspaper"></i> Publicaciones Recientes</h2>
+                <div class="category-filters">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="noticias">Noticias</button>
+                    <button class="filter-btn" data-filter="actividades">Actividades</button>
+                    <button class="filter-btn" data-filter="avisos">Avisos</button>
+                </div>
+            </div>
+            
+            <div class="posts-grid" id="posts-grid">
+                <!-- Las publicaciones se cargarán dinámicamente con JavaScript -->
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Cargando publicaciones...</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de información rápida -->
+        <section class="quick-info">
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Oferta Académica</h3>
+                <p>Descubre nuestras 6 carreras técnicas: Ebanistería, Mecánica, Programación, Redes, Refrigeración y Contabilidad.</p>
+                <a href="#" class="info-link">Ver carreras <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3>Calendario Académico</h3>
+                <p>Consulta las fechas importantes de exámenes, inscripciones, graduaciones y actividades especiales.</p>
+                <a href="#" class="info-link">Ver calendario <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Logros Recientes</h3>
+                <p>Estudiantes de Programación obtienen primer lugar en concurso regional de desarrollo web.</p>
+                <a href="#" class="info-link">Ver logros <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+        
+        <!-- Sección de galería destacada -->
+        <section class="featured-gallery">
+            <h2><i class="fas fa-images"></i> Galería Destacada</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/6B46C1/FFFFFF?text=Feria+Tecnológica" alt="Feria Tecnológica">
+                    <div class="gallery-caption">Feria Tecnológica 2024</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/10B981/FFFFFF?text=Graduación" alt="Ceremonia de Graduación">
+                    <div class="gallery-caption">Ceremonia de Graduación</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/8B5CF6/FFFFFF?text=Taller+Práctico" alt="Taller Práctico">
+                    <div class="gallery-caption">Taller Práctico de Mecánica</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de calendario académico -->
+        <section class="academic-calendar" id="calendario">
+            <h2><i class="fas fa-calendar-alt"></i> Próximas Fechas Importantes</h2>
+            <div class="calendar-grid">
+                <div class="calendar-event">
+                    <div class="event-date">
+                        <span class="event-day">15</span>
+                        <span class="event-month">Mayo</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>Inicio de Inscripciones</h4>
+                        <p>Período de inscripciones para el próximo semestre</p>
+                    </div>
+                </div>
+                <div class="calendar-event">
+                    <div class="event-date">
+                        <span class="event-day">22</span>
+                        <span class="event-month">Mayo</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>Exámenes Finales</h4>
+                        <p>Inicio del período de exámenes finales</p>
+                    </div>
+                </div>
+                <div class="calendar-event">
+                    <div class="event-date">
+                        <span class="event-day">05</span>
+                        <span class="event-month">Junio</span>
+                    </div>
+                    <div class="event-details">
+                        <h4>Día del Estudiante</h4>
+                        <p>Celebración con actividades recreativas y culturales</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de encuesta rápida -->
+        <section class="quick-poll">
+            <h2><i class="fas fa-poll"></i> Encuesta Rápida</h2>
+            <p>¿Qué tipo de contenido te gustaría ver más en nuestro blog?</p>
+            <form id="poll-form">
+                <div class="poll-options">
+                    <label class="poll-option">
+                        <input type="radio" name="poll" value="tutoriales">
+                        <span>Tutoriales y guías prácticas</span>
+                    </label>
+                    <label class="poll-option">
+                        <input type="radio" name="poll" value="noticias">
+                        <span>Noticias y eventos del centro</span>
+                    </label>
+                    <label class="poll-option">
+                        <input type="radio" name="poll" value="logros">
+                        <span>Logros de estudiantes y docentes</span>
+                    </label>
+                    <label class="poll-option">
+                        <input type="radio" name="poll" value="consejos">
+                        <span>Consejos para el éxito académico</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary">Votar</button>
+            </form>
+            <div id="poll-results" class="poll-results"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <h3>Politecnico Vicente Aquilino Santos</h3>
+                    <p>Formando técnicos profesionales desde 1985</p>
+                </div>
+                <p class="footer-mission">Nuestra misión es proporcionar educación técnica de calidad que prepare a los estudiantes para los desafíos del mercado laboral y el desarrollo de nuestra comunidad.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Información Institucional</a></li>
+                    <li><a href="#">Historia del Centro</a></li>
+                    <li><a href="#">Reglamento y Normas</a></li>
+                    <li><a href="#">Oferta Académica</a></li>
+                    <li><a href="contact.html">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Carreras Técnicas</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Ebanistería</a></li>
+                    <li><a href="#">Mecánica</a></li>
+                    <li><a href="#">Programación</a></li>
+                    <li><a href="#">Redes</a></li>
+                    <li><a href="#">Refrigeración</a></li>
+                    <li><a href="#">Contabilidad</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contacto y Redes Sociales</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Principal #123, Ciudad</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@politecnico.edu</p>
+                </div>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Politecnico Vicente Aquilino Santos. Todos los derechos reservados.</p>
+            <p>Desarrollado por el Departamento de Programación</p>
+        </div>
+    </footer>
+
+    <script src="javascript.js"></script>
+</body>
+</html>
