@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Multimedia - Politecnico Vicente Aquilino Santos</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos específicos para la galería */
+        .gallery-container {
+            margin-top: 40px;
+        }
+        
+        .gallery-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background-color: #8B5CF6;
+            color: white;
+            border-color: #8B5CF6;
+        }
+        
+        .filter-btn:hover:not(.active) {
+            border-color: #10B981;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img, .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img, .gallery-item:hover video {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(139, 92, 246, 0.9);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-prev {
+            left: 20px;
+        }
+        
+        .modal-next {
+            right: 20px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-section {
+            margin-top: 50px;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .video-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8B5CF6;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .video-thumbnail:hover .play-button {
+            transform: scale(1.1);
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .upload-section {
+            margin-top: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, #10B981 0%, #8B5CF6 100%);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .upload-form {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .file-upload {
+            border: 2px dashed #d1d5db;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        
+        .file-upload:hover {
+            border-color: #8B5CF6;
+        }
+        
+        .empty-gallery {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px;
+            background: #f9fafb;
+            border-radius: 10px;
+            color: #6b7280;
+        }
+        
+        .empty-gallery i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <main class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-images"></i> Galería Multimedia</h1>
+            <p class="page-subtitle">Momentos especiales de nuestra comunidad educativa</p>
+        </div>
+
+        <div class="intro-section">
+            <p>Explora nuestra colección de fotografías y videos que capturan los momentos más destacados de la vida en el Politécnico Vicente Aquilino Santos. Desde eventos académicos hasta actividades extracurriculares.</p>
+        </div>
+
+        <div class="gallery-container">
+            <!-- Filtros -->
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">Todo</button>
+                <button class="filter-btn" data-filter="eventos">Eventos</button>
+                <button class="filter-btn" data-filter="actividades">Actividades</button>
+                <button class="filter-btn" data-filter="graduaciones">Graduaciones</button>
+                <button class="filter-btn" data-filter="talleres">Talleres</button>
+                <button class="filter-btn" data-filter="deportes">Deportes</button>
+                <button class="filter-btn" data-filter="infraestructura">Infraestructura</button>
+            </div>
+
+            <!-- Galería de imágenes -->
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Las imágenes se cargan dinámicamente con JavaScript -->
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Cargando galería...</p>
+                </div>
+            </div>
+
+            <!-- Sección de videos -->
+            <div class="video-section">
+                <h2><i class="fas fa-video"></i> Videos Destacados</h2>
+                <div class="video-grid">
+                    <div class="video-item">
+                        <div class="video-thumbnail" onclick="playVideo('video1')">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div style="position: absolute; bottom: 10px; right: 10px; color: white; background: rgba(0,0,0,0.5); padding: 5px; border-radius: 3px; font-size: 0.8rem;">
+                                5:30
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Ceremonia de Graduación 2023</h4>
+                            <p>Momentos emotivos de la ceremonia de graduación del año pasado</p>
+                            <div style="color: #6b7280; font-size: 0.9rem; margin-top: 10px;">
+                                <i class="fas fa-calendar"></i> 15 Junio, 2023
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-thumbnail" onclick="playVideo('video2')">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div style="position: absolute; bottom: 10px; right: 10px; color: white; background: rgba(0,0,0,0.5); padding: 5px; border-radius: 3px; font-size: 0.8rem;">
+                                8:15
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Feria Tecnológica Anual</h4>
+                            <p>Proyectos innovadores presentados por estudiantes</p>
+                            <div style="color: #6b7280; font-size: 0.9rem; margin-top: 10px;">
+                                <i class="fas fa-calendar"></i> 10 Mayo, 2023
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-thumbnail" onclick="playVideo('video3')">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div style="position: absolute; bottom: 10px; right: 10px; color: white; background: rgba(0,0,0,0.5); padding: 5px; border-radius: 3px; font-size: 0.8rem;">
+                                12:45
+                            </div>
+                        </div>
+                        <div class="video-info">
+                            <h4>Tour por los Laboratorios</h4>
+                            <p>Recorrido por nuestras instalaciones equipadas</p>
+                            <div style="color: #6b7280; font-size: 0.9rem; margin-top: 10px;">
+                                <i class="fas fa-calendar"></i> 22 Marzo, 2023
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de subida (para administradores) -->
+            <div class="upload-section">
+                <h3><i class="fas fa-cloud-upload-alt"></i> Comparte Tus Momentos</h3>
+                <p>¿Tienes fotos o videos de actividades del politécnico? Compártelos con la comunidad.</p>
+                <button class="btn-primary" style="margin-top: 15px; background: white; color: #8B5CF6;" onclick="openUploadForm()">
+                    <i class="fas fa-plus"></i> Subir Contenido
+                </button>
+                
+                <div class="upload-form" id="uploadForm">
+                    <h4><i class="fas fa-upload"></i> Subir Nueva Imagen/Video</h4>
+                    <form id="mediaUploadForm" onsubmit="return submitMediaForm(event)">
+                        <div class="form-group">
+                            <label for="mediaTitle">Título *</label>
+                            <input type="text" id="mediaTitle" name="mediaTitle" required placeholder="Ej: Graduación 2024">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mediaDescription">Descripción</label>
+                            <textarea id="mediaDescription" name="mediaDescription" placeholder="Describe el contenido..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mediaCategory">Categoría *</label>
+                            <select id="mediaCategory" name="mediaCategory" required>
+                                <option value="">Seleccionar categoría</option>
+                                <option value="eventos">Eventos</option>
+                                <option value="actividades">Actividades</option>
+                                <option value="graduaciones">Graduaciones</option>
+                                <option value="talleres">Talleres</option>
+                                <option value="deportes">Deportes</option>
+                                <option value="infraestructura">Infraestructura</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mediaFile">Archivo *</label>
+                            <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #8B5CF6; margin-bottom: 10px;"></i>
+                                <p>Haz clic para seleccionar archivo</p>
+                                <p style="color: #6b7280; font-size: 0.9rem;">Formatos permitidos: JPG, PNG, MP4, AVI</p>
+                                <div id="fileName" style="margin-top: 10px; color: #10B981; font-weight: bold;"></div>
+                            </div>
+                            <input type="file" id="fileInput" name="mediaFile" accept="image/*,video/*" style="display: none;" onchange="showFileName(this)">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="uploaderName">Tu nombre *</label>
+                            <input type="text" id="uploaderName" name="uploaderName" required placeholder="Ej: Juan Pérez">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="uploaderEmail">Tu email</label>
+                            <input type="email" id="uploaderEmail" name="uploaderEmail" placeholder="tu@email.com">
+                        </div>
+                        
+                        <div style="display: flex; gap: 15px; margin-top: 30px;">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-upload"></i> Subir Contenido
+                            </button>
+                            <button type="button" class="btn-secondary" onclick="closeUploadForm()">
+                                <i class="fas fa-times"></i> Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para visualización de imágenes -->
+    <div class="modal" id="imageModal">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <button class="modal-nav modal-prev" onclick="prevImage()">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <img class="modal-content" id="modalImage" src="" alt="">
+        <button class="modal-nav modal-next" onclick="nextImage()">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div style="position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; color: white;" id="modalCaption"></div>
+    </div>
+
+    <!-- Modal para video -->
+    <div class="modal" id="videoModal">
+        <button class="modal-close" onclick="closeVideoModal()">&times;</button>
+        <div class="modal-content" id="videoPlayer">
+            <!-- El reproductor de video se inserta aquí -->
+        </div>
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Datos de la galería (simulando base de datos)
+        const galleryData = [
+            {
+                id: 1,
+                category: 'eventos',
+                title: 'Ceremonia de Graduación 2024',
+                desc: 'Estudiantes recibiendo sus diplomas en una emotiva ceremonia',
+                date: '15 Junio 2024',
+                author: 'Departamento de Comunicaciones',
+                color: '#8B5CF6'
+            },
+            {
+                id: 2,
+                category: 'actividades',
+                title: 'Taller de Robótica',
+                desc: 'Estudiantes programando robots en el laboratorio de tecnología',
+                date: '10 Mayo 2024',
+                author: 'Ing. Carlos Rodríguez',
+                color: '#10B981'
+            },
+            {
+                id: 3,
+                category: 'graduaciones',
+                title: 'Promoción 2023',
+                desc: 'Fotos grupales de la promoción de graduados del año pasado',
+                date: '20 Junio 2023',
+                author: 'Fotografía Estudiantil',
+                color: '#3B82F6'
+            },
+            {
+                id: 4,
+                category: 'talleres',
+                title: 'Carpintería Avanzada',
+                desc: 'Trabajos en madera realizados por estudiantes de ebanistería',
+                date: '5 Abril 2024',
+                author: 'Departamento de Ebanistería',
+                color: '#F59E0B'
+            },
+            {
+                id: 5,
+                category: 'deportes',
+                title: 'Torneo Intercarreras',
+                desc: 'Competencia deportiva anual entre las diferentes carreras',
+                date: '22 Marzo 2024',
+                author: 'Comité Deportivo',
+                color: '#EF4444'
+            },
+            {
+                id: 6,
+                category: 'infraestructura',
+                title: 'Nuevo Laboratorio de Redes',
+                desc: 'Inauguración del moderno laboratorio de redes CISCO',
+                date: '15 Febrero 2024',
+                author: 'Dirección General',
+                color: '#6B7280'
+            },
+            {
+                id: 7,
+                category: 'eventos',
+                title: 'Día del Estudiante',
+                desc: 'Celebración con actividades culturales y recreativas',
+                date: '23 Septiembre 2023',
+                author: 'Consejo Estudiantil',
+                color: '#8B5CF6'
+            },
+            {
+                id: 8,
+                category: 'actividades',
+                title: 'Feria de Ciencias',
+                desc: 'Exposición de proyectos científicos innovadores',
+                date: '18 Noviembre 2023',
+                author: 'Departamento de Ciencias',
+                color: '#10B981'
+            },
+            {
+                id: 9,
+                category: 'talleres',
+                title: 'Electrónica Básica',
+                desc: 'Estudiantes trabajando en circuitos electrónicos',
+                date: '30 Enero 2024',
+                author: 'Ing. Marta Sánchez',
+                color: '#F59E0B'
+            },
+            {
+                id: 10,
+                category: 'graduaciones',
+                title: 'Entrega de Diplomas',
+                desc: 'Momento especial de entrega de certificados',
+                date: '25 Junio 2023',
+                author: 'Fotografía Institucional',
+                color: '#3B82F6'
+            },
+            {
+                id: 11,
+                category: 'deportes',
+                title: 'Equipo de Baloncesto',
+                desc: 'Nuestro equipo de baloncesto durante un entrenamiento',
+                date: '8 Marzo 2024',
+                author: 'Coach Roberto Méndez',
+                color: '#EF4444'
+            },
+            {
+                id: 12,
+                category: 'infraestructura',
+                title: 'Biblioteca Renovada',
+                desc: 'Espacio modernizado para estudio e investigación',
+                date: '12 Enero 2024',
+                author: 'Biblioteca Central',
+                color: '#6B7280'
+            }
+        ];
+
+        let currentFilter = 'all';
+        let currentImageIndex = 0;
+        let filteredImages = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar componentes
+            loadComponents();
+            
+            // Inicializar galería
+            initGallery();
+        });
+
+        function loadComponents() {
+            // Cargar navbar
+            fetch('../components/navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                    if (typeof initNavbar === 'function') initNavbar();
+                })
+                .catch(error => {
+                    console.error('Error cargando navbar:', error);
+                    document.getElementById('navbar-container').innerHTML = `
+                        <div style="background: #f8fafc; padding: 20px; text-align: center; color: #666;">
+                            <p>Error cargando menú de navegación. <a href="../index.html">Ir al inicio</a></p>
+                        </div>
+                    `;
+                });
+            
+            // Cargar footer
+            fetch('../components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error cargando footer:', error);
+                    document.getElementById('footer-container').innerHTML = `
+                        <footer style="background: #1f2937; color: white; padding: 20px; text-align: center;">
+                            <p>&copy; 2024 Politecnico Vicente Aquilino Santos</p>
+                        </footer>
+                    `;
+                });
+        }
+
+        function initGallery() {
+            // Configurar filtros
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remover activo de todos
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Agregar activo al clickeado
+                    btn.classList.add('active');
+                    // Filtrar galería
+                    currentFilter = btn.getAttribute('data-filter');
+                    filterGallery();
+                });
+            });
+
+            // Generar galería inicial
+            generateGallery();
+        }
+
+        function generateGallery() {
+            const galleryGrid = document.getElementById('gallery-grid');
+            
+            // Filtrar imágenes según categoría
+            filteredImages = currentFilter === 'all' 
+                ? galleryData 
+                : galleryData.filter(img => img.category === currentFilter);
+            
+            // Limpiar contenido de carga
+            galleryGrid.innerHTML = '';
+
+            // Verificar si hay imágenes
+            if (filteredImages.length === 0) {
+                galleryGrid.innerHTML = `
+                    <div class="empty-gallery">
+                        <i class="fas fa-images"></i>
+                        <h3>No hay imágenes en esta categoría</h3>
+                        <p>Prueba con otra categoría o sube nuevas imágenes.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Generar elementos de galería
+            filteredImages.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.setAttribute('data-index', index);
+                
+                galleryItem.innerHTML = `
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, ${item.color} 0%, #ffffff 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px;">
+                        ${item.title}
+                    </div>
+                    <div class="gallery-category">${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</div>
+                    <div class="gallery-overlay">
+                        <h4 style="margin-bottom: 8px;">${item.title}</h4>
+                        <p style="margin-bottom: 10px; font-size: 0.9rem;">${item.desc}</p>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                            <span><i class="fas fa-calendar"></i> ${item.date}</span>
+                            <span><i class="fas fa-user"></i> ${item.author}</span>
+                        </div>
+                    </div>
+                `;
+
+                galleryItem.addEventListener('click', () => openModal(index));
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        function filterGallery() {
+            generateGallery();
+        }
+
+        function openModal(index) {
+            currentImageIndex = index;
+            const item = filteredImages[currentImageIndex];
+            
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            
+            // En una aplicación real, aquí cargaríamos la imagen real
+            // Por ahora usamos un placeholder
+            modalImage.src = `https://via.placeholder.com/800x600/${item.color.replace('#', '')}/FFFFFF?text=${encodeURIComponent(item.title)}`;
+            modalImage.alt = item.title;
+            
+            modalCaption.innerHTML = `
+                <h3 style="margin-bottom: 5px;">${item.title}</h3>
+                <p style="margin-bottom: 5px;">${item.desc}</p>
+                <p style="font-size: 0.9rem;">
+                    <i class="fas fa-calendar"></i> ${item.date} | 
+                    <i class="fas fa-user"></i> ${item.author} | 
+                    <i class="fas fa-tag"></i> ${item.category}
+                </p>
+            `;
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + filteredImages.length) % filteredImages.length;
+            openModal(currentImageIndex);
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % filteredImages.length;
+            openModal(currentImageIndex);
+        }
+
+        function playVideo(videoId) {
+            const videoModal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('videoPlayer');
+            
+            // Simulación de video - en una app real sería un video real
+            videoPlayer.innerHTML = `
+                <div style="width: 800px; height: 450px; background: #1f2937; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white;">
+                    <i class="fas fa-play-circle" style="font-size: 4rem; margin-bottom: 20px; color: #8B5CF6;"></i>
+                    <h3>Reproduciendo Video</h3>
+                    <p>En una aplicación real, aquí se reproduciría el video</p>
+                    <div style="margin-top: 30px; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; width: 80%;">
+                        <p>📹 Video educativo del Politécnico</p>
+                        <p>⏱️ Duración: 5:30 minutos</p>
+                        <p>📅 Fecha: 15 Junio 2023</p>
+                    </div>
+                </div>
+            `;
+            
+            videoModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            document.getElementById('videoModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function openUploadForm() {
+            document.getElementById('uploadForm').style.display = 'block';
+            // Desplazar hacia el formulario
+            document.getElementById('uploadForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function closeUploadForm() {
+            document.getElementById('uploadForm').style.display = 'none';
+            // Resetear formulario
+            document.getElementById('mediaUploadForm').reset();
+            document.getElementById('fileName').textContent = '';
+        }
+
+        function showFileName(input) {
+            if (input.files.length > 0) {
+                document.getElementById('fileName').textContent = `Archivo seleccionado: ${input.files[0].name}`;
+            }
+        }
+
+        function submitMediaForm(event) {
+            event.preventDefault();
+            
+            // Obtener datos del formulario
+            const formData = {
+                title: document.getElementById('mediaTitle').value,
+                description: document.getElementById('mediaDescription').value,
+                category: document.getElementById('mediaCategory').value,
+                uploaderName: document.getElementById('uploaderName').value,
+                uploaderEmail: document.getElementById('uploaderEmail').value,
+                fileName: document.getElementById('fileInput').files[0]?.name || 'Ninguno'
+            };
+            
+            // Validación básica
+            if (!formData.title || !formData.category || !formData.uploaderName) {
+                alert('Por favor completa todos los campos obligatorios (*)');
+                return false;
+            }
+            
+            // Simular envío al servidor
+            console.log('Enviando datos al servidor:', formData);
+            
+            // Mostrar mensaje de éxito
+            alert('¡Contenido enviado exitosamente! Será revisado por el administrador antes de publicarse.');
+            
+            // Cerrar formulario y resetear
+            closeUploadForm();
+            
+            return false; // Prevenir envío real
+        }
+
+        // Cerrar modales con Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+                closeVideoModal();
+            }
+        });
+
+        // Cerrar modal al hacer clic fuera de la imagen
+        document.addEventListener('click', function(event) {
+            const imageModal = document.getElementById('imageModal');
+            const videoModal = document.getElementById('videoModal');
+            
+            if (event.target === imageModal) {
+                closeModal();
+            }
+            
+            if (event.target === videoModal) {
+                closeVideoModal();
+            }
+        });
+    </script>
+</body>
+</html>

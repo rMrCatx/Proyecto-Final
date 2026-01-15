@@ -1,0 +1,108 @@
+<!-- Componente de Navegación Reutilizable - ACTUALIZADO -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="../index.html" style="display: flex; align-items: center; gap: 15px; text-decoration: none; color: inherit;">
+                <div class="logo-placeholder" style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">
+                    PVAS
+                </div>
+                <div class="logo-text">
+                    <h1 style="font-size: 1.5rem; margin-bottom: 0; color: #1f2937;">Politecnico</h1>
+                    <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 0;">Vicente Aquilino Santos</p>
+                </div>
+            </a>
+        </div>
+        
+        <button class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="../index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li class="dropdown">
+                <a href="#"><i class="fas fa-th-large"></i> Categorías <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="../categorias/institucional.html">Información Institucional</a></li>
+                    <li><a href="../categorias/oferta-academica.html">Oferta Académica</a></li>
+                    <li><a href="../categorias/noticias.html">Noticias y Comunicados</a></li>
+                    <li><a href="../categorias/actividades.html">Actividades</a></li>
+                    <li><a href="../categorias/logros.html">Logros y Reconocimientos</a></li>
+                    <li><a href="../categorias/calendario.html">Calendario Académico</a></li>
+                    <li><a href="../categorias/galeria.html">Galería Multimedia</a></li>
+                    <li><a href="../categorias/estudiantiles.html">Actividades Estudiantiles</a></li>
+                </ul>
+            </li>
+            <li><a href="../categorias/calendario.html"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
+            <li><a href="../secciones/proyectos.html"><i class="fas fa-flask"></i> Proyectos</a></li>
+            <li><a href="../secciones/enlaces-utiles.html"><i class="fas fa-link"></i> Enlaces Útiles</a></li>
+            <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+            <li><a href="../admin.html" class="admin-link"><i class="fas fa-user-cog"></i> Admin</a></li>
+        </ul>
+        
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Buscar...">
+            <button id="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Función para inicializar la navbar (se llama desde las páginas)
+    function initNavbar() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const searchBtn = document.getElementById('search-btn');
+        const searchInput = document.getElementById('search-input');
+        
+        // Toggle del menú móvil
+        if (menuToggle && navMenu) {
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                menuToggle.innerHTML = navMenu.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Cerrar menú al hacer clic en un enlace
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+        }
+        
+        // Funcionalidad de búsqueda
+        if (searchBtn && searchInput) {
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+        }
+        
+        // Marcar la página activa en la navegación
+        markActivePage();
+    }
+    
+    function performSearch() {
+        const query = document.getElementById('search-input').value.trim();
+        if (query) {
+            alert(`Buscando: "${query}"\n\nEn una aplicación real, esto ejecutaría una búsqueda en el blog.`);
+            // En una aplicación real: window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+        }
+    }
+    
+    function markActivePage() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === currentPage || 
+                (currentPage === 'index.html' && href === '../index.html') ||
+                (currentPage === '' && href === '../index.html')) {
+                link.classList.add('active');
+            }
+        });
+    }
+</script>

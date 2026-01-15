@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias y Comunicados - Politecnico Vicente Aquilino Santos</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%);
+            color: white;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .news-date {
+            background: #8B5CF6;
+            color: white;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-category {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: #f0fdf4;
+            color: #10B981;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .official-bulletin {
+            background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 60px;
+            border: 2px solid #10B981;
+        }
+        
+        .bulletin-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .bulletin-icon {
+            width: 60px;
+            height: 60px;
+            background: #10B981;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <main class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-bullhorn"></i> Noticias y Comunicados</h1>
+            <p class="page-subtitle">Información oficial y actualizaciones importantes</p>
+        </div>
+
+        <div class="news-grid">
+            <!-- Noticia 1 -->
+            <div class="news-card">
+                <div class="news-date">10 MAYO 2024</div>
+                <div class="news-content">
+                    <span class="news-category">NUEVO EQUIPAMIENTO</span>
+                    <h3>Inauguración del Laboratorio de Programación</h3>
+                    <p>El Politécnico ha inaugurado un moderno laboratorio de programación equipado con 30 computadoras de última generación y software especializado.</p>
+                    <a href="#" class="read-more" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; color: #8B5CF6; font-weight: 600;">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Noticia 2 -->
+            <div class="news-card">
+                <div class="news-date">8 MAYO 2024</div>
+                <div class="news-content">
+                    <span class="news-category">CONVENIO</span>
+                    <h3>Nuevo Convenio con Empresas Locales</h3>
+                    <p>Firmamos convenios con 5 empresas locales para ofrecer prácticas profesionales a nuestros estudiantes de todas las carreras.</p>
+                    <a href="#" class="read-more" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; color: #8B5CF6; font-weight: 600;">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Noticia 3 -->
+            <div class="news-card">
+                <div class="news-date">5 MAYO 2024</div>
+                <div class="news-content">
+                    <span class="news-category">AVISO OFICIAL</span>
+                    <h3>Cambios en Horarios de Atención</h3>
+                    <p>A partir del 15 de mayo, los horarios de atención administrativa se extenderán hasta las 6:00 PM de lunes a viernes.</p>
+                    <a href="#" class="read-more" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; color: #8B5CF6; font-weight: 600;">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Noticia 4 -->
+            <div class="news-card">
+                <div class="news-date">3 MAYO 2024</div>
+                <div class="news-content">
+                    <span class="news-category">LOGRO</span>
+                    <h3>Estudiantes Ganadores en Competencia Nacional</h3>
+                    <p>Nuestros estudiantes de Redes obtuvieron el primer lugar en la competencia nacional de seguridad informática.</p>
+                    <a href="#" class="read-more" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; color: #8B5CF6; font-weight: 600;">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Noticia 5 -->
+            <div class="news-card">
+                <div class="news-date">1 MAYO 2024</div>
+                <div class="news-content">
+                    <span class="news-category">EVENTO</span>
+                    <h3>Charla sobre Refrigeración Sostenible</h3>
+                    <p>El próximo jueves tendremos una charla gratuita sobre las últimas tendencias en refrigeración comercial sostenible.</p>
+                    <a href="#" class="read-more" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; color: #8B5CF6; font-weight: 600;">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Noticia 6 -->
+            <div class="news-card">
+                <div class="news-date">28 ABRIL 2024</div>
+                <div class="news-content">
+                    <span class="news-category">INVERSIÓN</span>
+                    <h3>Renovación de Talleres de Mecánica</h3>
+                    <p>Hemos invertido en la renovación completa de nuestros talleres de mecánica con equipos de última tecnología.</p>
+                    <a href="#" class="read-more" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 15px; color: #8B5CF6; font-weight: 600;">
+                        Leer más <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boletín Oficial -->
+        <div class="official-bulletin">
+            <div class="bulletin-header">
+                <div class="bulletin-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <div>
+                    <h2><i class="fas fa-file-alt"></i> Boletín Oficial</h2>
+                    <p>Comunicados oficiales y documentos institucionales</p>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="padding: 20px; background: white; border-radius: 10px; border-left: 4px solid #8B5CF6;">
+                    <h4>Reglamento Estudiantil 2024</h4>
+                    <p style="color: #6b7280; margin: 10px 0;">Actualización de normas y procedimientos</p>
+                    <a href="#" style="color: #8B5CF6; font-weight: 600;">Descargar PDF</a>
+                </div>
+                
+                <div style="padding: 20px; background: white; border-radius: 10px; border-left: 4px solid #10B981;">
+                    <h4>Calendario Académico</h4>
+                    <p style="color: #6b7280; margin: 10px 0;">Fechas importantes del año</p>
+                    <a href="../categorias/calendario.html" style="color: #10B981; font-weight: 600;">Ver calendario</a>
+                </div>
+                
+                <div style="padding: 20px; background: white; border-radius: 10px; border-left: 4px solid #3B82F6;">
+                    <h4>Guía de Inscripciones</h4>
+                    <p style="color: #6b7280; margin: 10px 0;">Proceso y requisitos 2024</p>
+                    <a href="../categorias/oferta-academica.html" style="color: #3B82F6; font-weight: 600;">Ver información</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar componentes
+            fetch('../components/navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                    if (typeof initNavbar === 'function') initNavbar();
+                });
+            
+            fetch('../components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+        });
+    </script>
+</body>
+</html>

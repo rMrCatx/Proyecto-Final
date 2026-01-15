@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oferta Académica - Politecnico Vicente Aquilino Santos</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .careers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .career-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .career-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .career-header {
+            padding: 25px;
+            color: white;
+            text-align: center;
+        }
+        
+        .career-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .career-content {
+            padding: 25px;
+        }
+        
+        .career-details {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f3f4f6;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #f3f4f6;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .detail-value {
+            color: #8B5CF6;
+            font-weight: 600;
+        }
+        
+        .comparison-table {
+            margin-top: 60px;
+            overflow-x: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .comparison-table th {
+            background-color: #f8f9fa;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #e9ecef;
+            color: #1f2937;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+            color: #4b5563;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .enrollment-process {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, #f0fdf4 0%, #f8fafc 100%);
+            border-radius: 15px;
+            border-left: 5px solid #10B981;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #8B5CF6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 50px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%);
+            color: white;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <main class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-graduation-cap"></i> Oferta Académica</h1>
+            <p class="page-subtitle">6 carreras técnicas con salida laboral inmediata y formación especializada</p>
+        </div>
+
+        <!-- Introducción -->
+        <section style="text-align: center; margin-bottom: 50px; padding: 0 20px;">
+            <p style="font-size: 1.2rem; color: #4b5563; max-width: 800px; margin: 0 auto;">
+                Nuestro politécnico ofrece programas técnicos de calidad, diseñados para preparar a los estudiantes con las habilidades y conocimientos necesarios para destacar en el mercado laboral actual.
+            </p>
+        </section>
+
+        <!-- Carreras -->
+        <section>
+            <h2 style="display: flex; align-items: center; gap: 10px; margin-bottom: 30px;">
+                <i class="fas fa-list" style="color: #8B5CF6;"></i> Nuestras Carreras Técnicas
+            </h2>
+            
+            <div class="careers-grid">
+                <!-- Ebanistería -->
+                <div class="career-card">
+                    <div class="career-header" style="background: linear-gradient(135deg, #8B5CF6 0%, #7c3aed 100%);">
+                        <div class="career-icon">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                        <h3 style="color: white;">Técnico en Ebanistería</h3>
+                    </div>
+                    <div class="career-content">
+                        <p>Formación especializada en diseño, construcción y restauración de muebles y estructuras de madera. Los estudiantes aprenden técnicas tradicionales y modernas.</p>
+                        
+                        <div class="career-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Duración:</span>
+                                <span class="detail-value">2 años</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Turnos:</span>
+                                <span class="detail-value">Matutino/Vespertino</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Laboratorios:</span>
+                                <span class="detail-value">3 talleres</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Salida laboral:</span>
+                                <span class="detail-value">Alta demanda</span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <a href="#" class="btn-secondary" style="width: 100%; text-align: center;">
+                                <i class="fas fa-info-circle"></i> Más Información
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mecánica -->
+                <div class="career-card">
+                    <div class="career-header" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);">
+                        <div class="career-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 style="color: white;">Técnico en Mecánica</h3>
+                    </div>
+                    <div class="career-content">
+                        <p>Programa enfocado en mantenimiento, reparación y diagnóstico de sistemas mecánicos industriales y vehiculares. Incluye formación en mecánica automotriz e industrial.</p>
+                        
+                        <div class="career-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Duración:</span>
+                                <span class="detail-value">2 años</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Turnos:</span>
+                                <span class="detail-value">Matutino</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Laboratorios:</span>
+                                <span class="detail-value">5 talleres</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Certificaciones:</span>
+                                <span class="detail-value">3 internacionales</span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <a href="#" class="btn-secondary" style="width: 100%; text-align: center;">
+                                <i class="fas fa-info-circle"></i> Más Información
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programación -->
+                <div class="career-card">
+                    <div class="career-header" style="background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);">
+                        <div class="career-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 style="color: white;">Técnico en Programación</h3>
+                    </div>
+                    <div class="career-content">
+                        <p>Formación en desarrollo de software, aplicaciones web y móviles. Los estudiantes aprenden lenguajes de programación modernos y metodologías de desarrollo ágil.</p>
+                        
+                        <div class="career-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Duración:</span>
+                                <span class="detail-value">2 años</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Turnos:</span>
+                                <span class="detail-value">Vespertino/Nocturno</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Laboratorios:</span>
+                                <span class="detail-value">2 salas</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Lenguajes:</span>
+                                <span class="detail-value">Python, JavaScript, Java</span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <a href="#" class="btn-secondary" style="width: 100%; text-align: center;">
+                                <i class="fas fa-info-circle"></i> Más Información
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Redes -->
+                <div class="career-card">
+                    <div class="career-header" style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);">
+                        <div class="career-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3 style="color: white;">Técnico en Redes</h3>
+                    </div>
+                    <div class="career-content">
+                        <p>Especialización en diseño, implementación y administración de redes de computadoras. Incluye certificaciones en redes CISCO y seguridad informática.</p>
+                        
+                        <div class="career-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Duración:</span>
+                                <span class="detail-value">2 años</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Turnos:</span>
+                                <span class="detail-value">Vespertino</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Laboratorios:</span>
+                                <span class="detail-value">Laboratorio CISCO</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Certificación:</span>
+                                <span class="detail-value">CCNA incluida</span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <a href="#" class="btn-secondary" style="width: 100%; text-align: center;">
+                                <i class="fas fa-info-circle"></i> Más Información
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Refrigeración -->
+                <div class="career-card">
+                    <div class="career-header" style="background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);">
+                        <div class="career-icon">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <h3 style="color: white;">Técnico en Refrigeración</h3>
+                    </div>
+                    <div class="career-content">
+                        <p>Formación en instalación, mantenimiento y reparación de sistemas de refrigeración y aire acondicionado residenciales, comerciales e industriales.</p>
+                        
+                        <div class="career-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Duración:</span>
+                                <span class="detail-value">2 años</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Turnos:</span>
+                                <span class="detail-value">Matutino/Vespertino</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Laboratorios:</span>
+                                <span class="detail-value">Taller especializado</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Especialidades:</span>
+                                <span class="detail-value">3 áreas</span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <a href="#" class="btn-secondary" style="width: 100%; text-align: center;">
+                                <i class="fas fa-info-circle"></i> Más Información
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contabilidad -->
+                <div class="career-card">
+                    <div class="career-header" style="background: linear-gradient(135deg, #8B5CF6 0%, #7c3aed 100%);">
+                        <div class="career-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 style="color: white;">Técnico en Contabilidad</h3>
+                    </div>
+                    <div class="career-content">
+                        <p>Programa que prepara profesionales en el manejo de sistemas contables, procesos administrativos y normativa tributaria para empresas y organizaciones.</p>
+                        
+                        <div class="career-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Duración:</span>
+                                <span class="detail-value">2 años</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Turnos:</span>
+                                <span class="detail-value">Matutino/Nocturno</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Software:</span>
+                                <span class="detail-value">ERP y contables</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Prácticas:</span>
+                                <span class="detail-value">En empresas reales</span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <a href="#" class="btn-secondary" style="width: 100%; text-align: center;">
+                                <i class="fas fa-info-circle"></i> Más Información
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabla comparativa -->
+        <section class="comparison-table">
+            <h2 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                <i class="fas fa-balance-scale" style="color: #10B981;"></i> Comparativa de Carreras
+            </h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Carrera</th>
+                        <th>Duración</th>
+                        <th>Turnos</th>
+                        <th>Costo Mensual</th>
+                        <th>Requisitos</th>
+                        <th>Salida Laboral</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Ebanistería</strong></td>
+                        <td>2 años</td>
+                        <td>M/V</td>
+                        <td>$150</td>
+                        <td>9no grado</td>
+                        <td><span style="color: #10B981; font-weight: bold;">Alta</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mecánica</strong></td>
+                        <td>2 años</td>
+                        <td>M</td>
+                        <td>$180</td>
+                        <td>9no grado</td>
+                        <td><span style="color: #10B981; font-weight: bold;">Muy Alta</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Programación</strong></td>
+                        <td>2 años</td>
+                        <td>V/N</td>
+                        <td>$200</td>
+                        <td>11mo grado</td>
+                        <td><span style="color: #10B981; font-weight: bold;">Excelente</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Redes</strong></td>
+                        <td>2 años</td>
+                        <td>V</td>
+                        <td>$220</td>
+                        <td>11mo grado</td>
+                        <td><span style="color: #10B981; font-weight: bold;">Muy Buena</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Refrigeración</strong></td>
+                        <td>2 años</td>
+                        <td>M/V</td>
+                        <td>$170</td>
+                        <td>9no grado</td>
+                        <td><span style="color: #10B981; font-weight: bold;">Alta</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contabilidad</strong></td>
+                        <td>2 años</td>
+                        <td>M/N</td>
+                        <td>$160</td>
+                        <td>11mo grado</td>
+                        <td><span style="color: #10B981; font-weight: bold;">Buena</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Proceso de inscripción -->
+        <section class="enrollment-process">
+            <h2 style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                <i class="fas fa-clipboard-list" style="color: #8B5CF6;"></i> Proceso de Inscripción
+            </h2>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Solicitud de Información</h4>
+                    <p>Visita nuestra oficina de admisiones o contacta por teléfono para obtener información detallada.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>Requisitos de Ingreso</h4>
+                    <p>Fotocopia de cédula, certificado de estudios, 2 fotos 2x2, y constancia de buena conducta.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Entrevista de Admisión</h4>
+                    <p>Agenda una entrevista con el coordinador de la carrera de tu interés.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>Matrícula</h4>
+                    <p>Completa el proceso de matrícula y pago correspondiente.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <h2 style="color: white;"><i class="fas fa-file-signature"></i> ¿Listo para comenzar tu carrera técnica?</h2>
+            <p style="max-width: 700px; margin: 20px auto; font-size: 1.1rem;">
+                Inscríbete hoy y comienza tu camino hacia una profesión técnica exitosa. Nuestros asesores están listos para ayudarte.
+            </p>
+            <div style="display: flex; gap: 20px; justify-content: center; margin-top: 30px; flex-wrap: wrap;">
+                <a href="../contact.html" class="btn-primary" style="background: white; color: #8B5CF6; padding: 15px 30px;">
+                    <i class="fas fa-phone-alt"></i> Contactar Admisiones
+                </a>
+                <a href="../secciones/enlaces-utiles.html" class="btn-primary" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 15px 30px;">
+                    <i class="fas fa-download"></i> Descargar Requisitos
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar componentes de navegación
+            fetch('../components/navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                    if (typeof initNavbar === 'function') initNavbar();
+                });
+            
+            fetch('../components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+        });
+    </script>
+</body>
+</html>

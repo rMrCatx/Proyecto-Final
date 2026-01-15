@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Académico - Politecnico Vicente Aquilino Santos</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos específicos para el calendario */
+        .page-header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%);
+            color: white;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .calendar-container {
+            margin-top: 40px;
+        }
+        
+        .calendar-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .calendar-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .month-calendar {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .calendar-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .day-header {
+            padding: 10px;
+            color: #8B5CF6;
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        
+        .calendar-day {
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-color: white;
+            border: 1px solid #f3f4f6;
+        }
+        
+        .calendar-day:hover {
+            background-color: #f0fdf4;
+        }
+        
+        .calendar-day.empty {
+            background-color: #f9fafb;
+            cursor: default;
+            border: none;
+        }
+        
+        .calendar-day.today {
+            background-color: #10B981;
+            color: white;
+            border-color: #10B981;
+        }
+        
+        .calendar-day.event-day {
+            background-color: #ede9fe;
+            border: 2px solid #8B5CF6;
+        }
+        
+        .day-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .event-indicator {
+            font-size: 0.8rem;
+            color: #EF4444;
+            margin-top: auto;
+        }
+        
+        .events-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .events-list, .important-dates {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .event-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #8B5CF6;
+            background-color: #f8fafc;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .event-date {
+            color: #10B981;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .event-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .date-item {
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background-color: #f0fdf4;
+            border-left: 4px solid #10B981;
+        }
+        
+        .date-category {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #ede9fe;
+            color: #8B5CF6;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+        }
+        
+        .download-section {
+            margin-top: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .download-btn {
+            padding: 12px 25px;
+            background-color: white;
+            color: #8B5CF6;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .quarter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .quarter-tab {
+            padding: 12px 20px;
+            background-color: #e5e7eb;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .quarter-tab.active {
+            background-color: #8B5CF6;
+            color: white;
+        }
+        
+        .quarter-content {
+            display: none;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .quarter-content.active {
+            display: block;
+        }
+        
+        .quarter-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .quarter-content li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            align-items: center;
+        }
+        
+        .quarter-content li:before {
+            content: "✓";
+            color: #10B981;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .calendar-main {
+                grid-template-columns: 1fr;
+            }
+            
+            .calendar-navigation {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <div id="navbar-container"></div>
+
+    <main class="container">
+        <!-- Encabezado de página -->
+        <div class="page-header">
+            <h1><i class="fas fa-calendar-alt"></i> Calendario Académico 2024</h1>
+            <p class="page-subtitle">Planifica tu año académico con nuestras fechas importantes</p>
+        </div>
+
+        <div class="intro-section" style="padding: 0 20px 40px;">
+            <p>Consulta todas las fechas importantes del año académico 2024. Desde períodos de inscripción hasta exámenes finales y actividades especiales. Mantente informado para organizar tu tiempo eficientemente.</p>
+        </div>
+
+        <div class="calendar-container">
+            <!-- Navegación del calendario -->
+            <div class="calendar-navigation">
+                <button class="btn-secondary" id="prev-month">
+                    <i class="fas fa-chevron-left"></i> Mes Anterior
+                </button>
+                <h2 id="current-month">Mayo 2024</h2>
+                <button class="btn-secondary" id="next-month">
+                    Siguiente Mes <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Calendario principal -->
+            <div class="calendar-main">
+                <div class="month-calendar">
+                    <div class="calendar-header">
+                        <div class="day-header">Lun</div>
+                        <div class="day-header">Mar</div>
+                        <div class="day-header">Mié</div>
+                        <div class="day-header">Jue</div>
+                        <div class="day-header">Vie</div>
+                        <div class="day-header">Sáb</div>
+                        <div class="day-header">Dom</div>
+                    </div>
+                    <div class="calendar-days" id="calendar-days">
+                        <!-- Los días se generan con JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Sidebar de eventos -->
+                <div class="events-sidebar">
+                    <div class="events-list">
+                        <h3><i class="fas fa-bell"></i> Próximos Eventos</h3>
+                        <div class="event-item">
+                            <div class="event-date">15 de Mayo, 2024</div>
+                            <div class="event-title">Inicio de Inscripciones</div>
+                            <p>Período de inscripciones para el próximo semestre</p>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">22-30 de Mayo, 2024</div>
+                            <div class="event-title">Exámenes Finales</div>
+                            <p>Período de exámenes finales del semestre actual</p>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">5 de Junio, 2024</div>
+                            <div class="event-title">Día del Estudiante</div>
+                            <p>Celebración con actividades recreativas y culturales</p>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">15 de Junio, 2024</div>
+                            <div class="event-title">Ceremonia de Graduación</div>
+                            <p>Graduación de la promoción 2022-2024</p>
+                        </div>
+                    </div>
+
+                    <div class="important-dates">
+                        <h3><i class="fas fa-exclamation-circle"></i> Fechas Críticas</h3>
+                        <div class="date-item">
+                            <span class="date-category">Exámenes</span>
+                            <strong>22-30 Mayo:</strong> Exámenes Finales
+                        </div>
+                        <div class="date-item">
+                            <span class="date-category">Inscripciones</span>
+                            <strong>15 Mayo - 15 Junio:</strong> Período de Inscripciones
+                        </div>
+                        <div class="date-item">
+                            <span class="date-category">Vacaciones</span>
+                            <strong>1-15 Julio:</strong> Vacaciones de Medio Año
+                        </div>
+                        <div class="date-item">
+                            <span class="date-category">Reinscripción</span>
+                            <strong>20-31 Julio:</strong> Reinscripción Estudiantes Regulares
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de descargas -->
+        <div class="download-section">
+            <h3><i class="fas fa-download"></i> Descargar Calendario Completo</h3>
+            <p>Descarga el calendario académico completo en diferentes formatos</p>
+            <div class="download-buttons">
+                <button class="download-btn" onclick="downloadCalendar('pdf')">
+                    <i class="fas fa-file-pdf"></i> PDF
+                </button>
+                <button class="download-btn" onclick="downloadCalendar('image')">
+                    <i class="fas fa-image"></i> Imagen
+                </button>
+                <button class="download-btn" onclick="addToGoogleCalendar()">
+                    <i class="fab fa-google"></i> Google Calendar
+                </button>
+                <button class="download-btn" onclick="printCalendar()">
+                    <i class="fas fa-print"></i> Imprimir
+                </button>
+            </div>
+        </div>
+
+        <!-- Calendario por trimestre -->
+        <div class="quarter-calendar" style="margin-top: 50px;">
+            <h2><i class="fas fa-calendar-week"></i> Calendario por Trimestre</h2>
+            
+            <div class="quarter-tabs">
+                <button class="quarter-tab active" data-quarter="1">Primer Trimestre</button>
+                <button class="quarter-tab" data-quarter="2">Segundo Trimestre</button>
+                <button class="quarter-tab" data-quarter="3">Tercer Trimestre</button>
+                <button class="quarter-tab" data-quarter="4">Cuarto Trimestre</button>
+            </div>
+            
+            <div class="quarter-content active" id="quarter-1">
+                <h3>Enero - Marzo 2024</h3>
+                <ul>
+                    <li><strong>8 Enero:</strong> Inicio de clases</li>
+                    <li><strong>15 Enero:</strong> Último día para cambios de horario</li>
+                    <li><strong>12 Febrero:</strong> Entrega de notas parciales</li>
+                    <li><strong>15-22 Marzo:</strong> Exámenes parciales</li>
+                    <li><strong>29 Marzo:</strong> Fin del primer trimestre</li>
+                </ul>
+            </div>
+            
+            <div class="quarter-content" id="quarter-2">
+                <h3>Abril - Junio 2024</h3>
+                <ul>
+                    <li><strong>1 Abril:</strong> Inicio segundo trimestre</li>
+                    <li><strong>15 Abril:</strong> Día del Trabajo (feriado)</li>
+                    <li><strong>10 Mayo:</strong> Entrega de notas parciales</li>
+                    <li><strong>22-30 Mayo:</strong> Exámenes finales</li>
+                    <li><strong>15 Junio:</strong> Ceremonia de graduación</li>
+                </ul>
+            </div>
+            
+            <div class="quarter-content" id="quarter-3">
+                <h3>Julio - Septiembre 2024</h3>
+                <ul>
+                    <li><strong>1-15 Julio:</strong> Vacaciones de medio año</li>
+                    <li><strong>16 Julio:</strong> Inicio tercer trimestre</li>
+                    <li><strong>20-31 Julio:</strong> Reinscripción</li>
+                    <li><strong>15 Septiembre:</strong> Día de la Independencia</li>
+                    <li><strong>30 Septiembre:</strong> Fin del tercer trimestre</li>
+                </ul>
+            </div>
+            
+            <div class="quarter-content" id="quarter-4">
+                <h3>Octubre - Diciembre 2024</h3>
+                <ul>
+                    <li><strong>1 Octubre:</strong> Inicio cuarto trimestre</li>
+                    <li><strong>15 Octubre:</strong> Día de la Raza</li>
+                    <li><strong>15 Noviembre:</strong> Último día de clases</li>
+                    <li><strong>18-22 Noviembre:</strong> Exámenes finales</li>
+                    <li><strong>13 Diciembre:</strong> Entrega de notas finales</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Variables para el calendario
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar componentes
+            loadComponents();
+            
+            // Inicializar calendario
+            initCalendar();
+            initQuarterTabs();
+        });
+
+        function loadComponents() {
+            // Cargar navbar
+            fetch('../components/navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                    if (typeof initNavbar === 'function') initNavbar();
+                })
+                .catch(error => {
+                    console.error('Error cargando navbar:', error);
+                    document.getElementById('navbar-container').innerHTML = `
+                        <nav style="background: white; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+                                <a href="../index.html" style="text-decoration: none; color: #1f2937; font-weight: bold; font-size: 1.5rem;">
+                                    <i class="fas fa-arrow-left"></i> Volver al Inicio
+                                </a>
+                            </div>
+                        </nav>
+                    `;
+                });
+            
+            // Cargar footer
+            fetch('../components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error cargando footer:', error);
+                    document.getElementById('footer-container').innerHTML = `
+                        <footer style="background: #1f2937; color: white; padding: 40px 20px; margin-top: 60px;">
+                            <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+                                <p>&copy; 2024 Politecnico Vicente Aquilino Santos</p>
+                                <a href="../index.html" style="color: #9ca3af; margin-top: 10px; display: inline-block;">Volver al inicio</a>
+                            </div>
+                        </footer>
+                    `;
+                });
+        }
+
+        function initCalendar() {
+            updateCalendar();
+            
+            // Event listeners para navegación
+            document.getElementById('prev-month').addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                updateCalendar();
+            });
+            
+            document.getElementById('next-month').addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                updateCalendar();
+            });
+        }
+
+        function updateCalendar() {
+            const monthNames = [
+                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+            ];
+            
+            // Actualizar título
+            document.getElementById('current-month').textContent = 
+                `${monthNames[currentMonth]} ${currentYear}`;
+            
+            // Generar días del calendario
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+            const daysInMonth = lastDay.getDate();
+            const startingDay = firstDay.getDay();
+            
+            const calendarDays = document.getElementById('calendar-days');
+            calendarDays.innerHTML = '';
+            
+            // Días vacíos al inicio
+            for (let i = 0; i < startingDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarDays.appendChild(emptyDay);
+            }
+            
+            // Días del mes
+            const today = new Date();
+            const isCurrentMonth = today.getMonth() === currentMonth && today.getFullYear() === currentYear;
+            
+            // Días con eventos importantes (simulados)
+            const eventDays = [5, 10, 15, 20, 22, 25, 30];
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                
+                // Verificar si es hoy
+                if (isCurrentMonth && day === today.getDate()) {
+                    dayElement.classList.add('today');
+                }
+                
+                // Verificar si tiene eventos
+                if (eventDays.includes(day)) {
+                    dayElement.classList.add('event-day');
+                }
+                
+                dayElement.innerHTML = `
+                    <div class="day-number">${day}</div>
+                    ${eventDays.includes(day) ? '<div class="event-indicator"><i class="fas fa-circle"></i></div>' : ''}
+                `;
+                
+                dayElement.addEventListener('click', () => showDayEvents(day));
+                calendarDays.appendChild(dayElement);
+            }
+        }
+
+        function showDayEvents(day) {
+            alert(`Eventos para el ${day} de ${currentMonth + 1}/${currentYear}:\n\n• Clases regulares\n• Reunión de padres (15:00)\n• Taller de programación (17:00)`);
+        }
+
+        function initQuarterTabs() {
+            const tabs = document.querySelectorAll('.quarter-tab');
+            const contents = document.querySelectorAll('.quarter-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remover clase activa de todas las pestañas
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    
+                    // Agregar clase activa a la pestaña clickeada
+                    tab.classList.add('active');
+                    
+                    // Mostrar contenido correspondiente
+                    const quarter = tab.getAttribute('data-quarter');
+                    document.getElementById(`quarter-${quarter}`).classList.add('active');
+                });
+            });
+        }
+
+        function downloadCalendar(format) {
+            alert(`Descargando calendario en formato ${format.toUpperCase()}. En una aplicación real, esto descargaría un archivo.`);
+        }
+
+        function addToGoogleCalendar() {
+            alert('Añadiendo fechas a Google Calendar. En una aplicación real, esto integraría con la API de Google Calendar.');
+        }
+
+        function printCalendar() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

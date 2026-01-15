@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos Destacados - Politecnico Vicente Aquilino Santos</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .projects-container {
+            margin-top: 40px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .project-header {
+            padding: 25px;
+            color: white;
+        }
+        
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .tech-tag {
+            background-color: #f3f4f6;
+            color: #374151;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .project-team {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .team-member {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background-color: #f8fafc;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .member-avatar {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #8B5CF6;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        .project-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8B5CF6;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        .category-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .success-stories {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, #f0fdf4 0%, #f8fafc 100%);
+            border-radius: 15px;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .story-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .story-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #8B5CF6;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .call-to-action {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%);
+            color: white;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-container"></div>
+
+    <main class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-flask"></i> Proyectos Destacados</h1>
+            <p class="page-subtitle">Innovación y tecnología creada por nuestros estudiantes</p>
+        </div>
+
+        <div class="intro-section">
+            <p>En el Politécnico Vicente Aquilino Santos, fomentamos la creatividad y la innovación. Nuestros estudiantes desarrollan proyectos tecnológicos que solucionan problemas reales y demuestran las habilidades adquiridas durante su formación.</p>
+        </div>
+
+        <!-- Filtros por carrera -->
+        <div class="category-filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="programacion">Programación</button>
+            <button class="filter-btn" data-filter="redes">Redes</button>
+            <button class="filter-btn" data-filter="mecanica">Mecánica</button>
+            <button class="filter-btn" data-filter="ebanisteria">Ebanistería</button>
+            <button class="filter-btn" data-filter="refrigeracion">Refrigeración</button>
+            <button class="filter-btn" data-filter="contabilidad">Contabilidad</button>
+        </div>
+
+        <div class="projects-container">
+            <div class="projects-grid" id="projects-grid">
+                <!-- Proyecto 1 -->
+                <div class="project-card" data-category="programacion">
+                    <div class="project-header" style="background: linear-gradient(135deg, #8B5CF6 0%, #7c3aed 100%);">
+                        <div class="project-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>Sistema de Asistencia Inteligente</h3>
+                        <p>Reconocimiento facial para registro de asistencia</p>
+                    </div>
+                    <div class="project-content">
+                        <p>Sistema desarrollado con Python y OpenCV que utiliza reconocimiento facial para automatizar el registro de asistencia de estudiantes y docentes.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                        
+                        <div class="project-team">
+                            <strong>Equipo:</strong>
+                            <div class="team-members">
+                                <div class="team-member">
+                                    <div class="member-avatar">MP</div>
+                                    <span>María Pérez</span>
+                                </div>
+                                <div class="team-member">
+                                    <div class="member-avatar">CR</div>
+                                    <span>Carlos Rodríguez</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">95%</span>
+                                <span class="stat-label">Precisión</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">3</span>
+                                <span class="stat-label">Meses</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">1ro</span>
+                                <span class="stat-label">Premio</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 -->
+                <div class="project-card" data-category="redes">
+                    <div class="project-header" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);">
+                        <div class="project-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Firewall Inteligente</h3>
+                        <p>Sistema de seguridad para red institucional</p>
+                    </div>
+                    <div class="project-content">
+                        <p>Firewall desarrollado con tecnología Cisco que monitorea y protege la red del politécnico contra amenazas externas e internas.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Cisco IOS</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">SNMP</span>
+                            <span class="tech-tag">Linux</span>
+                        </div>
+                        
+                        <div class="project-team">
+                            <strong>Equipo:</strong>
+                            <div class="team-members">
+                                <div class="team-member">
+                                    <div class="member-avatar">JL</div>
+                                    <span>José López</span>
+                                </div>
+                                <div class="team-member">
+                                    <div class="member-avatar">AG</div>
+                                    <span>Ana González</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">99.9%</span>
+                                <span class="stat-label">Uptime</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">50+</span>
+                                <span class="stat-label">Reglas</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">CCNA</span>
+                                <span class="stat-label">Certificación</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 -->
+                <div class="project-card" data-category="mecanica">
+                    <div class="project-header" style="background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);">
+                        <div class="project-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3>Diagnóstico Automotriz IoT</h3>
+                        <p>Sistema de monitoreo remoto para vehículos</p>
+                    </div>
+                    <div class="project-content">
+                        <p>Dispositivo IoT que monitorea el estado de vehículos en tiempo real y envía alertas preventivas a través de una aplicación móvil.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Arduino</span>
+                            <span class="tech-tag">ESP32</span>
+                            <span class="tech-tag">IoT</span>
+                            <span class="tech-tag">React Native</span>
+                        </div>
+                        
+                        <div class="project-team">
+                            <strong>Equipo:</strong>
+                            <div class="team-members">
+                                <div class="team-member">
+                                    <div class="member-avatar">RM</div>
+                                    <span>Roberto Méndez</span>
+                                </div>
+                                <div class="team-member">
+                                    <div class="member-avatar">SM</div>
+                                    <span>Sofía Martínez</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">15</span>
+                                <span class="stat-label">Sensores</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">Real</span>
+                                <span class="stat-label">Tiempo</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">Pat.</span>
+                                <span class="stat-label">Pendiente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 4 -->
+                <div class="project-card" data-category="ebanisteria">
+                    <div class="project-header" style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);">
+                        <div class="project-icon">
+                            <i class="fas fa-chair"></i>
+                        </div>
+                        <h3>Muebles Modulares</h3>
+                        <p>Diseño sostenible con madera recuperada</p>
+                    </div>
+                    <div class="project-content">
+                        <p>Línea de muebles modulares diseñados con técnicas de carpintería fina utilizando madera recuperada de proyectos anteriores.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Diseño 3D</span>
+                            <span class="tech-tag">CAD</span>
+                            <span class="tech-tag">Sostenibilidad</span>
+                            <span class="tech-tag">Madera Reciclada</span>
+                        </div>
+                        
+                        <div class="project-team">
+                            <strong>Equipo:</strong>
+                            <div class="team-members">
+                                <div class="team-member">
+                                    <div class="member-avatar">PG</div>
+                                    <span>Pedro García</span>
+                                </div>
+                                <div class="team-member">
+                                    <div class="member-avatar">LR</div>
+                                    <span>Laura Ramírez</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">80%</span>
+                                <span class="stat-label">Reciclado</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">12</span>
+                                <span class="stat-label">Diseños</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">Vendido</span>
+                                <span class="stat-label">Comercial</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 5 -->
+                <div class="project-card" data-category="refrigeracion">
+                    <div class="project-header" style="background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);">
+                        <div class="project-icon">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <h3>Sistema Eco-Refrigeración</h3>
+                        <p>Refrigeración solar para zonas rurales</p>
+                    </div>
+                    <div class="project-content">
+                        <p>Sistema de refrigeración que utiliza energía solar para conservar medicamentos en zonas rurales sin acceso a electricidad estable.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Energía Solar</span>
+                            <span class="tech-tag">Termodinámica</span>
+                            <span class="tech-tag">Automatización</span>
+                            <span class="tech-tag">Baterías Li-ion</span>
+                        </div>
+                        
+                        <div class="project-team">
+                            <strong>Equipo:</strong>
+                            <div class="team-members">
+                                <div class="team-member">
+                                    <div class="member-avatar">DH</div>
+                                    <span>Daniel Hernández</span>
+                                </div>
+                                <div class="team-member">
+                                    <div class="member-avatar">CM</div>
+                                    <span>Carmen Mendoza</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">72h</span>
+                                <span class="stat-label">Autonomía</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">2-8°C</span>
+                                <span class="stat-label">Temperatura</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">Rural</span>
+                                <span class="stat-label">Enfoque</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyecto 6 -->
+                <div class="project-card" data-category="contabilidad">
+                    <div class="project-header" style="background: linear-gradient(135deg, #8B5CF6 0%, #7c3aed 100%);">
+                        <div class="project-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>ERP para PyMEs</h3>
+                        <p>Sistema de gestión integral para pequeñas empresas</p>
+                    </div>
+                    <div class="project-content">
+                        <p>Sistema de planificación de recursos empresariales adaptado a las necesidades de pequeñas y medianas empresas locales.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Contabilidad</span>
+                        </div>
+                        
+                        <div class="project-team">
+                            <strong>Equipo:</strong>
+                            <div class="team-members">
+                                <div class="team-member">
+                                    <div class="member-avatar">AS</div>
+                                    <span>Andrea Sánchez</span>
+                                </div>
+                                <div class="team-member">
+                                    <div class="member-avatar">JT</div>
+                                    <span>Javier Torres</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-stats">
+                            <div class="stat">
+                                <span class="stat-value">5</span>
+                                <span class="stat-label">Módulos</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">Local</span>
+                                <span class="stat-label">Implementado</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">Web</span>
+                                <span class="stat-label">Plataforma</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historias de éxito -->
+        <div class="success-stories">
+            <h2><i class="fas fa-trophy"></i> Historias de Éxito</h2>
+            <p>Estudiantes que han convertido sus proyectos en emprendimientos exitosos</p>
+            
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="story-avatar">MP</div>
+                    <div>
+                        <h3>María Pérez - Egresada de Programación</h3>
+                        <p>Fundadora de "TechSolutions RD"</p>
+                    </div>
+                </div>
+                <p>"El proyecto de Sistema de Asistencia Inteligente que desarrollamos en el politécnico fue el inicio de mi emprendimiento. Hoy, nuestra startup ha implementado este sistema en 15 instituciones educativas y hemos creado 8 empleos."</p>
+                <div style="margin-top: 15px;">
+                    <strong>Logros:</strong> Premio Joven Innovador 2023, Incubación en Parque Cibernético
+                </div>
+            </div>
+            
+            <div class="story-card">
+                <div class="story-header">
+                    <div class="story-avatar">PG</div>
+                    <div>
+                        <h3>Pedro García - Egresado de Ebanistería</h3>
+                        <p>Propietario de "Maderas Creativas"</p>
+                    </div>
+                </div>
+                <p>"Los muebles modulares que diseñé como proyecto final hoy son mi principal línea de productos. Hemos exportado a 3 países y recibido reconocimiento por nuestro enfoque en sostenibilidad."</p>
+                <div style="margin-top: 15px;">
+                    <strong>Logros:</strong> Exportación internacional, Reconocimiento ambiental
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="call-to-action">
+            <h2><i class="fas fa-lightbulb"></i> ¿Tienes una idea para un proyecto?</h2>
+            <p>En el Politécnico apoyamos la innovación. Si tienes una idea, podemos ayudarte a desarrollarla.</p>
+            <div style="margin-top: 30px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn-primary" style="background: white; color: #8B5CF6;" onclick="openProjectSubmission()">
+                    <i class="fas fa-paper-plane"></i> Enviar Propuesta
+                </button>
+                <a href="../categorias/oferta-academica.html" class="btn-secondary">
+                    <i class="fas fa-graduation-cap"></i> Ver Carreras
+                </a>
+                <a href="../contact.html" class="btn-primary" style="background: rgba(255,255,255,0.2);">
+                    <i class="fas fa-users"></i> Contactar Mentores
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar componentes
+            fetch('../components/navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                    if (typeof initNavbar === 'function') initNavbar();
+                });
+            
+            fetch('../components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+            
+            // Configurar filtros de proyectos
+            initProjectFilters();
+        });
+
+        function initProjectFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remover activo de todos
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Agregar activo al clickeado
+                    btn.classList.add('active');
+                    
+                    const filter = btn.getAttribute('data-filter');
+                    
+                    // Mostrar/ocultar proyectos
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        function openProjectSubmission() {
+            alert('Formulario de envío de propuestas de proyecto.\n\nEn una aplicación real, esto abriría un formulario para que los estudiantes envíen sus ideas de proyectos.');
+            
+            // Simulación de formulario
+            const projectTitle = prompt('Título de tu proyecto:');
+            if (projectTitle) {
+                const projectDescription = prompt('Describe brevemente tu idea:');
+                if (projectDescription) {
+                    const category = prompt('Categoría (Programación, Redes, Mecánica, etc.):');
+                    alert(`¡Propuesta recibida!\n\nTítulo: ${projectTitle}\nCategoría: ${category}\n\nTe contactaremos pronto para discutir tu idea.`);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

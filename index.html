@@ -3,58 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Politecnico Vicente Aquilino Santos - Blog Institucional</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Politecnico Vicente Aquilino Santos - Inicio</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos específicos para la página principal */
+        .hero {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.9) 0%, rgba(16, 185, 129, 0.9) 100%), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content h2 {
+            color: white;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 150px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-text {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .recent-posts {
+            padding: 60px 0;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .section-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #1f2937;
+        }
+        
+        .category-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: #e5e7eb;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .filter-btn.active {
+            background-color: #10B981;
+            color: white;
+        }
+        
+        .filter-btn:hover:not(.active) {
+            background-color: #d1d5db;
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .post-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .post-image {
+            height: 200px;
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            overflow: hidden;
+        }
+        
+        .post-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .post-category {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: #ede9fe;
+            color: #8B5CF6;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            align-self: flex-start;
+        }
+        
+        .post-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #1f2937;
+            line-height: 1.4;
+        }
+        
+        .post-excerpt {
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #9ca3af;
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid #f3f4f6;
+            margin-top: auto;
+        }
+        
+        .read-more {
+            color: #8B5CF6;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .read-more:hover {
+            color: #10B981;
+        }
+        
+        .quick-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 60px 0;
+            background-color: #f9fafb;
+            margin-top: 40px;
+        }
+        
+        .info-card {
+            background-color: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 25px;
+        }
+        
+        .info-card h3 {
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+        
+        .info-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            font-weight: 600;
+            color: #8B5CF6;
+        }
+        
+        .info-link:hover {
+            color: #10B981;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%);
+            color: white;
+            margin-top: 60px;
+            border-radius: 20px;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .cta-btn.primary {
+            background-color: white;
+            color: #8B5CF6;
+        }
+        
+        .cta-btn.secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #10B981;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .no-posts {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px;
+            background-color: #f9fafb;
+            border-radius: 15px;
+            color: #6b7280;
+        }
+        
+        .no-posts i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #d1d5db;
+        }
+    </style>
 </head>
 <body>
     <!-- Barra de navegación -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <img src="images/logo.png" alt="Logo Politécnico" id="logo-img">
-                <div class="logo-text">
-                    <h1>Politecnico</h1>
-                    <p>Vicente Aquilino Santos</p>
-                </div>
-            </div>
-            
-            <button class="menu-toggle" id="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
-                <li class="dropdown">
-                    <a href="#"><i class="fas fa-th-large"></i> Categorías <i class="fas fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" data-category="institucional">Información Institucional</a></li>
-                        <li><a href="#" data-category="oferta">Oferta Académica</a></li>
-                        <li><a href="#" data-category="noticias">Noticias y Comunicados</a></li>
-                        <li><a href="#" data-category="actividades">Actividades</a></li>
-                        <li><a href="#" data-category="logros">Logros y Reconocimientos</a></li>
-                        <li><a href="#" data-category="calendario">Calendario Académico</a></li>
-                        <li><a href="#" data-category="galeria">Galería Multimedia</a></li>
-                        <li><a href="#" data-category="estudiantiles">Actividades Estudiantiles</a></li>
-                    </ul>
-                </li>
-                <li><a href="#calendario"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
-                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contacto</a></li>
-                <li><a href="admin.html" class="admin-link"><i class="fas fa-user-cog"></i> Admin</a></li>
-            </ul>
-            
-            <div class="search-box">
-                <input type="text" id="search-input" placeholder="Buscar publicaciones...">
-                <button id="search-btn"><i class="fas fa-search"></i></button>
-            </div>
-        </div>
-    </nav>
+    <div id="navbar-container"></div>
 
     <!-- Banner principal -->
     <header class="hero">
         <div class="hero-content">
             <h2>Educación Técnica de Excelencia</h2>
-            <p>Formando profesionales para el desarrollo de nuestra comunidad</p>
+            <p>Formando profesionales técnicos para el desarrollo y progreso de nuestra comunidad desde 1985</p>
             <div class="hero-stats">
                 <div class="stat">
                     <span class="stat-number">6</span>
@@ -62,11 +351,15 @@
                 </div>
                 <div class="stat">
                     <span class="stat-number">850+</span>
-                    <span class="stat-text">Estudiantes</span>
+                    <span class="stat-text">Estudiantes Activos</span>
                 </div>
                 <div class="stat">
                     <span class="stat-number">45+</span>
-                    <span class="stat-text">Docentes</span>
+                    <span class="stat-text">Docentes Especializados</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-text">Tasa de Empleabilidad</span>
                 </div>
             </div>
         </div>
@@ -83,6 +376,7 @@
                     <button class="filter-btn" data-filter="noticias">Noticias</button>
                     <button class="filter-btn" data-filter="actividades">Actividades</button>
                     <button class="filter-btn" data-filter="avisos">Avisos</button>
+                    <button class="filter-btn" data-filter="logros">Logros</button>
                 </div>
             </div>
             
@@ -90,8 +384,14 @@
                 <!-- Las publicaciones se cargarán dinámicamente con JavaScript -->
                 <div class="loading">
                     <div class="spinner"></div>
-                    <p>Cargando publicaciones...</p>
+                    <p>Cargando publicaciones recientes...</p>
                 </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="categorias/noticias.html" class="btn-primary" style="padding: 12px 30px; font-size: 1.1rem;">
+                    <i class="fas fa-book-open"></i> Ver Todas las Publicaciones
+                </a>
             </div>
         </section>
         
@@ -102,8 +402,10 @@
                     <i class="fas fa-graduation-cap"></i>
                 </div>
                 <h3>Oferta Académica</h3>
-                <p>Descubre nuestras 6 carreras técnicas: Ebanistería, Mecánica, Programación, Redes, Refrigeración y Contabilidad.</p>
-                <a href="#" class="info-link">Ver carreras <i class="fas fa-arrow-right"></i></a>
+                <p>Descubre nuestras 6 carreras técnicas con salida laboral inmediata: Ebanistería, Mecánica, Programación, Redes, Refrigeración y Contabilidad.</p>
+                <a href="categorias/oferta-academica.html" class="info-link">
+                    Ver carreras <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
             
             <div class="info-card">
@@ -111,161 +413,440 @@
                     <i class="fas fa-calendar-check"></i>
                 </div>
                 <h3>Calendario Académico</h3>
-                <p>Consulta las fechas importantes de exámenes, inscripciones, graduaciones y actividades especiales.</p>
-                <a href="#" class="info-link">Ver calendario <i class="fas fa-arrow-right"></i></a>
+                <p>Consulta las fechas importantes de exámenes, inscripciones, graduaciones y actividades especiales del año 2024.</p>
+                <a href="categorias/calendario.html" class="info-link">
+                    Ver calendario <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
             
             <div class="info-card">
                 <div class="info-icon">
                     <i class="fas fa-trophy"></i>
                 </div>
-                <h3>Logros Recientes</h3>
-                <p>Estudiantes de Programación obtienen primer lugar en concurso regional de desarrollo web.</p>
-                <a href="#" class="info-link">Ver logros <i class="fas fa-arrow-right"></i></a>
+                <h3>Logros y Reconocimientos</h3>
+                <p>Conoce los éxitos de nuestros estudiantes y docentes en competencias regionales y nacionales.</p>
+                <a href="categorias/logros.html" class="info-link">
+                    Ver logros <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </section>
         
         <!-- Sección de galería destacada -->
-        <section class="featured-gallery">
-            <h2><i class="fas fa-images"></i> Galería Destacada</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x200/6B46C1/FFFFFF?text=Feria+Tecnológica" alt="Feria Tecnológica">
-                    <div class="gallery-caption">Feria Tecnológica 2024</div>
+        <section class="featured-gallery" style="padding: 60px 0;">
+            <div class="section-header">
+                <h2><i class="fas fa-images"></i> Galería Destacada</h2>
+                <a href="categorias/galeria.html" class="info-link">
+                    Ver galería completa <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px;">
+                <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #8B5CF6 0%, #ffffff 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px;">
+                        Feria Tecnológica 2024
+                    </div>
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; text-align: center;">
+                        Proyectos innovadores de estudiantes
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x200/10B981/FFFFFF?text=Graduación" alt="Ceremonia de Graduación">
-                    <div class="gallery-caption">Ceremonia de Graduación</div>
+                <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #10B981 0%, #ffffff 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px;">
+                        Graduación 2023
+                    </div>
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; text-align: center;">
+                        Ceremonia de entrega de diplomas
+                    </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://via.placeholder.com/300x200/8B5CF6/FFFFFF?text=Taller+Práctico" alt="Taller Práctico">
-                    <div class="gallery-caption">Taller Práctico de Mecánica</div>
+                <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #3B82F6 0%, #ffffff 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px;">
+                        Talleres Prácticos
+                    </div>
+                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; text-align: center;">
+                        Aprendizaje hands-on en laboratorios
+                    </div>
                 </div>
             </div>
         </section>
         
         <!-- Sección de calendario académico -->
-        <section class="academic-calendar" id="calendario">
-            <h2><i class="fas fa-calendar-alt"></i> Próximas Fechas Importantes</h2>
-            <div class="calendar-grid">
-                <div class="calendar-event">
-                    <div class="event-date">
-                        <span class="event-day">15</span>
-                        <span class="event-month">Mayo</span>
+        <section class="academic-calendar" style="padding: 60px 0; background-color: #f9fafb; border-radius: 20px; margin-top: 40px;">
+            <div class="section-header" style="padding: 0 30px;">
+                <h2><i class="fas fa-calendar-alt"></i> Próximas Fechas Importantes</h2>
+                <a href="categorias/calendario.html" class="info-link">
+                    Calendario completo <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="calendar-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; padding: 0 30px;">
+                <div class="calendar-event" style="display: flex; align-items: center; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+                    <div class="event-date" style="text-align: center; padding-right: 20px; border-right: 2px solid #f3f4f6; min-width: 70px;">
+                        <span class="event-day" style="display: block; font-size: 2rem; font-weight: bold; color: #8B5CF6;">15</span>
+                        <span class="event-month" style="display: block; color: #6b7280; font-size: 0.9rem;">Mayo</span>
                     </div>
-                    <div class="event-details">
-                        <h4>Inicio de Inscripciones</h4>
-                        <p>Período de inscripciones para el próximo semestre</p>
-                    </div>
-                </div>
-                <div class="calendar-event">
-                    <div class="event-date">
-                        <span class="event-day">22</span>
-                        <span class="event-month">Mayo</span>
-                    </div>
-                    <div class="event-details">
-                        <h4>Exámenes Finales</h4>
-                        <p>Inicio del período de exámenes finales</p>
+                    <div class="event-details" style="padding-left: 20px;">
+                        <h4 style="margin-bottom: 5px;">Inicio de Inscripciones</h4>
+                        <p style="color: #6b7280; margin-bottom: 0;">Período de inscripciones para el próximo semestre</p>
                     </div>
                 </div>
-                <div class="calendar-event">
-                    <div class="event-date">
-                        <span class="event-day">05</span>
-                        <span class="event-month">Junio</span>
+                <div class="calendar-event" style="display: flex; align-items: center; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+                    <div class="event-date" style="text-align: center; padding-right: 20px; border-right: 2px solid #f3f4f6; min-width: 70px;">
+                        <span class="event-day" style="display: block; font-size: 2rem; font-weight: bold; color: #10B981;">22</span>
+                        <span class="event-month" style="display: block; color: #6b7280; font-size: 0.9rem;">Mayo</span>
                     </div>
-                    <div class="event-details">
-                        <h4>Día del Estudiante</h4>
-                        <p>Celebración con actividades recreativas y culturales</p>
+                    <div class="event-details" style="padding-left: 20px;">
+                        <h4 style="margin-bottom: 5px;">Exámenes Finales</h4>
+                        <p style="color: #6b7280; margin-bottom: 0;">Inicio del período de exámenes finales</p>
+                    </div>
+                </div>
+                <div class="calendar-event" style="display: flex; align-items: center; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+                    <div class="event-date" style="text-align: center; padding-right: 20px; border-right: 2px solid #f3f4f6; min-width: 70px;">
+                        <span class="event-day" style="display: block; font-size: 2rem; font-weight: bold; color: #8B5CF6;">05</span>
+                        <span class="event-month" style="display: block; color: #6b7280; font-size: 0.9rem;">Junio</span>
+                    </div>
+                    <div class="event-details" style="padding-left: 20px;">
+                        <h4 style="margin-bottom: 5px;">Día del Estudiante</h4>
+                        <p style="color: #6b7280; margin-bottom: 0;">Celebración con actividades recreativas y culturales</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Sección de encuesta rápida -->
-        <section class="quick-poll">
-            <h2><i class="fas fa-poll"></i> Encuesta Rápida</h2>
-            <p>¿Qué tipo de contenido te gustaría ver más en nuestro blog?</p>
-            <form id="poll-form">
-                <div class="poll-options">
-                    <label class="poll-option">
-                        <input type="radio" name="poll" value="tutoriales">
-                        <span>Tutoriales y guías prácticas</span>
-                    </label>
-                    <label class="poll-option">
-                        <input type="radio" name="poll" value="noticias">
-                        <span>Noticias y eventos del centro</span>
-                    </label>
-                    <label class="poll-option">
-                        <input type="radio" name="poll" value="logros">
-                        <span>Logros de estudiantes y docentes</span>
-                    </label>
-                    <label class="poll-option">
-                        <input type="radio" name="poll" value="consejos">
-                        <span>Consejos para el éxito académico</span>
-                    </label>
+        <!-- Sección de proyectos destacados -->
+        <section class="featured-projects" style="padding: 60px 0;">
+            <div class="section-header">
+                <h2><i class="fas fa-flask"></i> Proyectos Destacados</h2>
+                <a href="secciones/proyectos.html" class="info-link">
+                    Ver todos los proyectos <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 30px;">
+                <div class="project-card" style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="padding: 25px; background: linear-gradient(135deg, #8B5CF6 0%, #7c3aed 100%); color: white;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 style="color: white; margin-bottom: 10px;">Sistema de Asistencia Inteligente</h3>
+                        <p>Reconocimiento facial para registro de asistencia</p>
+                    </div>
+                    <div style="padding: 25px;">
+                        <p>Sistema desarrollado con Python y OpenCV que utiliza reconocimiento facial para automatizar el registro de asistencia.</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0;">
+                            <span style="background-color: #f3f4f6; color: #374151; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">Python</span>
+                            <span style="background-color: #f3f4f6; color: #374151; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">OpenCV</span>
+                            <span style="background-color: #f3f4f6; color: #374151; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">IA</span>
+                        </div>
+                        <a href="secciones/proyectos.html" class="read-more">
+                            Ver detalles <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
-                <button type="submit" class="btn-primary">Votar</button>
-            </form>
-            <div id="poll-results" class="poll-results"></div>
+                
+                <div class="project-card" style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-10px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="padding: 25px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white;">
+                        <div style="font-size: 2.5rem; margin-bottom: 15px;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 style="color: white; margin-bottom: 10px;">Firewall Inteligente</h3>
+                        <p>Sistema de seguridad para red institucional</p>
+                    </div>
+                    <div style="padding: 25px;">
+                        <p>Firewall desarrollado con tecnología Cisco que protege la red del politécnico contra amenazas externas.</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0;">
+                            <span style="background-color: #f3f4f6; color: #374151; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">Cisco</span>
+                            <span style="background-color: #f3f4f6; color: #374151; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">Seguridad</span>
+                            <span style="background-color: #f3f4f6; color: #374151; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem;">Redes</span>
+                        </div>
+                        <a href="secciones/proyectos.html" class="read-more">
+                            Ver detalles <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <h2>¿Listo para formar parte de nuestra comunidad?</h2>
+            <p style="max-width: 700px; margin: 0 auto 30px; font-size: 1.2rem;">Únete al Politécnico Vicente Aquilino Santos y comienza tu camino hacia una carrera técnica exitosa.</p>
+            <div class="cta-buttons">
+                <a href="categorias/oferta-academica.html" class="cta-btn primary">
+                    <i class="fas fa-graduation-cap"></i> Ver Carreras
+                </a>
+                <a href="contact.html" class="cta-btn secondary">
+                    <i class="fas fa-envelope"></i> Contactar Admisiones
+                </a>
+                <a href="categorias/calendario.html" class="cta-btn secondary">
+                    <i class="fas fa-calendar"></i> Ver Calendario
+                </a>
+            </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <h3>Politecnico Vicente Aquilino Santos</h3>
-                    <p>Formando técnicos profesionales desde 1985</p>
-                </div>
-                <p class="footer-mission">Nuestra misión es proporcionar educación técnica de calidad que prepare a los estudiantes para los desafíos del mercado laboral y el desarrollo de nuestra comunidad.</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Enlaces Rápidos</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Información Institucional</a></li>
-                    <li><a href="#">Historia del Centro</a></li>
-                    <li><a href="#">Reglamento y Normas</a></li>
-                    <li><a href="#">Oferta Académica</a></li>
-                    <li><a href="contact.html">Contacto</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Carreras Técnicas</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Ebanistería</a></li>
-                    <li><a href="#">Mecánica</a></li>
-                    <li><a href="#">Programación</a></li>
-                    <li><a href="#">Redes</a></li>
-                    <li><a href="#">Refrigeración</a></li>
-                    <li><a href="#">Contabilidad</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Contacto y Redes Sociales</h4>
-                <div class="contact-info">
-                    <p><i class="fas fa-map-marker-alt"></i> Calle Principal #123, Ciudad</p>
-                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
-                    <p><i class="fas fa-envelope"></i> info@politecnico.edu</p>
-                </div>
-                <div class="social-icons">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2024 Politecnico Vicente Aquilino Santos. Todos los derechos reservados.</p>
-            <p>Desarrollado por el Departamento de Programación</p>
-        </div>
-    </footer>
+    <div id="footer-container"></div>
 
-    <script src="javascript.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Datos de publicaciones (simulados)
+        const posts = [
+            {
+                id: 1,
+                title: "Inauguración del nuevo laboratorio de programación",
+                excerpt: "El centro ha inaugurado un moderno laboratorio de programación equipado con computadoras de última generación y software especializado para el desarrollo de aplicaciones web y móviles.",
+                category: "noticias",
+                date: "10 Mayo 2024",
+                author: "Departamento de Informática",
+                color: "#8B5CF6",
+                likes: 24,
+                comments: 8
+            },
+            {
+                id: 2,
+                title: "Taller de ebanistería para principiantes - Inscripciones abiertas",
+                excerpt: "Este sábado se realizará un taller gratuito de ebanistería para estudiantes interesados en aprender las técnicas básicas del trabajo con madera. Cupos limitados.",
+                category: "actividades",
+                date: "8 Mayo 2024",
+                author: "Departamento de Ebanistería",
+                color: "#10B981",
+                likes: 18,
+                comments: 5
+            },
+            {
+                id: 3,
+                title: "AVISO IMPORTANTE: Calendario de exámenes finales",
+                excerpt: "Se informa a todos los estudiantes que el período de exámenes finales se llevará a cabo del 22 al 30 de mayo. Consulten el calendario oficial para horarios específicos.",
+                category: "avisos",
+                date: "5 Mayo 2024",
+                author: "Dirección Académica",
+                color: "#EF4444",
+                likes: 42,
+                comments: 15
+            },
+            {
+                id: 4,
+                title: "Estudiantes ganan primer lugar en competencia nacional de redes",
+                excerpt: "Nuestros estudiantes del técnico en Redes obtuvieron el primer lugar en la competencia nacional de configuración de redes y seguridad informática. ¡Felicidades!",
+                category: "logros",
+                date: "3 Mayo 2024",
+                author: "Departamento de Redes",
+                color: "#3B82F6",
+                likes: 56,
+                comments: 22
+            },
+            {
+                id: 5,
+                title: "Charla sobre refrigeración comercial sostenible",
+                excerpt: "El próximo jueves tendremos una charla sobre las últimas tendencias en refrigeración comercial sostenible, impartida por expertos del sector. Entrada libre.",
+                category: "actividades",
+                date: "1 Mayo 2024",
+                author: "Departamento de Refrigeración",
+                color: "#F59E0B",
+                likes: 31,
+                comments: 7
+            },
+            {
+                id: 6,
+                title: "Nuevo convenio con empresas locales para prácticas profesionales",
+                excerpt: "Firmamos un convenio con 5 empresas locales para ofrecer prácticas profesionales a nuestros estudiantes. Una gran oportunidad para experiencia laboral real.",
+                category: "noticias",
+                date: "28 Abril 2024",
+                author: "Vinculación Laboral",
+                color: "#8B5CF6",
+                likes: 38,
+                comments: 12
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar navbar y footer
+            loadComponents();
+            
+            // Inicializar filtros y cargar publicaciones
+            initFilters();
+            loadPosts();
+            
+            // Inicializar funcionalidad de búsqueda
+            initSearch();
+        });
+
+        function loadComponents() {
+            // Cargar navbar
+            fetch('components/navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                    if (typeof initNavbar === 'function') initNavbar();
+                })
+                .catch(error => {
+                    console.error('Error cargando navbar:', error);
+                    document.getElementById('navbar-container').innerHTML = `
+                        <nav style="background: white; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+                                <a href="index.html" style="text-decoration: none; color: #1f2937; font-weight: bold; font-size: 1.5rem;">
+                                    Politecnico V. A. Santos
+                                </a>
+                                <a href="index.html" style="color: #8B5CF6; text-decoration: none;">Inicio</a>
+                            </div>
+                        </nav>
+                    `;
+                });
+            
+            // Cargar footer
+            fetch('components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error cargando footer:', error);
+                    document.getElementById('footer-container').innerHTML = `
+                        <footer style="background: #1f2937; color: white; padding: 40px 20px; margin-top: 60px;">
+                            <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+                                <p>&copy; 2024 Politecnico Vicente Aquilino Santos</p>
+                                <p style="color: #9ca3af; margin-top: 10px;">Blog Institucional</p>
+                            </div>
+                        </footer>
+                    `;
+                });
+        }
+
+        function initFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remover activo de todos
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Agregar activo al clickeado
+                    btn.classList.add('active');
+                    
+                    const filter = btn.getAttribute('data-filter');
+                    filterPosts(filter);
+                });
+            });
+        }
+
+        function loadPosts() {
+            const postsGrid = document.getElementById('posts-grid');
+            
+            if (posts.length === 0) {
+                postsGrid.innerHTML = `
+                    <div class="no-posts">
+                        <i class="fas fa-newspaper"></i>
+                        <h3>No hay publicaciones recientes</h3>
+                        <p>Pronto habrá nuevas publicaciones en el blog.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            displayPosts(posts);
+        }
+
+        function displayPosts(postsToShow) {
+            const postsGrid = document.getElementById('posts-grid');
+            postsGrid.innerHTML = '';
+            
+            postsToShow.forEach(post => {
+                const postCard = document.createElement('article');
+                postCard.className = 'post-card';
+                
+                // Determinar color según categoría
+                let categoryColor = '#8B5CF6';
+                let categoryText = 'Noticias';
+                
+                switch(post.category) {
+                    case 'actividades':
+                        categoryColor = '#10B981';
+                        categoryText = 'Actividades';
+                        break;
+                    case 'avisos':
+                        categoryColor = '#EF4444';
+                        categoryText = 'Avisos';
+                        break;
+                    case 'logros':
+                        categoryColor = '#3B82F6';
+                        categoryText = 'Logros';
+                        break;
+                }
+                
+                postCard.innerHTML = `
+                    <div class="post-image" style="background: linear-gradient(135deg, ${categoryColor} 0%, ${post.color} 100%); color: white; font-size: 3rem;">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="post-content">
+                        <span class="post-category" style="background-color: ${categoryColor}20; color: ${categoryColor};">
+                            ${categoryText}
+                        </span>
+                        <h3 class="post-title">${post.title}</h3>
+                        <p class="post-excerpt">${post.excerpt}</p>
+                        
+                        <a href="post.html?id=${post.id}" class="read-more">
+                            Leer más <i class="fas fa-arrow-right"></i>
+                        </a>
+                        
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> ${post.date}</span>
+                            <span><i class="fas fa-user"></i> ${post.author}</span>
+                        </div>
+                    </div>
+                `;
+                
+                postsGrid.appendChild(postCard);
+            });
+        }
+
+        function filterPosts(filter) {
+            let filteredPosts = posts;
+            
+            if (filter !== 'all') {
+                filteredPosts = posts.filter(post => post.category === filter);
+            }
+            
+            displayPosts(filteredPosts);
+        }
+
+        function initSearch() {
+            const searchInput = document.getElementById('search-input');
+            const searchBtn = document.getElementById('search-btn');
+            
+            if (searchBtn && searchInput) {
+                searchBtn.addEventListener('click', performSearch);
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') performSearch();
+                });
+            }
+        }
+
+        function performSearch() {
+            const query = document.getElementById('search-input')?.value.trim();
+            if (!query) {
+                alert('Por favor, ingresa un término de búsqueda.');
+                return;
+            }
+            
+            // Filtrar posts por término de búsqueda
+            const filteredPosts = posts.filter(post => 
+                post.title.toLowerCase().includes(query.toLowerCase()) || 
+                post.excerpt.toLowerCase().includes(query.toLowerCase()) ||
+                post.author.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            if (filteredPosts.length > 0) {
+                displayPosts(filteredPosts);
+                
+                // Mostrar mensaje de resultados
+                const resultsMsg = document.createElement('div');
+                resultsMsg.style.cssText = 'text-align: center; padding: 15px; background-color: #f0fdf4; border-radius: 10px; margin-bottom: 20px;';
+                resultsMsg.innerHTML = `<strong>${filteredPosts.length} resultados</strong> encontrados para: "${query}"`;
+                
+                const postsGrid = document.getElementById('posts-grid');
+                postsGrid.parentNode.insertBefore(resultsMsg, postsGrid);
+                
+                // Desplazar a los resultados
+                resultsMsg.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert(`No se encontraron resultados para: "${query}"`);
+            }
+        }
+    </script>
 </body>
 </html>
