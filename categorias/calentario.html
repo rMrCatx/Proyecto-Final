@@ -4,32 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendario Académico - Politecnico Vicente Aquilino Santos</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/estilos-menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Estilos específicos para el calendario */
+        .calendar-page {
+            padding-top: 80px;
+        }
+        
         .page-header {
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
             background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%);
             color: white;
-            border-radius: 0 0 20px 20px;
             margin-bottom: 40px;
         }
         
         .page-header h1 {
             color: white;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 15px;
         }
         
         .page-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
         }
         
         .calendar-container {
-            margin-top: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
         }
         
         .calendar-navigation {
@@ -39,21 +47,22 @@
             margin-bottom: 30px;
             padding: 20px;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
         
         .calendar-main {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 30px;
+            margin-bottom: 40px;
         }
         
         .month-calendar {
             background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
         
         .calendar-header {
@@ -61,38 +70,42 @@
             grid-template-columns: repeat(7, 1fr);
             text-align: center;
             font-weight: bold;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f3f4f6;
         }
         
         .day-header {
-            padding: 10px;
+            padding: 15px;
             color: #8B5CF6;
+            font-size: 1.1rem;
         }
         
         .calendar-days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
+            gap: 8px;
         }
         
         .calendar-day {
-            padding: 15px;
+            padding: 20px 10px;
             text-align: center;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.2s;
-            min-height: 80px;
+            min-height: 100px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             background-color: white;
-            border: 1px solid #f3f4f6;
+            border: 2px solid #f9fafb;
+            position: relative;
         }
         
         .calendar-day:hover {
             background-color: #f0fdf4;
+            border-color: #10B981;
+            transform: translateY(-3px);
         }
         
         .calendar-day.empty {
@@ -101,10 +114,17 @@
             border: none;
         }
         
+        .calendar-day.empty:hover {
+            background-color: #f9fafb;
+            transform: none;
+            border: none;
+        }
+        
         .calendar-day.today {
             background-color: #10B981;
             color: white;
             border-color: #10B981;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
         }
         
         .calendar-day.event-day {
@@ -112,10 +132,15 @@
             border: 2px solid #8B5CF6;
         }
         
+        .calendar-day.event-day .day-number {
+            color: #8B5CF6;
+        }
+        
         .day-number {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: #1f2937;
         }
         
         .event-indicator {
@@ -127,121 +152,178 @@
         .events-sidebar {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
         
         .events-list, .important-dates {
             background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .events-list h3, .important-dates h3 {
+            color: #1f2937;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
         }
         
         .event-item {
-            padding: 15px;
-            margin-bottom: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
             border-left: 4px solid #8B5CF6;
             background-color: #f8fafc;
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 10px 10px 0;
+            transition: transform 0.3s;
+        }
+        
+        .event-item:hover {
+            transform: translateX(5px);
+            background-color: #f3f4f6;
         }
         
         .event-date {
             color: #10B981;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
         }
         
         .event-title {
             font-weight: 600;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: #1f2937;
+            font-size: 1.2rem;
         }
         
         .date-item {
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
             background-color: #f0fdf4;
             border-left: 4px solid #10B981;
+            transition: transform 0.3s;
+        }
+        
+        .date-item:hover {
+            transform: translateX(5px);
         }
         
         .date-category {
             display: inline-block;
-            padding: 3px 8px;
+            padding: 5px 12px;
             background-color: #ede9fe;
             color: #8B5CF6;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-right: 8px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 10px;
         }
         
         .download-section {
-            margin-top: 40px;
-            padding: 25px;
+            margin: 60px 0;
+            padding: 40px;
             background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%);
             color: white;
-            border-radius: 10px;
+            border-radius: 20px;
             text-align: center;
+        }
+        
+        .download-section h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
         }
         
         .download-buttons {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 30px;
             flex-wrap: wrap;
         }
         
         .download-btn {
-            padding: 12px 25px;
+            padding: 15px 30px;
             background-color: white;
             color: #8B5CF6;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-size: 1rem;
         }
         
         .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .quarter-calendar {
+            margin: 60px 0;
+        }
+        
+        .quarter-calendar h2 {
+            color: #1f2937;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         
         .quarter-tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 15px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
         }
         
         .quarter-tab {
-            padding: 12px 20px;
+            padding: 15px 30px;
             background-color: #e5e7eb;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .quarter-tab:hover {
+            background-color: #d1d5db;
         }
         
         .quarter-tab.active {
             background-color: #8B5CF6;
             color: white;
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
         }
         
         .quarter-content {
             display: none;
-            padding: 25px;
+            padding: 40px;
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease;
         }
         
         .quarter-content.active {
             display: block;
+        }
+        
+        .quarter-content h3 {
+            color: #1f2937;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
         }
         
         .quarter-content ul {
@@ -250,61 +332,210 @@
         }
         
         .quarter-content li {
-            padding: 10px 0;
+            padding: 15px 0;
             border-bottom: 1px solid #f3f4f6;
             display: flex;
             align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        .quarter-content li:last-child {
+            border-bottom: none;
         }
         
         .quarter-content li:before {
             content: "✓";
             color: #10B981;
             font-weight: bold;
-            margin-right: 10px;
+            margin-right: 15px;
+            font-size: 1.3rem;
         }
         
-        @media (max-width: 768px) {
+        .btn-secondary {
+            padding: 12px 25px;
+            background-color: white;
+            color: #8B5CF6;
+            border: 2px solid #8B5CF6;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #8B5CF6;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 992px) {
             .calendar-main {
                 grid-template-columns: 1fr;
             }
             
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .download-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
             .calendar-navigation {
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
                 text-align: center;
             }
+            
+            .day-header {
+                padding: 10px 5px;
+                font-size: 0.9rem;
+            }
+            
+            .calendar-day {
+                padding: 15px 5px;
+                min-height: 80px;
+            }
+            
+            .day-number {
+                font-size: 1.1rem;
+            }
+            
+            .quarter-tabs {
+                flex-direction: column;
+            }
+            
+            .quarter-tab {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+        
+        /* Estilos para navegación entre páginas */
+        .site-navigation {
+            margin: 60px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 20px;
+        }
+        
+        .site-navigation h3 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1f2937;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .nav-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #1f2937;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            display: block;
+            text-align: center;
+        }
+        
+        .nav-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .nav-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+        
+        .nav-card h4 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .nav-card p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .nav-arrow {
+            color: #8B5CF6;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <!-- Barra de navegación -->
-    <div id="navbar-container"></div>
-
-    <main class="container">
+    <!-- Menú fijo -->
+    <div id="menu-container"></div>
+    
+    <div class="calendar-page">
         <!-- Encabezado de página -->
-        <div class="page-header">
+        <header class="page-header">
             <h1><i class="fas fa-calendar-alt"></i> Calendario Académico 2024</h1>
-            <p class="page-subtitle">Planifica tu año académico con nuestras fechas importantes</p>
-        </div>
+            <p class="page-subtitle">Planifica tu año académico con nuestras fechas importantes y mantente informado de todos los eventos institucionales.</p>
+        </header>
 
-        <div class="intro-section" style="padding: 0 20px 40px;">
-            <p>Consulta todas las fechas importantes del año académico 2024. Desde períodos de inscripción hasta exámenes finales y actividades especiales. Mantente informado para organizar tu tiempo eficientemente.</p>
-        </div>
+        <main class="calendar-container">
+            <!-- Introducción -->
+            <div class="intro-section" style="text-align: center; margin-bottom: 40px;">
+                <p style="font-size: 1.2rem; color: #6b7280; max-width: 800px; margin: 0 auto; line-height: 1.7;">
+                    Consulta todas las fechas importantes del año académico 2024. Desde períodos de inscripción hasta exámenes finales y actividades especiales. 
+                    Mantente informado para organizar tu tiempo eficientemente y no perderte ningún evento importante.
+                </p>
+            </div>
 
-        <div class="calendar-container">
             <!-- Navegación del calendario -->
             <div class="calendar-navigation">
                 <button class="btn-secondary" id="prev-month">
                     <i class="fas fa-chevron-left"></i> Mes Anterior
                 </button>
-                <h2 id="current-month">Mayo 2024</h2>
+                <h2 id="current-month" style="color: #1f2937; font-size: 1.8rem;">Mayo 2024</h2>
                 <button class="btn-secondary" id="next-month">
                     Siguiente Mes <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
 
-            <!-- Calendario principal -->
+            <!-- Calendario principal y eventos -->
             <div class="calendar-main">
+                <!-- Calendario mensual -->
                 <div class="month-calendar">
                     <div class="calendar-header">
                         <div class="day-header">Lun</div>
@@ -327,22 +558,22 @@
                         <div class="event-item">
                             <div class="event-date">15 de Mayo, 2024</div>
                             <div class="event-title">Inicio de Inscripciones</div>
-                            <p>Período de inscripciones para el próximo semestre</p>
+                            <p>Período de inscripciones para el próximo semestre. Inscripciones en línea y presenciales.</p>
                         </div>
                         <div class="event-item">
                             <div class="event-date">22-30 de Mayo, 2024</div>
                             <div class="event-title">Exámenes Finales</div>
-                            <p>Período de exámenes finales del semestre actual</p>
+                            <p>Período de exámenes finales del semestre actual. Consulta horarios específicos.</p>
                         </div>
                         <div class="event-item">
                             <div class="event-date">5 de Junio, 2024</div>
                             <div class="event-title">Día del Estudiante</div>
-                            <p>Celebración con actividades recreativas y culturales</p>
+                            <p>Celebración con actividades recreativas, culturales y deportivas para todos los estudiantes.</p>
                         </div>
                         <div class="event-item">
                             <div class="event-date">15 de Junio, 2024</div>
                             <div class="event-title">Ceremonia de Graduación</div>
-                            <p>Graduación de la promoción 2022-2024</p>
+                            <p>Graduación oficial de la promoción 2022-2024. Ceremonia en el auditorio principal.</p>
                         </div>
                     </div>
 
@@ -367,89 +598,162 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Sección de descargas -->
-        <div class="download-section">
-            <h3><i class="fas fa-download"></i> Descargar Calendario Completo</h3>
-            <p>Descarga el calendario académico completo en diferentes formatos</p>
-            <div class="download-buttons">
-                <button class="download-btn" onclick="downloadCalendar('pdf')">
-                    <i class="fas fa-file-pdf"></i> PDF
-                </button>
-                <button class="download-btn" onclick="downloadCalendar('image')">
-                    <i class="fas fa-image"></i> Imagen
-                </button>
-                <button class="download-btn" onclick="addToGoogleCalendar()">
-                    <i class="fab fa-google"></i> Google Calendar
-                </button>
-                <button class="download-btn" onclick="printCalendar()">
-                    <i class="fas fa-print"></i> Imprimir
-                </button>
+            <!-- Sección de descargas -->
+            <div class="download-section">
+                <h3><i class="fas fa-download"></i> Descargar Calendario Completo</h3>
+                <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto; opacity: 0.9;">
+                    Descarga el calendario académico completo en diferentes formatos para tenerlo siempre a mano.
+                </p>
+                <div class="download-buttons">
+                    <button class="download-btn" onclick="downloadCalendar('pdf')">
+                        <i class="fas fa-file-pdf"></i> PDF
+                    </button>
+                    <button class="download-btn" onclick="downloadCalendar('image')">
+                        <i class="fas fa-image"></i> Imagen
+                    </button>
+                    <button class="download-btn" onclick="addToGoogleCalendar()">
+                        <i class="fab fa-google"></i> Google Calendar
+                    </button>
+                    <button class="download-btn" onclick="printCalendar()">
+                        <i class="fas fa-print"></i> Imprimir
+                    </button>
+                </div>
             </div>
-        </div>
 
-        <!-- Calendario por trimestre -->
-        <div class="quarter-calendar" style="margin-top: 50px;">
-            <h2><i class="fas fa-calendar-week"></i> Calendario por Trimestre</h2>
-            
-            <div class="quarter-tabs">
-                <button class="quarter-tab active" data-quarter="1">Primer Trimestre</button>
-                <button class="quarter-tab" data-quarter="2">Segundo Trimestre</button>
-                <button class="quarter-tab" data-quarter="3">Tercer Trimestre</button>
-                <button class="quarter-tab" data-quarter="4">Cuarto Trimestre</button>
+            <!-- Calendario por trimestre -->
+            <div class="quarter-calendar">
+                <h2><i class="fas fa-calendar-week"></i> Calendario por Trimestre</h2>
+                
+                <div class="quarter-tabs">
+                    <button class="quarter-tab active" data-quarter="1">Primer Trimestre</button>
+                    <button class="quarter-tab" data-quarter="2">Segundo Trimestre</button>
+                    <button class="quarter-tab" data-quarter="3">Tercer Trimestre</button>
+                    <button class="quarter-tab" data-quarter="4">Cuarto Trimestre</button>
+                </div>
+                
+                <div class="quarter-content active" id="quarter-1">
+                    <h3>Enero - Marzo 2024</h3>
+                    <ul>
+                        <li><strong>8 Enero:</strong> Inicio de clases</li>
+                        <li><strong>15 Enero:</strong> Último día para cambios de horario</li>
+                        <li><strong>12 Febrero:</strong> Entrega de notas parciales</li>
+                        <li><strong>15-22 Marzo:</strong> Exámenes parciales</li>
+                        <li><strong>29 Marzo:</strong> Fin del primer trimestre</li>
+                        <li><strong>1-5 Abril:</strong> Vacaciones de Semana Santa</li>
+                    </ul>
+                </div>
+                
+                <div class="quarter-content" id="quarter-2">
+                    <h3>Abril - Junio 2024</h3>
+                    <ul>
+                        <li><strong>1 Abril:</strong> Inicio segundo trimestre</li>
+                        <li><strong>15 Abril:</strong> Día del Trabajo (feriado)</li>
+                        <li><strong>10 Mayo:</strong> Entrega de notas parciales</li>
+                        <li><strong>22-30 Mayo:</strong> Exámenes finales</li>
+                        <li><strong>15 Junio:</strong> Ceremonia de graduación</li>
+                        <li><strong>30 Junio:</strong> Fin del segundo trimestre</li>
+                    </ul>
+                </div>
+                
+                <div class="quarter-content" id="quarter-3">
+                    <h3>Julio - Septiembre 2024</h3>
+                    <ul>
+                        <li><strong>1-15 Julio:</strong> Vacaciones de medio año</li>
+                        <li><strong>16 Julio:</strong> Inicio tercer trimestre</li>
+                        <li><strong>20-31 Julio:</strong> Reinscripción estudiantes regulares</li>
+                        <li><strong>15 Septiembre:</strong> Día de la Independencia (feriado)</li>
+                        <li><strong>30 Septiembre:</strong> Fin del tercer trimestre</li>
+                        <li><strong>5-10 Octubre:</strong> Exámenes parciales</li>
+                    </ul>
+                </div>
+                
+                <div class="quarter-content" id="quarter-4">
+                    <h3>Octubre - Diciembre 2024</h3>
+                    <ul>
+                        <li><strong>1 Octubre:</strong> Inicio cuarto trimestre</li>
+                        <li><strong>15 Octubre:</strong> Día de la Raza (feriado)</li>
+                        <li><strong>15 Noviembre:</strong> Último día de clases</li>
+                        <li><strong>18-22 Noviembre:</strong> Exámenes finales</li>
+                        <li><strong>13 Diciembre:</strong> Entrega de notas finales</li>
+                        <li><strong>20 Diciembre:</strong> Inicio vacaciones de fin de año</li>
+                    </ul>
+                </div>
             </div>
-            
-            <div class="quarter-content active" id="quarter-1">
-                <h3>Enero - Marzo 2024</h3>
-                <ul>
-                    <li><strong>8 Enero:</strong> Inicio de clases</li>
-                    <li><strong>15 Enero:</strong> Último día para cambios de horario</li>
-                    <li><strong>12 Febrero:</strong> Entrega de notas parciales</li>
-                    <li><strong>15-22 Marzo:</strong> Exámenes parciales</li>
-                    <li><strong>29 Marzo:</strong> Fin del primer trimestre</li>
-                </ul>
-            </div>
-            
-            <div class="quarter-content" id="quarter-2">
-                <h3>Abril - Junio 2024</h3>
-                <ul>
-                    <li><strong>1 Abril:</strong> Inicio segundo trimestre</li>
-                    <li><strong>15 Abril:</strong> Día del Trabajo (feriado)</li>
-                    <li><strong>10 Mayo:</strong> Entrega de notas parciales</li>
-                    <li><strong>22-30 Mayo:</strong> Exámenes finales</li>
-                    <li><strong>15 Junio:</strong> Ceremonia de graduación</li>
-                </ul>
-            </div>
-            
-            <div class="quarter-content" id="quarter-3">
-                <h3>Julio - Septiembre 2024</h3>
-                <ul>
-                    <li><strong>1-15 Julio:</strong> Vacaciones de medio año</li>
-                    <li><strong>16 Julio:</strong> Inicio tercer trimestre</li>
-                    <li><strong>20-31 Julio:</strong> Reinscripción</li>
-                    <li><strong>15 Septiembre:</strong> Día de la Independencia</li>
-                    <li><strong>30 Septiembre:</strong> Fin del tercer trimestre</li>
-                </ul>
-            </div>
-            
-            <div class="quarter-content" id="quarter-4">
-                <h3>Octubre - Diciembre 2024</h3>
-                <ul>
-                    <li><strong>1 Octubre:</strong> Inicio cuarto trimestre</li>
-                    <li><strong>15 Octubre:</strong> Día de la Raza</li>
-                    <li><strong>15 Noviembre:</strong> Último día de clases</li>
-                    <li><strong>18-22 Noviembre:</strong> Exámenes finales</li>
-                    <li><strong>13 Diciembre:</strong> Entrega de notas finales</li>
-                </ul>
-            </div>
-        </div>
-    </main>
+
+            <!-- Navegación entre páginas del sitio -->
+            <section class="site-navigation">
+                <h3><i class="fas fa-compass"></i> Explora Nuestro Sitio</h3>
+                <div class="nav-grid">
+                    <a href="index.html" class="nav-card">
+                        <div class="nav-icon" style="background: linear-gradient(135deg, #8B5CF6 0%, #7c3aed 100%);">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h4>Página Principal</h4>
+                        <p>Noticias, eventos destacados y contenido principal de la institución</p>
+                        <span class="nav-arrow">→</span>
+                    </a>
+                    
+                    <a href="admin.html" class="nav-card">
+                        <div class="nav-icon" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <h4>Administración</h4>
+                        <p>Panel de gestión institucional y herramientas administrativas</p>
+                        <span class="nav-arrow">→</span>
+                    </a>
+                    
+                    <a href="contact.html" class="nav-card">
+                        <div class="nav-icon" style="background: linear-gradient(135deg, #3B82F6 0%, #2563eb 100%);">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Contacto</h4>
+                        <p>Formulario de contacto, información y ubicación de nuestra institución</p>
+                        <span class="nav-arrow">→</span>
+                    </a>
+                    
+                    <a href="historia.html" class="nav-card">
+                        <div class="nav-icon" style="background: linear-gradient(135deg, #F59E0B 0%, #d97706 100%);">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h4>Historia</h4>
+                        <p>Trayectoria, logros y evolución institucional desde nuestros inicios</p>
+                        <span class="nav-arrow">→</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <!-- Footer -->
-    <div id="footer-container"></div>
+    <footer style="background: #1f2937; color: white; padding: 50px 20px; margin-top: 60px;">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <h4 style="color: white; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fas fa-graduation-cap"></i>
+                        Politecnico V. A. Santos
+                    </h4>
+                    <p style="color: #9ca3af;">Educación técnica de excelencia desde 1985</p>
+                </div>
+                
+                <div>
+                    <h4 style="color: white; margin-bottom: 20px;">Enlaces Rápidos</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="index.html" style="color: #9ca3af; text-decoration: none;">Inicio</a>
+                        <a href="admin.html" style="color: #9ca3af; text-decoration: none;">Administración</a>
+                        <a href="contact.html" style="color: #9ca3af; text-decoration: none;">Contacto</a>
+                        <a href="calendario.html" style="color: #8B5CF6; text-decoration: none; font-weight: bold;">Calendario</a>
+                        <a href="historia.html" style="color: #9ca3af; text-decoration: none;">Historia</a>
+                    </div>
+                </div>
+            </div>
+            <p style="color: #6b7280; font-size: 0.9rem; border-top: 1px solid #374151; padding-top: 20px;">
+                &copy; 2024 Politecnico Vicente Aquilino Santos. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
 
-    <script src="../js/main.js"></script>
     <script>
         // Variables para el calendario
         let currentDate = new Date();
@@ -457,52 +761,55 @@
         let currentYear = currentDate.getFullYear();
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Cargar componentes
-            loadComponents();
+            // Cargar menú
+            loadMenu();
             
             // Inicializar calendario
             initCalendar();
             initQuarterTabs();
         });
 
-        function loadComponents() {
-            // Cargar navbar
-            fetch('../components/navbar.html')
+        function loadMenu() {
+            // Cargar menú común desde menu.html
+            fetch('menu.html')
                 .then(response => response.text())
                 .then(data => {
-                    document.getElementById('navbar-container').innerHTML = data;
-                    if (typeof initNavbar === 'function') initNavbar();
+                    document.getElementById('menu-container').innerHTML = data;
+                    // Marcar página activa
+                    markActivePage();
                 })
                 .catch(error => {
-                    console.error('Error cargando navbar:', error);
-                    document.getElementById('navbar-container').innerHTML = `
-                        <nav style="background: white; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px;">
-                            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
-                                <a href="../index.html" style="text-decoration: none; color: #1f2937; font-weight: bold; font-size: 1.5rem;">
-                                    <i class="fas fa-arrow-left"></i> Volver al Inicio
+                    console.error('Error cargando el menú:', error);
+                    // Menú de respaldo
+                    document.getElementById('menu-container').innerHTML = `
+                        <nav style="background: white; padding: 20px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: fixed; top: 0; width: 100%; z-index: 1000;">
+                            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <a href="index.html" style="text-decoration: none; color: #1f2937; font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                                    <i class="fas fa-graduation-cap" style="color: #8B5CF6;"></i>
+                                    Politecnico V. A. Santos
                                 </a>
+                                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                    <a href="index.html" style="padding: 10px 20px; text-decoration: none; color: #4b5563;">Inicio</a>
+                                    <a href="admin.html" style="padding: 10px 20px; text-decoration: none; color: #4b5563;">Admin</a>
+                                    <a href="contact.html" style="padding: 10px 20px; text-decoration: none; color: #4b5563;">Contacto</a>
+                                    <a href="calendario.html" style="padding: 10px 20px; text-decoration: none; color: #8B5CF6; font-weight: bold;">Calendario</a>
+                                    <a href="historia.html" style="padding: 10px 20px; text-decoration: none; color: #4b5563;">Historia</a>
+                                </div>
                             </div>
                         </nav>
                     `;
                 });
-            
-            // Cargar footer
-            fetch('../components/footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer-container').innerHTML = data;
-                })
-                .catch(error => {
-                    console.error('Error cargando footer:', error);
-                    document.getElementById('footer-container').innerHTML = `
-                        <footer style="background: #1f2937; color: white; padding: 40px 20px; margin-top: 60px;">
-                            <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-                                <p>&copy; 2024 Politecnico Vicente Aquilino Santos</p>
-                                <a href="../index.html" style="color: #9ca3af; margin-top: 10px; display: inline-block;">Volver al inicio</a>
-                            </div>
-                        </footer>
-                    `;
+        }
+
+        function markActivePage() {
+            setTimeout(() => {
+                const links = document.querySelectorAll('.nav-link');
+                links.forEach(link => {
+                    if (link.href.includes('calendario.html')) {
+                        link.classList.add('active');
+                    }
                 });
+            }, 100);
         }
 
         function initCalendar() {
@@ -577,7 +884,7 @@
                 
                 dayElement.innerHTML = `
                     <div class="day-number">${day}</div>
-                    ${eventDays.includes(day) ? '<div class="event-indicator"><i class="fas fa-circle"></i></div>' : ''}
+                    ${eventDays.includes(day) ? '<div class="event-indicator"><i class="fas fa-circle"></i> Evento</div>' : ''}
                 `;
                 
                 dayElement.addEventListener('click', () => showDayEvents(day));
@@ -586,7 +893,7 @@
         }
 
         function showDayEvents(day) {
-            alert(`Eventos para el ${day} de ${currentMonth + 1}/${currentYear}:\n\n• Clases regulares\n• Reunión de padres (15:00)\n• Taller de programación (17:00)`);
+            alert(`📅 Eventos para el ${day} de ${currentMonth + 1}/${currentYear}:\n\n• Clases regulares (7:00 AM - 5:00 PM)\n• Reunión de padres (3:00 PM)\n• Taller de programación (5:00 PM)\n• Actividades deportivas (6:00 PM)`);
         }
 
         function initQuarterTabs() {
@@ -610,16 +917,195 @@
         }
 
         function downloadCalendar(format) {
-            alert(`Descargando calendario en formato ${format.toUpperCase()}. En una aplicación real, esto descargaría un archivo.`);
+            alert(`📥 Descargando calendario en formato ${format.toUpperCase()}...\n\nEn una aplicación real, esto descargaría un archivo del calendario completo.`);
         }
 
-        function addToGoogleCalendar() {
-            alert('Añadiendo fechas a Google Calendar. En una aplicación real, esto integraría con la API de Google Calendar.');
+                function addToGoogleCalendar() {
+            alert('📅 Añadiendo fechas importantes a Google Calendar...\n\nEn una aplicación real, esto integraría con la API de Google Calendar.');
         }
 
         function printCalendar() {
             window.print();
         }
+
+        // ==============================================
+        // ENLACES DE NAVEGACIÓN COMPLETA
+        // ==============================================
+
+        // Función para navegar entre páginas con efecto de carga
+        function navigateTo(page) {
+            // Efecto visual de carga
+            const mainContent = document.querySelector('main');
+            if (mainContent) {
+                mainContent.style.opacity = '0.5';
+                mainContent.style.transition = 'opacity 0.3s';
+            }
+            
+            // Mostrar mensaje de redirección
+            console.log(`Navegando a: ${page}`);
+            
+            // Redirigir después de un breve delay para el efecto visual
+            setTimeout(() => {
+                window.location.href = page;
+            }, 300);
+        }
+
+        // Agregar eventos de clic a todos los enlaces de navegación
+        document.addEventListener('DOMContentLoaded', function() {
+            // Enlaces en las tarjetas de navegación
+            document.querySelectorAll('.nav-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    if (href) {
+                        // Efecto visual
+                        this.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            navigateTo(href);
+                        }, 200);
+                    }
+                });
+            });
+
+            // Enlaces en el menú superior
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Solo para enlaces internos
+                    if (this.getAttribute('href') && !this.getAttribute('target')) {
+                        e.preventDefault();
+                        const href = this.getAttribute('href');
+                        navigateTo(href);
+                    }
+                });
+            });
+
+            // Botones de navegación rápida en el footer
+            document.querySelectorAll('footer a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') && !this.getAttribute('target')) {
+                        e.preventDefault();
+                        const href = this.getAttribute('href');
+                        navigateTo(href);
+                    }
+                });
+            });
+        });
+
+        // Verificar que todos los enlaces estén presentes
+        function checkAllNavigationLinks() {
+            const requiredPages = [
+                'index.html',
+                'admin.html', 
+                'contact.html',
+                'historia.html'
+            ];
+            
+            let missingLinks = [];
+            
+            requiredPages.forEach(page => {
+                const linkExists = document.querySelector(`a[href="${page}"]`);
+                if (!linkExists) {
+                    missingLinks.push(page);
+                    console.error(`❌ Falta enlace a: ${page}`);
+                } else {
+                    console.log(`✅ Enlace a ${page} encontrado`);
+                }
+            });
+            
+            if (missingLinks.length === 0) {
+                console.log('🎉 ¡Todos los enlaces de navegación están presentes!');
+                return true;
+            } else {
+                console.error(`⚠️ Faltan ${missingLinks.length} enlaces:`, missingLinks);
+                return false;
+            }
+        }
+
+        // Ejecutar verificación cuando la página cargue
+        window.addEventListener('load', function() {
+            setTimeout(checkAllNavigationLinks, 1000);
+            
+            // Agregar efectos hover a todos los enlaces
+            document.querySelectorAll('a').forEach(link => {
+                // Solo enlaces internos
+                if (link.href && link.href.includes('.html') && !link.target) {
+                    link.style.transition = 'all 0.3s ease';
+                    
+                    link.addEventListener('mouseenter', function() {
+                        this.style.transform = 'translateY(-2px)';
+                        this.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                    });
+                    
+                    link.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateY(0)';
+                        this.style.boxShadow = 'none';
+                    });
+                }
+            });
+        });
+
+        // Sistema de navegación inteligente
+        class NavigationSystem {
+            constructor() {
+                this.pages = {
+                    'index.html': 'Página Principal',
+                    'admin.html': 'Administración',
+                    'contact.html': 'Contacto',
+                    'calendario.html': 'Calendario',
+                    'historia.html': 'Historia'
+                };
+            }
+            
+            getCurrentPage() {
+                const path = window.location.pathname;
+                const page = path.split('/').pop();
+                return this.pages[page] || 'Página actual';
+            }
+            
+            getNavigationLinks() {
+                const links = [];
+                for (const [page, name] of Object.entries(this.pages)) {
+                    if (page !== 'calendario.html') { // Excluir la página actual
+                        links.push({ page, name });
+                    }
+                }
+                return links;
+            }
+            
+            createNavigationMenu() {
+                const nav = document.createElement('div');
+                nav.className = 'smart-navigation';
+                nav.innerHTML = `
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin: 20px 0;">
+                        <h4 style="color: #1f2937; margin-bottom: 15px;">Navegación Inteligente</h4>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            ${this.getNavigationLinks().map(link => `
+                                <a href="${link.page}" 
+                                   style="padding: 10px 15px; background: #8B5CF6; color: white; text-decoration: none; border-radius: 5px; font-size: 0.9rem; transition: all 0.3s;">
+                                    ${link.name}
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                return nav;
+            }
+            
+            init() {
+                // Insertar navegación inteligente antes del footer
+                const footer = document.querySelector('footer');
+                if (footer) {
+                    footer.parentNode.insertBefore(this.createNavigationMenu(), footer);
+                }
+            }
+        }
+
+        // Inicializar sistema de navegación
+        setTimeout(() => {
+            const navSystem = new NavigationSystem();
+            navSystem.init();
+            console.log(`📍 Página actual: ${navSystem.getCurrentPage()}`);
+        }, 1500);
     </script>
 </body>
 </html>

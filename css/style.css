@@ -84,15 +84,117 @@ a:hover {
     background-color: #7c3aed;
     transform: translateY(-2px);
 }
+        /* Estilos para el menú fijo */
+        .fixed-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        
+        .menu-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            text-decoration: none;
+            color: #1f2937;
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: #8B5CF6;
+        }
+        
+        .main-nav {
+            display: flex;
+            gap: 0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-item {
+            list-style: none;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 20px 25px;
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #8B5CF6;
+            background-color: #f9fafb;
+        }
+        
+        .nav-link.active {
+            color: #8B5CF6;
+            border-bottom-color: #8B5CF6;
+            background-color: #f9fafb;
+        }
+        
+        .nav-link i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .nav-link span {
+            position: relative;
+        }
+        
+        /* Ajustar el hero para que no quede detrás del menú fijo */
+        .hero {
+            margin-top: 70px; /* Ajuste para el menú fijo */
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .fixed-menu {
+                padding: 0 10px;
+            }
+            
+            .menu-container {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+            
+            .main-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .nav-link {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                margin-top: 120px; /* Más espacio para menú en móvil */
+            }
+        }
 
-/* Barra de navegación */
-.navbar {
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
 
 .nav-container {
     display: flex;

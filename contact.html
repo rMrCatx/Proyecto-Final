@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Politecnico V. A. Santos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/estilos-menu.css">
+    <link rel="stylesheet" href="css/contacto.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Menú fijo -->
+    <div id="menu-container"></div>
+
+    <!-- Header de la página -->
+    <header class="contact-header">
+        <div class="container">
+            <div class="header-content">
+                <h1><i class="fas fa-headset"></i> Contáctanos</h1>
+                <p>Estamos aquí para ayudarte. Ponte en contacto con nosotros para cualquier consulta, sugerencia o información que necesites.</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Sección principal de contacto -->
+        <div class="contact-grid">
+            <!-- Formulario de contacto -->
+            <div class="contact-form-container">
+                <div class="form-header">
+                    <h2><i class="fas fa-paper-plane"></i> Envíanos un Mensaje</h2>
+                    <p>Completa el formulario y te responderemos en menos de 24 horas.</p>
+                </div>
+                
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="nombre"><i class="fas fa-user"></i> Nombre Completo *</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre completo">
+                        <div class="error-message" id="nombreError"></div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com">
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="+503 0000-0000">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="asunto"><i class="fas fa-tag"></i> Asunto *</label>
+                        <select id="asunto" name="asunto" required>
+                            <option value="">Selecciona un asunto</option>
+                            <option value="admisiones">Información de Admisiones</option>
+                            <option value="carreras">Información sobre Carreras</option>
+                            <option value="pagos">Consultas sobre Pagos</option>
+                            <option value="problemas">Problemas Técnicos</option>
+                            <option value="sugerencias">Sugerencias</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                        <div class="error-message" id="asuntoError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensaje"><i class="fas fa-comment"></i> Mensaje *</label>
+                        <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                        <div class="error-message" id="mensajeError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter">Suscribirme al boletín informativo</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                        <span class="spinner" id="formSpinner"></span>
+                    </button>
+                    
+                    <div class="form-message" id="formMessage"></div>
+                </form>
+            </div>
+            
+            <!-- Información de contacto -->
+            <div class="contact-info-container">
+                <!-- Tarjetas de información -->
+                <div class="info-cards">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Ubicación</h3>
+                            <p>Av. Principal #123, Centro Ciudad</p>
+                            <p>San Salvador, El Salvador</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Teléfonos</h3>
+                            <p>Admisiones: <a href="tel:+50322220000">2222-0000</a></p>
+                            <p>Administración: <a href="tel:+50322220001">2222-0001</a></p>
+                            <p>Fax: 2222-0002</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Email</h3>
+                            <p>Admisiones: <a href="mailto:admisiones@politecnicovas.edu.sv">admisiones@politecnicovas.edu.sv</a></p>
+                            <p>Información: <a href="mailto:info@politecnicovas.edu.sv">info@politecnicovas.edu.sv</a></p>
+                            <p>Soporte: <a href="mailto:soporte@politecnicovas.edu.sv">soporte@politecnicovas.edu.sv</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Horario de Atención</h3>
+                            <p>Lunes a Viernes: 7:00 AM - 5:00 PM</p>
+                            <p>Sábados: 8:00 AM - 12:00 PM</p>
+                            <p>Domingos: Cerrado</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mapa -->
+                <div class="map-container">
+                    <h3><i class="fas fa-map"></i> Nuestra Ubicación</h3>
+                    <div class="map-placeholder" id="map">
+                        <div class="map-overlay">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Politecnico Vicente Aquilino Santos</p>
+                            <button class="view-map-btn" id="viewMapBtn">
+                                <i class="fas fa-external-link-alt"></i> Ver en Google Maps
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Redes sociales -->
+                <div class="social-media">
+                    <h3><i class="fas fa-share-alt"></i> Síguenos en Redes</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon facebook">
+                            <i class="fab fa-facebook-f"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="#" class="social-icon twitter">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="#" class="social-icon instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="#" class="social-icon youtube">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                        <a href="#" class="social-icon linkedin">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Preguntas frecuentes -->
+        <section class="faq-section">
+            <h2><i class="fas fa-question-circle"></i> Preguntas Frecuentes</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cuál es el proceso de admisión?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El proceso incluye: 1) Solicitud en línea, 2) Entrevista personal, 3) Presentación de documentos, 4) Prueba de aptitud, 5) Matrícula.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cuáles son los requisitos de inscripción?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Documento de identidad, título de bachillerato, 2 fotografías tamaño carnet, certificado de notas y comprobante de pago de inscripción.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Ofrecen becas o financiamiento?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, contamos con programas de becas por mérito académico y convenios de financiamiento con instituciones bancarias.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Cuál es la duración de las carreras?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nuestras carreras técnicas tienen una duración de 2 a 3 años, dependiendo del programa académico seleccionado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action -->
+        <section class="contact-cta">
+            <div class="cta-content">
+                <h2>¿Prefieres hablar directamente?</h2>
+                <p>Llamanos ahora mismo para una atención personalizada</p>
+                <a href="tel:+50322220000" class="cta-phone">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Llamar: 2222-0000</span>
+                </a>
+                <p class="cta-note">Lunes a Viernes de 7:00 AM a 5:00 PM</p>
+            </div>
+        </section>
+
+        <!-- Agrega esto al final del archivo contact.html, antes del cierre de </main> -->
+<div class="navigation-links" style="margin-top: 60px; text-align: center;">
+    <h3 style="margin-bottom: 25px; color: #1f2937; display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <i class="fas fa-sitemap"></i> Otras Secciones del Sitio
+    </h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto;">
+        <a href="index.html" class="nav-card">
+            <div class="nav-icon" style="background: #8B5CF6;">
+                <i class="fas fa-home"></i>
+            </div>
+            <h4>Inicio</h4>
+            <p>Página principal con noticias y eventos</p>
+        </a>
+        
+        <a href="admin.html" class="nav-card">
+            <div class="nav-icon" style="background: #10B981;">
+                <i class="fas fa-user-cog"></i>
+            </div>
+            <h4>Administración</h4>
+            <p>Panel de gestión institucional</p>
+        </a>
+        
+        <a href="calendario.html" class="nav-card">
+            <div class="nav-icon" style="background: #3B82F6;">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h4>Calendario</h4>
+            <p>Fechas académicas importantes</p>
+        </a>
+        
+        <a href="historia.html" class="nav-card">
+            <div class="nav-icon" style="background: #F59E0B;">
+                <i class="fas fa-history"></i>
+            </div>
+            <h4>Historia</h4>
+            <p>Trayectoria y logros institucionales</p>
+        </a>
+    </div>
+</div>
+
+<style>
+    .nav-card {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #1f2937;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: all 0.3s;
+        display: block;
+        text-align: center;
+    }
+    
+    .nav-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .nav-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        margin: 0 auto 15px;
+    }
+    
+    .nav-card h4 {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+    }
+    
+    .nav-card p {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+</style>
+    </main>
+
+    <!-- Footer -->
+    <footer class="contact-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Politecnico V. A. Santos</h3>
+                    <p>Educación técnica de excelencia desde 1985</p>
+                </div>
+                <div class="footer-links">
+                    <a href="politica-privacidad.html">Política de Privacidad</a>
+                    <a href="terminos-uso.html">Términos de Uso</a>
+                    <a href="mapa-sitio.html">Mapa del Sitio</a>
+                </div>
+                <p class="copyright">&copy; 2024 Politecnico Vicente Aquilino Santos. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Cargar menú
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu-container').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error cargando el menú:', error);
+                // Menú de respaldo
+                document.getElementById('menu-container').innerHTML = `
+                    <nav style="background: white; padding: 15px; text-align: center; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                        <a href="index.html" style="margin: 0 15px;">Inicio</a> | 
+                        <a href="admin.html" style="margin: 0 15px;">Admin</a> | 
+                        <a href="contact.html" style="margin: 0 15px; color: #8B5CF6; font-weight: bold;">Contact</a> | 
+                        <a href="calendario.html" style="margin: 0 15px;">Calendario</a> | 
+                        <a href="historia.html" style="margin: 0 15px;">Historia</a>
+                    </nav>
+                    <div style="height: 70px;"></div>
+                `;
+            });
+    </script>
+    <script src="js/contacto.js"></script>
+</body>
+</html>
