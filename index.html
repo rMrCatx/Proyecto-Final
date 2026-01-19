@@ -337,45 +337,34 @@
 </head>
 <body>
     <!-- Barra de navegación -->
-
-        <!-- Menú fijo -->
-    <nav class="fixed-menu">
-        <div class="menu-container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                Politecnico V. A. Santos
-            </a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo Politécnico" id="logo-img">
+                <div class="logo-text">
+                    <h1>Politecnico</h1>
+                    <p>Vicente Aquilino Santos</p>
+                </div>
+            </div>
             
-            <ul class="main-nav">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link active">
-                        <i class="fas fa-home"></i>
-                        <span>Inicio</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="admin.html" class="nav-link">
-                        <i class="fas fa-user-cog"></i>
-                        <span>Admin</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="contact.html" class="nav-link">
-                        <i class="fas fa-envelope"></i>
-                        <span>Contact</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="categorias/calentario.html" class="nav-link">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>Calendario</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="historia.html" class="nav-link">
-                        <i class="fas fa-history"></i>
-                        <span>Historia</span>
-                    </a>
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-th-large"></i> Categorías <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-category="institucional">Información Institucional</a></li>
+                        <li><a href="#" data-category="oferta">Oferta Académica</a></li>
+                        <li><a href="#" data-category="noticias">Noticias y Comunicados</a></li>
+                        <li><a href="#" data-category="actividades">Actividades</a></li>
+                        <li><a href="#" data-category="logros">Logros y Reconocimientos</a></li>
+                        <li><a href="#" data-category="calendario">Calendario Académico</a></li>
+                        <li><a href="#" data-category="galeria">Galería Multimedia</a></li>
+                        <li><a href="#" data-category="estudiantiles">Actividades Estudiantiles</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
