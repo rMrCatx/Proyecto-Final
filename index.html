@@ -336,39 +336,33 @@
     </style>
 </head>
 <body>
-    <!-- Barra de navegación -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <img src="images/logo.png" alt="Logo Politécnico" id="logo-img">
-                <div class="logo-text">
-                    <h1>Politecnico</h1>
-                    <p>Vicente Aquilino Santos</p>
-                </div>
+    <!-- Barra de navegación SIMPLE con 5 opciones -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-placeholder">
+                PVAS
             </div>
-            
-            <button class="menu-toggle" id="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
-                <li class="dropdown">
-                    <a href="#"><i class="fas fa-th-large"></i> Categorías <i class="fas fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" data-category="institucional">Información Institucional</a></li>
-                        <li><a href="#" data-category="oferta">Oferta Académica</a></li>
-                        <li><a href="#" data-category="noticias">Noticias y Comunicados</a></li>
-                        <li><a href="#" data-category="actividades">Actividades</a></li>
-                        <li><a href="#" data-category="logros">Logros y Reconocimientos</a></li>
-                        <li><a href="#" data-category="calendario">Calendario Académico</a></li>
-                        <li><a href="#" data-category="galeria">Galería Multimedia</a></li>
-                        <li><a href="#" data-category="estudiantiles">Actividades Estudiantiles</a></li>
-                    </ul>
-                </li>
-            </ul>
+            <div class="logo-text">
+                <h1>Politecnico</h1>
+                <p>Vicente Aquilino Santos</p>
+            </div>
         </div>
-    </nav>
+        
+        <button class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- MENÚ SIMPLE CON TUS 5 OPCIONES -->
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+            <li><a href="calendario.html"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
+            <li><a href="historia.html"><i class="fas fa-history"></i> Historia</a></li>
+        </ul>
+    </div>
+</nav>
 
     <!-- Banner principal -->
     <header class="hero">
@@ -613,6 +607,26 @@
 
     <!-- Footer -->
     <div id="footer-container"></div>
+    
+    <!-- Footer simple -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Politecnico Vicente Aquilino Santos</p>
+            <p>Educación Técnica de Calidad</p>
+            
+            <div class="footer-links">
+                <a href="index.html">Inicio</a>
+                <a href="admin.html">Admin</a>
+                <a href="contact.html">Contacto</a>
+                <a href="calendario.html">Calendario</a>
+                <a href="historia.html">Historia</a>
+            </div>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #9ca3af;">
+                Av. Principal #123, Ciudad | Tel: (123) 456-7890 | Email: info@politecnico.edu
+            </p>
+        </div>
+    </footer>
 
     <script src="js/main.js"></script>
     <script>
