@@ -4,180 +4,791 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Politecnico V. A. Santos</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/estilos-menu.css">
-    <link rel="stylesheet" href="css/contacto.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<style>
-        /* Estilos para navegación entre páginas */
-.navbar {
-    background-color: white;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    padding: 15px 0;
-}
-
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo-placeholder {
-    width: 60px;
-    height: 60px;
-    color: rgb(19, 19, 19);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border-radius: 10px;
-}
-
-.logo-text h1 {
-    font-size: 1.5rem;
-    margin: 0;
-    color: #1f2937;
-}
-
-.logo-text p {
-    font-size: 0.9rem;
-    margin: 0;
-    color: #6b7280;
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 25px;
-}
-
-.nav-menu li a {
-    text-decoration: none;
-    color: #4b5563;
-    font-weight: 600;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    transition: all 0.3s;
-}
-
-.nav-menu li a:hover {
-    background-color: #f3f4f6;
-    color: #8B5CF6;
-}
-
-
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: #4b5563;
-    cursor: pointer;
-    padding: 10px;
-}
-
-/* Estilos responsivos para móviles */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-    
-    .nav-menu {
-        position: fixed;
-        top: 90px;
-        left: 0;
-        right: 0;
-        background-color: white;
-        flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 999;
-    }
-    
-    .nav-menu.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .nav-menu li {
-        width: 100%;
-    }
-    
-    .nav-menu li a {
-        justify-content: center;
-        padding: 15px;
-    }
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+            color: #333;
+            padding-top: 70px;
+        }
+        
+        /* Navegación - Estilo uniforme */
+        .navbar {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+        }
+        
+        .logo-text h1 {
+            font-size: 1.3rem;
+            margin: 0;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .logo-text p {
+            font-size: 0.8rem;
+            margin: 0;
+            color: #ecf0f1;
+            opacity: 0.9;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 5px;
+        }
+        
+        .nav-menu li a {
+            text-decoration: none;
+            color: #ecf0f1;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .nav-menu li a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #3498db;
+        }
+        
+        .nav-menu li a.active {
+            background-color: #3498db;
+            color: white;
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: white;
+            cursor: pointer;
+            padding: 6px;
+        }
+        
+        /* Contenido principal - Estilo uniforme */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .contact-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .contact-header h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .contact-header h1 i {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            font-size: 1.2rem;
+        }
+        
+        .contact-header p {
+            color: #5d6d7e;
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+            padding: 15px 20px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #3498db;
+        }
+        
+        /* Grid de contacto */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        /* Formulario de contacto */
+        .contact-form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            border-top: 4px solid #3498db;
+        }
+        
+        .form-header {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .form-header h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .form-header p {
+            color: #5d6d7e;
+            font-size: 0.95rem;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        label {
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        input, select, textarea {
+            padding: 12px 15px;
+            border: 2px solid #e0e6ed;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .checkbox-group {
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+        }
+        
+        .checkbox-group label {
+            font-weight: normal;
+            color: #5d6d7e;
+        }
+        
+        .submit-btn {
+            padding: 14px 25px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1f639c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Información de contacto */
+        .contact-info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border-top: 4px solid #3498db;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        
+        .info-content h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .info-content p {
+            color: #5d6d7e;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 5px;
+        }
+        
+        .info-content a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .info-content a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        /* Mapa */
+        .map-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            border-top: 4px solid #3498db;
+        }
+        
+        .map-container h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .map-placeholder {
+            height: 250px;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-overlay {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .map-overlay i {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        
+        .map-overlay p {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .view-map-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 auto;
+        }
+        
+        .view-map-btn:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1f639c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Redes sociales */
+        .social-media {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            border-top: 4px solid #3498db;
+        }
+        
+        .social-media h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .social-icons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+        }
+        
+        .social-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s;
+            background: #f8fafc;
+            border: 2px solid #e0e6ed;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-icon.facebook:hover {
+            background: #1877f2;
+            color: white;
+            border-color: #1877f2;
+        }
+        
+        .social-icon.twitter:hover {
+            background: #1da1f2;
+            color: white;
+            border-color: #1da1f2;
+        }
+        
+        .social-icon.instagram:hover {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .social-icon.youtube:hover {
+            background: #ff0000;
+            color: white;
+            border-color: #ff0000;
+        }
+        
+        .social-icon.linkedin:hover {
+            background: #0077b5;
+            color: white;
+            border-color: #0077b5;
+        }
+        
+        .social-icon i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .social-icon span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .social-icon:hover span {
+            color: white;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin: 50px 0;
+        }
+        
+        .faq-section h2 {
+            color: #2c3e50;
+            font-size: 1.7rem;
+            margin-bottom: 25px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            border-top: 4px solid #3498db;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+        
+        .faq-question h3 {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        
+        .faq-question i {
+            color: #3498db;
+            transition: transform 0.3s;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 200px;
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer p {
+            color: #5d6d7e;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        /* Call to Action */
+        .contact-cta {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin: 50px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-content h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .cta-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .cta-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+        }
+        
+        .cta-phone:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1f639c 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        .cta-note {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+        
+        /* Footer */
+        .contact-footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e6ed;
+            color: #7f8c8d;
+            font-size: 0.85rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .info-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 65px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                flex-direction: column;
+                padding: 15px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 999;
+                border-radius: 0 0 15px 15px;
+            }
+            
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav-menu li {
+                width: 100%;
+            }
+            
+            .nav-menu li a {
+                justify-content: center;
+                padding: 12px;
+                border-radius: 8px;
+                font-size: 0.9rem;
+            }
+            
+            .contact-header h1 {
+                font-size: 1.7rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .contact-header h1 i {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+            
+            .contact-header p {
+                font-size: 0.95rem;
+                padding: 12px 18px;
+            }
+            
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .contact-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .contact-header p {
+                font-size: 0.9rem;
+                padding: 12px 15px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.1rem;
+            }
+            
+            .logo-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.1rem;
+            }
+            
+            .cta-phone {
+                font-size: 1.1rem;
+                padding: 12px 20px;
+            }
+            
+            .social-icons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Menú fijo -->
-<nav class="navbar">
-    <div class="nav-container">
-        <div class="logo">
-            <div class="logo-placeholder">
-                PVAS
+    <!-- Navegación con mismo diseño -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    PVAS
+                </div>
+                <div class="logo-text">
+                    <h1>Politecnico</h1>
+                    <p>Vicente Aquilino Santos</p>
+                </div>
             </div>
-            <div class="logo-text">
-                <h1>Politecnico</h1>
-                <p>Vicente Aquilino Santos</p>
-            </div>
+            
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Menú de navegación -->
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin</a></li>
+                <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contacto</a></li>
+                <li><a href="categorias/calendario.html"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
+                <li><a href="historia.html"><i class="fas fa-history"></i> Historia</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Contenido principal -->
+    <main class="contact-container">
+        <div class="contact-header">
+            <h1><i class="fas fa-headset"></i> Contáctanos</h1>
+            <p>Estamos aquí para ayudarte. Ponte en contacto con nosotros para cualquier consulta, sugerencia o información que necesites.</p>
         </div>
         
-        <button class="menu-toggle" id="menu-toggle">
-            <i class="fas fa-bars"></i>
-        </button>
-        
-        <!-- MENÚ SIMPLE CON TUS 5 OPCIONES -->
-        <ul class="nav-menu" id="nav-menu">
-            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
-            <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin</a></li>
-            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contacto</a></li>
-            <li><a href="categorias/calentario.html"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
-            <li><a href="historia.html"><i class="fas fa-history"></i> Historia</a></li>
-        </ul>
-    </div>
-</nav>
-
-    <!-- Header de la página -->
-    <header class="contact-header">
-        <div class="container">
-            <div class="header-content">
-                <h1><i class="fas fa-headset"></i> Contáctanos</h1>
-                <p>Estamos aquí para ayudarte. Ponte en contacto con nosotros para cualquier consulta, sugerencia o información que necesites.</p>
-            </div>
-        </div>
-    </header>
-
-    <main class="container">
         <!-- Sección principal de contacto -->
         <div class="contact-grid">
             <!-- Formulario de contacto -->
@@ -191,14 +802,12 @@
                     <div class="form-group">
                         <label for="nombre"><i class="fas fa-user"></i> Nombre Completo *</label>
                         <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre completo">
-                        <div class="error-message" id="nombreError"></div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label for="email"><i class="fas fa-envelope"></i> Email *</label>
                             <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com">
-                            <div class="error-message" id="emailError"></div>
                         </div>
                         
                         <div class="form-group">
@@ -218,28 +827,21 @@
                             <option value="sugerencias">Sugerencias</option>
                             <option value="otros">Otros</option>
                         </select>
-                        <div class="error-message" id="asuntoError"></div>
                     </div>
                     
                     <div class="form-group">
                         <label for="mensaje"><i class="fas fa-comment"></i> Mensaje *</label>
                         <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Escribe tu mensaje aquí..."></textarea>
-                        <div class="error-message" id="mensajeError"></div>
                     </div>
                     
-                    <div class="form-group">
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="newsletter" name="newsletter">
-                            <label for="newsletter">Suscribirme al boletín informativo</label>
-                        </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">Suscribirme al boletín informativo</label>
                     </div>
                     
-                    <button type="submit" class="submit-btn" id="submitBtn">
+                    <button type="submit" class="submit-btn">
                         <i class="fas fa-paper-plane"></i> Enviar Mensaje
-                        <span class="spinner" id="formSpinner"></span>
                     </button>
-                    
-                    <div class="form-message" id="formMessage"></div>
                 </form>
             </div>
             
@@ -266,7 +868,6 @@
                             <h3>Teléfonos</h3>
                             <p>Admisiones: <a href="tel:+50322220000">2222-0000</a></p>
                             <p>Administración: <a href="tel:+50322220001">2222-0001</a></p>
-                            <p>Fax: 2222-0002</p>
                         </div>
                     </div>
                     
@@ -278,7 +879,6 @@
                             <h3>Email</h3>
                             <p>Admisiones: <a href="mailto:admisiones@politecnicovas.edu.sv">admisiones@politecnicovas.edu.sv</a></p>
                             <p>Información: <a href="mailto:info@politecnicovas.edu.sv">info@politecnicovas.edu.sv</a></p>
-                            <p>Soporte: <a href="mailto:soporte@politecnicovas.edu.sv">soporte@politecnicovas.edu.sv</a></p>
                         </div>
                     </div>
                     
@@ -290,7 +890,6 @@
                             <h3>Horario de Atención</h3>
                             <p>Lunes a Viernes: 7:00 AM - 5:00 PM</p>
                             <p>Sábados: 8:00 AM - 12:00 PM</p>
-                            <p>Domingos: Cerrado</p>
                         </div>
                     </div>
                 </div>
@@ -298,7 +897,7 @@
                 <!-- Mapa -->
                 <div class="map-container">
                     <h3><i class="fas fa-map"></i> Nuestra Ubicación</h3>
-                    <div class="map-placeholder" id="map">
+                    <div class="map-placeholder">
                         <div class="map-overlay">
                             <i class="fas fa-map-marker-alt"></i>
                             <p>Politecnico Vicente Aquilino Santos</p>
@@ -328,10 +927,6 @@
                         <a href="#" class="social-icon youtube">
                             <i class="fab fa-youtube"></i>
                             <span>YouTube</span>
-                        </a>
-                        <a href="#" class="social-icon linkedin">
-                            <i class="fab fa-linkedin-in"></i>
-                            <span>LinkedIn</span>
                         </a>
                     </div>
                 </div>
@@ -396,95 +991,296 @@
                 <p class="cta-note">Lunes a Viernes de 7:00 AM a 5:00 PM</p>
             </div>
         </section>
-
-
-</div>
-
-<style>
-    .nav-card {
-        background: white;
-        padding: 25px;
-        border-radius: 10px;
-        text-decoration: none;
-        color: #1f2937;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        transition: all 0.3s;
-        display: block;
-        text-align: center;
-    }
-    
-    .nav-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-    
-    .nav-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1.5rem;
-        margin: 0 auto 15px;
-    }
-    
-    .nav-card h4 {
-        margin-bottom: 10px;
-        font-size: 1.2rem;
-    }
-    
-    .nav-card p {
-        color: #6b7280;
-        font-size: 0.9rem;
-        margin: 0;
-    }
-</style>
-    </main>
-
-    <!-- Footer -->
-    <footer class="contact-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Politecnico V. A. Santos</h3>
-                    <p>Educación técnica de excelencia desde 1985</p>
-                </div>
-                <div class="footer-links">
-                    <a href="politica-privacidad.html">Política de Privacidad</a>
-                    <a href="terminos-uso.html">Términos de Uso</a>
-                    <a href="mapa-sitio.html">Mapa del Sitio</a>
-                </div>
-                <p class="copyright">&copy; 2024 Politecnico Vicente Aquilino Santos. Todos los derechos reservados.</p>
-            </div>
+        
+        <!-- Pie de página -->
+        <div class="contact-footer">
+            <p>© 2023 Politecnico Vicente Aquilino Santos - Todos los derechos reservados</p>
+            <p><i class="fas fa-envelope"></i> contacto@politecnicovas.edu.sv</p>
         </div>
-    </footer>
+    </main>
+    
+    <script>// Toggle del menú móvil
+const menuToggle = document.getElementById('menu-toggle');
+const navMenu = document.getElementById('nav-menu');
 
-    <!-- Scripts -->
-    <script>
-        // Cargar menú
-        fetch('menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu-container').innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error cargando el menú:', error);
-                // Menú de respaldo
-                document.getElementById('menu-container').innerHTML = `
-                    <nav style="background: white; padding: 15px; text-align: center; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                        <a href="index.html" style="margin: 0 15px;">Inicio</a> | 
-                        <a href="admin.html" style="margin: 0 15px;">Admin</a> | 
-                        <a href="contact.html" style="margin: 0 15px; color: #8B5CF6; font-weight: bold;">Contact</a> | 
-                        <a href="calendario.html" style="margin: 0 15px;">Calendario</a> | 
-                        <a href="historia.html" style="margin: 0 15px;">Historia</a>
-                    </nav>
-                    <div style="height: 70px;"></div>
-                `;
-            });
-    </script>
-    <script src="js/contacto.js"></script>
-</body>
-</html>
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    menuToggle.innerHTML = navMenu.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+});
+
+// Cerrar menú al hacer clic en un enlace
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    });
+});
+
+// Cerrar menú al hacer clic fuera de él
+document.addEventListener('click', (event) => {
+    if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+        navMenu.classList.remove('active');
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    }
+});
+
+// FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const item = question.parentElement;
+        item.classList.toggle('active');
+    });
+});
+
+// Formulario de contacto
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Validación básica
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const asunto = document.getElementById('asunto').value;
+    const mensaje = document.getElementById('mensaje').value.trim();
+    
+    // Validaciones
+    if (!nombre) {
+        alert('Por favor ingresa tu nombre completo.');
+        return;
+    }
+    
+    if (!email) {
+        alert('Por favor ingresa tu email.');
+        return;
+    }
+    
+    // Validación simple de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Por favor ingresa un email válido.');
+        return;
+    }
+    
+    if (!asunto) {
+        alert('Por favor selecciona un asunto.');
+        return;
+    }
+    
+    if (!mensaje || mensaje.length < 10) {
+        alert('Por favor escribe un mensaje de al menos 10 caracteres.');
+        return;
+    }
+    
+    // Simular envío del formulario
+    const submitBtn = this.querySelector('.submit-btn');
+    const originalText = submitBtn.innerHTML;
+    
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    submitBtn.disabled = true;
+    
+    // Simular tiempo de envío
+    setTimeout(() => {
+        // Mostrar mensaje de éxito
+        const successMessage = document.createElement('div');
+        successMessage.className = 'success-message';
+        successMessage.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <div>
+                <h4>¡Mensaje enviado con éxito!</h4>
+                <p>Te contactaremos en menos de 24 horas.</p>
+            </div>
+        `;
+        successMessage.style.cssText = `
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: fadeIn 0.5s ease;
+        `;
+        
+        const formMessage = document.getElementById('formMessage');
+        if (formMessage) {
+            formMessage.innerHTML = '';
+            formMessage.appendChild(successMessage);
+        }
+        
+        // Restaurar botón
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        // Resetear formulario
+        this.reset();
+        
+        // Hacer scroll al mensaje de éxito
+        successMessage.scrollIntoView({ behavior: 'smooth' });
+        
+        // Remover mensaje después de 5 segundos
+        setTimeout(() => {
+            if (successMessage.parentElement) {
+                successMessage.remove();
+            }
+        }, 5000);
+        
+    }, 1500);
+});
+
+// Ver mapa en Google Maps
+document.getElementById('viewMapBtn').addEventListener('click', function() {
+    const mapUrl = 'https://www.google.com/maps?q=Politecnico+Vicente+Aquilino+Santos+San+Salvador';
+    
+    // Mostrar confirmación
+    const confirmed = confirm('¿Deseas abrir la ubicación en Google Maps?');
+    
+    if (confirmed) {
+        window.open(mapUrl, '_blank');
+    }
+});
+
+// Efectos hover para tarjetas de información
+document.querySelectorAll('.info-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transition = 'all 0.3s ease';
+    });
+});
+
+// Animar elementos al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    // Animación de entrada para elementos
+    const animateOnScroll = function() {
+        const elements = document.querySelectorAll('.info-card, .social-icon, .faq-item');
+        
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.2;
+            
+            if (elementPosition < screenPosition) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    };
+    
+    // Inicializar elementos con opacidad 0
+    document.querySelectorAll('.info-card, .social-icon, .faq-item').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    // Ejecutar animación al cargar y al hacer scroll
+    animateOnScroll();
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Efecto de escritura para el título
+    const title = document.querySelector('.contact-header h1');
+    const originalText = title.innerHTML;
+    
+    title.style.opacity = '0';
+    title.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+        title.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        title.style.opacity = '1';
+        title.style.transform = 'translateY(0)';
+    }, 300);
+});
+
+// Validación en tiempo real para formulario
+document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea').forEach(input => {
+    input.addEventListener('input', function() {
+        if (this.checkValidity()) {
+            this.style.borderColor = '#2ecc71';
+            this.style.boxShadow = '0 0 0 3px rgba(46, 204, 113, 0.1)';
+        } else {
+            this.style.borderColor = '#e74c3c';
+            this.style.boxShadow = '0 0 0 3px rgba(231, 76, 60, 0.1)';
+        }
+    });
+    
+    input.addEventListener('blur', function() {
+        if (!this.value && this.required) {
+            this.style.borderColor = '#e74c3c';
+            this.style.boxShadow = '0 0 0 3px rgba(231, 76, 60, 0.1)';
+        }
+    });
+});
+
+// Animación para el botón de llamada
+const ctaPhone = document.querySelector('.cta-phone');
+if (ctaPhone) {
+    ctaPhone.addEventListener('mouseenter', function() {
+        const icon = this.querySelector('i');
+        icon.style.transform = 'scale(1.2) rotate(10deg)';
+        icon.style.transition = 'transform 0.3s ease';
+    });
+    
+    ctaPhone.addEventListener('mouseleave', function() {
+        const icon = this.querySelector('i');
+        icon.style.transform = 'scale(1) rotate(0deg)';
+    });
+}
+
+// Efecto para iconos de redes sociales
+document.querySelectorAll('.social-icon').forEach(icon => {
+    icon.addEventListener('mouseenter', function() {
+        const i = this.querySelector('i');
+        i.style.transform = 'scale(1.3)';
+        i.style.transition = 'transform 0.3s ease';
+    });
+    
+    icon.addEventListener('mouseleave', function() {
+        const i = this.querySelector('i');
+        i.style.transform = 'scale(1)';
+    });
+});
+
+// Verificar que todos los elementos necesarios existan
+function checkRequiredElements() {
+    const requiredIds = ['menu-toggle', 'nav-menu', 'contactForm', 'viewMapBtn'];
+    let allExist = true;
+    
+    requiredIds.forEach(id => {
+        if (!document.getElementById(id)) {
+            console.error(`❌ Elemento con id "${id}" no encontrado`);
+            allExist = false;
+        }
+    });
+    
+    if (allExist) {
+        console.log('✅ Todos los elementos necesarios están presentes');
+    }
+    
+    return allExist;
+}
+
+// Ejecutar verificación cuando cargue la página
+window.addEventListener('load', checkRequiredElements);
+
+// Agregar CSS para animaciones
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .success-message {
+        animation: fadeIn 0.5s ease !important;
+    }
+    
+    .shake {
+        animation: shake 0.5s ease;
+    }
+    
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+    }
+`;
+document.head.appendChild(style);
