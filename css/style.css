@@ -249,9 +249,7 @@ a:hover {
     gap: 8px;
 }
 
-.nav-menu li a.active {
-    color: #10B981;
-}
+
 
 .nav-menu li a:hover {
     color: #8B5CF6;

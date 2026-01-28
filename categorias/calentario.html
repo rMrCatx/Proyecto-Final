@@ -431,80 +431,160 @@
         }
         
         /* Estilos para navegación entre páginas */
-        .site-navigation {
-            margin: 60px 0;
-            padding: 40px;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border-radius: 20px;
-        }
-        
-        .site-navigation h3 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #1f2937;
-            font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        
-        .nav-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            text-decoration: none;
-            color: #1f2937;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            display: block;
-            text-align: center;
-        }
-        
-        .nav-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-        
-        .nav-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            margin: 0 auto 20px;
-        }
-        
-        .nav-card h4 {
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-        
-        .nav-card p {
-            color: #6b7280;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .nav-arrow {
-            color: #8B5CF6;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+.navbar {
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-placeholder {
+    width: 60px;
+    height: 60px;
+    color: rgb(19, 19, 19);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.logo-text h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #1f2937;
+}
+
+.logo-text p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #6b7280;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 25px;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.nav-menu li a:hover {
+    background-color: #f3f4f6;
+    color: #8B5CF6;
+}
+
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #4b5563;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Estilos responsivos para móviles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 90px;
+        left: 0;
+        right: 0;
+        background-color: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .nav-menu li {
+        width: 100%;
+    }
+    
+    .nav-menu li a {
+        justify-content: center;
+        padding: 15px;
+    }
+}
     </style>
 </head>
 <body>
     <!-- Menú fijo -->
-    <div id="menu-container"></div>
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-placeholder">
+                PVAS
+            </div>
+            <div class="logo-text">
+                <h1>Politecnico</h1>
+                <p>Vicente Aquilino Santos</p>
+            </div>
+        </div>
+        
+        <button class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- MENÚ SIMPLE CON TUS 5 OPCIONES -->
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="../index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="../admin.html"><i class="fas fa-user-shield"></i> Admin</a></li>
+            <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+            <li><a href="calendario.html"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
+            <li><a href="../historia.html"><i class="fas fa-history"></i> Historia</a></li>
+        </ul>
+    </div>
+</nav>
     
     <div class="calendar-page">
         <!-- Encabezado de página -->
@@ -683,42 +763,7 @@
 
             <!-- Navegación entre páginas del sitio -->
             <section class="site-navigation">
-                <h3><i class="fas fa-compass"></i> Explora Nuestro Sitio</h3>
-                <div class="nav-grid">
-                    <a href="index.html" class="nav-card">
-                        <div class="nav-icon" style="background: linear-gradient(135deg, #8B5CF6 0%, #7c3aed 100%);">
-                            <i class="fas fa-home"></i>
-                        </div>
-                        <h4>Página Principal</h4>
-                        <p>Noticias, eventos destacados y contenido principal de la institución</p>
-                        <span class="nav-arrow">→</span>
-                    </a>
-                    
-                    <a href="admin.html" class="nav-card">
-                        <div class="nav-icon" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);">
-                            <i class="fas fa-user-cog"></i>
-                        </div>
-                        <h4>Administración</h4>
-                        <p>Panel de gestión institucional y herramientas administrativas</p>
-                        <span class="nav-arrow">→</span>
-                    </a>
-                    
-                    <a href="contact.html" class="nav-card">
-                        <div class="nav-icon" style="background: linear-gradient(135deg, #3B82F6 0%, #2563eb 100%);">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h4>Contacto</h4>
-                        <p>Formulario de contacto, información y ubicación de nuestra institución</p>
-                        <span class="nav-arrow">→</span>
-                    </a>
-                    
-                    <a href="historia.html" class="nav-card">
-                        <div class="nav-icon" style="background: linear-gradient(135deg, #F59E0B 0%, #d97706 100%);">
-                            <i class="fas fa-history"></i>
-                        </div>
-                        <h4>Historia</h4>
-                        <p>Trayectoria, logros y evolución institucional desde nuestros inicios</p>
-                        <span class="nav-arrow">→</span>
+
                     </a>
                 </div>
             </section>
@@ -736,16 +781,6 @@
                     </h4>
                     <p style="color: #9ca3af;">Educación técnica de excelencia desde 1985</p>
                 </div>
-                
-                <div>
-                    <h4 style="color: white; margin-bottom: 20px;">Enlaces Rápidos</h4>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <a href="index.html" style="color: #9ca3af; text-decoration: none;">Inicio</a>
-                        <a href="admin.html" style="color: #9ca3af; text-decoration: none;">Administración</a>
-                        <a href="contact.html" style="color: #9ca3af; text-decoration: none;">Contacto</a>
-                        <a href="calendario.html" style="color: #8B5CF6; text-decoration: none; font-weight: bold;">Calendario</a>
-                        <a href="historia.html" style="color: #9ca3af; text-decoration: none;">Historia</a>
-                    </div>
                 </div>
             </div>
             <p style="color: #6b7280; font-size: 0.9rem; border-top: 1px solid #374151; padding-top: 20px;">
@@ -769,37 +804,8 @@
             initQuarterTabs();
         });
 
-        function loadMenu() {
-            // Cargar menú común desde menu.html
-            fetch('menu.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('menu-container').innerHTML = data;
-                    // Marcar página activa
-                    markActivePage();
-                })
-                .catch(error => {
-                    console.error('Error cargando el menú:', error);
-                    // Menú de respaldo
-                    document.getElementById('menu-container').innerHTML = `
-                        <nav style="background: white; padding: 20px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); position: fixed; top: 0; width: 100%; z-index: 1000;">
-                            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                                <a href="index.html" style="text-decoration: none; color: #1f2937; font-weight: bold; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
-                                    <i class="fas fa-graduation-cap" style="color: #8B5CF6;"></i>
-                                    Politecnico V. A. Santos
-                                </a>
-                                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                                    <a href="index.html" style="padding: 10px 20px; text-decoration: none; color: #4b5563;">Inicio</a>
-                                    <a href="admin.html" style="padding: 10px 20px; text-decoration: none; color: #4b5563;">Admin</a>
-                                    <a href="contact.html" style="padding: 10px 20px; text-decoration: none; color: #4b5563;">Contacto</a>
-                                    <a href="calendario.html" style="padding: 10px 20px; text-decoration: none; color: #8B5CF6; font-weight: bold;">Calendario</a>
-                                    <a href="historia.html" style="padding: 10px 20px; text-decoration: none; color: #4b5563;">Historia</a>
-                                </div>
-                            </div>
-                        </nav>
-                    `;
-                });
-        }
+
+
 
         function markActivePage() {
             setTimeout(() => {
@@ -1043,69 +1049,6 @@
                 }
             });
         });
-
-        // Sistema de navegación inteligente
-        class NavigationSystem {
-            constructor() {
-                this.pages = {
-                    'index.html': 'Página Principal',
-                    'admin.html': 'Administración',
-                    'contact.html': 'Contacto',
-                    'calendario.html': 'Calendario',
-                    'historia.html': 'Historia'
-                };
-            }
-            
-            getCurrentPage() {
-                const path = window.location.pathname;
-                const page = path.split('/').pop();
-                return this.pages[page] || 'Página actual';
-            }
-            
-            getNavigationLinks() {
-                const links = [];
-                for (const [page, name] of Object.entries(this.pages)) {
-                    if (page !== 'calendario.html') { // Excluir la página actual
-                        links.push({ page, name });
-                    }
-                }
-                return links;
-            }
-            
-            createNavigationMenu() {
-                const nav = document.createElement('div');
-                nav.className = 'smart-navigation';
-                nav.innerHTML = `
-                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin: 20px 0;">
-                        <h4 style="color: #1f2937; margin-bottom: 15px;">Navegación Inteligente</h4>
-                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                            ${this.getNavigationLinks().map(link => `
-                                <a href="${link.page}" 
-                                   style="padding: 10px 15px; background: #8B5CF6; color: white; text-decoration: none; border-radius: 5px; font-size: 0.9rem; transition: all 0.3s;">
-                                    ${link.name}
-                                </a>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-                return nav;
-            }
-            
-            init() {
-                // Insertar navegación inteligente antes del footer
-                const footer = document.querySelector('footer');
-                if (footer) {
-                    footer.parentNode.insertBefore(this.createNavigationMenu(), footer);
-                }
-            }
-        }
-
-        // Inicializar sistema de navegación
-        setTimeout(() => {
-            const navSystem = new NavigationSystem();
-            navSystem.init();
-            console.log(`📍 Página actual: ${navSystem.getCurrentPage()}`);
-        }, 1500);
     </script>
 </body>
 </html>

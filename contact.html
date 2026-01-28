@@ -10,9 +10,162 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+<style>
+        /* Estilos para navegación entre páginas */
+.navbar {
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-placeholder {
+    width: 60px;
+    height: 60px;
+    color: rgb(19, 19, 19);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.logo-text h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #1f2937;
+}
+
+.logo-text p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #6b7280;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 25px;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.nav-menu li a:hover {
+    background-color: #f3f4f6;
+    color: #8B5CF6;
+}
+
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #4b5563;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Estilos responsivos para móviles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 90px;
+        left: 0;
+        right: 0;
+        background-color: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .nav-menu li {
+        width: 100%;
+    }
+    
+    .nav-menu li a {
+        justify-content: center;
+        padding: 15px;
+    }
+}
+    </style>
+</head>
 <body>
     <!-- Menú fijo -->
-    <div id="menu-container"></div>
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-placeholder">
+                PVAS
+            </div>
+            <div class="logo-text">
+                <h1>Politecnico</h1>
+                <p>Vicente Aquilino Santos</p>
+            </div>
+        </div>
+        
+        <button class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- MENÚ SIMPLE CON TUS 5 OPCIONES -->
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+            <li><a href="categorias/calentario.html"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
+            <li><a href="historia.html"><i class="fas fa-history"></i> Historia</a></li>
+        </ul>
+    </div>
+</nav>
 
     <!-- Header de la página -->
     <header class="contact-header">
@@ -244,44 +397,7 @@
             </div>
         </section>
 
-        <!-- Agrega esto al final del archivo contact.html, antes del cierre de </main> -->
-<div class="navigation-links" style="margin-top: 60px; text-align: center;">
-    <h3 style="margin-bottom: 25px; color: #1f2937; display: flex; align-items: center; justify-content: center; gap: 10px;">
-        <i class="fas fa-sitemap"></i> Otras Secciones del Sitio
-    </h3>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto;">
-        <a href="index.html" class="nav-card">
-            <div class="nav-icon" style="background: #8B5CF6;">
-                <i class="fas fa-home"></i>
-            </div>
-            <h4>Inicio</h4>
-            <p>Página principal con noticias y eventos</p>
-        </a>
-        
-        <a href="admin.html" class="nav-card">
-            <div class="nav-icon" style="background: #10B981;">
-                <i class="fas fa-user-cog"></i>
-            </div>
-            <h4>Administración</h4>
-            <p>Panel de gestión institucional</p>
-        </a>
-        
-        <a href="calendario.html" class="nav-card">
-            <div class="nav-icon" style="background: #3B82F6;">
-                <i class="fas fa-calendar-alt"></i>
-            </div>
-            <h4>Calendario</h4>
-            <p>Fechas académicas importantes</p>
-        </a>
-        
-        <a href="historia.html" class="nav-card">
-            <div class="nav-icon" style="background: #F59E0B;">
-                <i class="fas fa-history"></i>
-            </div>
-            <h4>Historia</h4>
-            <p>Trayectoria y logros institucionales</p>
-        </a>
-    </div>
+
 </div>
 
 <style>
