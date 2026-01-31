@@ -47,19 +47,23 @@
             gap: 12px;
         }
         
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
-        }
+        .logo-image {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.logo-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+        
         
         .logo-text h1 {
             font-size: 1.3rem;
@@ -702,14 +706,15 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <div class="logo-icon">
-                    PVAS
-                </div>
-                <div class="logo-text">
-                    <h1>Politecnico</h1>
-                    <p>Vicente Aquilino Santos</p>
-                </div>
-            </div>
+    <div class="logo-image">
+        <img src="../imagenes/favicon.ico" alt="Logo PVAS">
+    </div>
+    <div class="logo-text">
+        <h1>Politecnico</h1>
+        <p>Vicente Aquilino Santos</p>
+    </div>
+</div>
+
             
             <button class="menu-toggle" id="menu-toggle">
                 <i class="fas fa-bars"></i>
@@ -717,10 +722,10 @@
             
             <!-- Menú de navegación -->
              <ul class="nav-menu" id="nav-menu">
-            <li><a href="../index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="../index.html"><i class="fas fa-home"></i> Inicio</a></li>
             <li><a href="../admin.html"><i class="fas fa-user-shield"></i> Admin</a></li>
             <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contacto</a></li>
-            <li><a href="calendario.html"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
+            <li><a href="calendario.html"class="active"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
             <li><a href="../historia.html"><i class="fas fa-history"></i> Historia</a></li>
         </ul>
     </div>
@@ -1165,7 +1170,8 @@
                     });
                 }
             });
-        });
+        }); }
     </script>
+        
 </body>
 </html>

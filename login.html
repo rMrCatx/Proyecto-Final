@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión - Panel de Administración | Politecnico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 440px;
+        }
+        
+        /* Logo personalizado del Politécnico - CENTRADO */
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 15px;
+            text-align: center;
+            flex-direction: column;
+        }
+        
+        .logo-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        
+        
+        
+        
+        .logo-text p {
+            font-size: 1rem;
+            color: #5d6d7e;
+            margin: 5px 0 0 0;
+        }
+        
+        /* Subtítulo del login */
+        .login-subtitle {
+            font-size: 1.1rem;
+            color: #5d6d7e;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 400;
+        }
+        
+        /* Tarjeta de login */
+        .login-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08), 0 0 2px rgba(0, 0, 0, 0.06);
+            padding: 48px;
+            width: 100%;
+            border: 1px solid #e1dfdd;
+            margin-top: 10px;
+        }
+        
+        .login-header {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        .login-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #323130;
+            margin-bottom: 8px;
+        }
+        
+        .login-subtitle-card {
+            font-size: 14px;
+            color: #605e5c;
+        }
+        
+        /* Formulario */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .form-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #323130;
+        }
+        
+        .form-input {
+            padding: 12px;
+            border: 1px solid #8a8886;
+            border-radius: 4px;
+            font-size: 15px;
+            color: #323130;
+            transition: all 0.2s;
+            background-color: white;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #0078d4;
+            box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.3);
+        }
+        
+        .form-input::placeholder {
+            color: #8a8886;
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #605e5c;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        /* Opciones adicionales */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #323130;
+        }
+        
+        .remember-checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: #0078d4;
+            cursor: pointer;
+        }
+        
+        .forgot-password {
+            color: #0078d4;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        /* Botones */
+        .login-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        
+        .btn-primary {
+            background-color: #0078d4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #106ebe;
+        }
+        
+        .btn-primary:active {
+            background-color: #005a9e;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #0078d4;
+            border: 1px solid #8a8886;
+            border-radius: 4px;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f3f2f1;
+            border-color: #0078d4;
+        }
+        
+        /* Separador */
+        .separator {
+            display: flex;
+            align-items: center;
+            margin: 24px 0;
+            color: #605e5c;
+            font-size: 14px;
+        }
+        
+        .separator::before,
+        .separator::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #e1dfdd;
+        }
+        
+        .separator span {
+            padding: 0 12px;
+        }
+        
+        /* Enlaces adicionales */
+        .login-footer {
+            margin-top: 32px;
+            text-align: center;
+            font-size: 13px;
+            color: #605e5c;
+            line-height: 1.5;
+        }
+        
+        .login-footer a {
+            color: #0078d4;
+            text-decoration: none;
+        }
+        
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Estado de carga */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Mensajes de error/éxito */
+        .message {
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .message.error {
+            background-color: #fdf3f2;
+            border: 1px solid #d83b01;
+            color: #d83b01;
+        }
+        
+        .message.success {
+            background-color: #f2f9f0;
+            border: 1px solid #107c10;
+            color: #107c10;
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 32px 24px;
+            }
+            
+            .login-header {
+                margin-bottom: 24px;
+            }
+            
+            .form-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .login-buttons {
+                gap: 10px;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 10px 16px;
+            }
+            
+            .logo-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 30px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.6rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .logo-image {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .logo-placeholder {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Logo personalizado del Politécnico -->
+        <div class="logo">
+            <div class="logo-content">
+                <div class="logo-image">
+                    <!-- Cambia la ruta de la imagen por la tuya -->
+                    <img src="imagenes/favicon.ico" alt="Logo PVAS">
+                    <!-- Si no tienes imagen, muestra este placeholder -->
+                    <div class="logo-placeholder" style="display: none;">PVAS</div>
+                </div>
+                <div class="logo-text">
+                    <h1>Politecnico</h1>
+                    <p>Vicente Aquilino Santos</p>
+                </div>
+            </div>
+            <p class="login-subtitle">Panel de Administración</p>
+        </div>
+        
+        <div class="login-card">
+            <div class="login-header">
+                <h1 class="login-title">Iniciar sesión</h1>
+                <p class="login-subtitle-card">Acceso restringido al personal autorizado</p>
+            </div>
+            
+            <div id="login-message" class="message" style="display: none;"></div>
+            
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        class="form-input" 
+                        placeholder="correo@politecnico.edu" 
+                        required
+                        autocomplete="username"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <div class="password-container">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            class="form-input" 
+                            placeholder="Ingresa tu contraseña" 
+                            required
+                            autocomplete="current-password"
+                        >
+                        <button type="button" class="toggle-password" id="toggle-password">
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" class="remember-checkbox" id="remember-me">
+                        <span>Mantener sesión iniciada</span>
+                    </label>
+                    <a href="#" class="forgot-password" id="forgot-password">¿Olvidaste tu contraseña?</a>
+                </div>
+                
+                <div class="login-buttons">
+                    <button type="submit" class="btn-primary" id="login-button">
+                        <span id="button-text">Iniciar sesión</span>
+                        <span id="button-loader" style="display: none;" class="loading"></span>
+                    </button>
+                    
+                    <div class="separator">
+                        <span>O</span>
+                    </div>
+                    
+                    <a href="index.html" class="btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Volver al Inicio
+                    </a>
+                </div>
+            </form>
+            
+            <div class="login-footer">
+                <p>©2026 Politecnico Vicente Aquilino Santos</p>
+                <p>Este es un sistema seguro. Tus credenciales están protegidas.</p>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script para manejar la imagen del logo
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoImage = document.querySelector('.logo-image img');
+            const logoPlaceholder = document.querySelector('.logo-placeholder');
+            
+            // Si la imagen no carga, muestra el placeholder
+            logoImage.onerror = function() {
+                this.style.display = 'none';
+                logoPlaceholder.style.display = 'block';
+            };
+            
+            // Si la ruta está vacía, muestra el placeholder inmediatamente
+            if (logoImage.src.includes('TU_RUTA_DE_IMAGEN_AQUI')) {
+                logoImage.style.display = 'none';
+                logoPlaceholder.style.display = 'block';
+            }
+        });
+        
+        // Toggle para mostrar/ocultar contraseña
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+        
+        // Manejo del formulario de login
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('remember-me').checked;
+            
+            // Validación básica
+            if (!email || !password) {
+                showMessage('Por favor, completa todos los campos', 'error');
+                return;
+            }
+            
+            // Validar formato de email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showMessage('Por favor, ingresa un correo electrónico válido', 'error');
+                return;
+            }
+            
+            // Mostrar estado de carga
+            const loginButton = document.getElementById('login-button');
+            const buttonText = document.getElementById('button-text');
+            const buttonLoader = document.getElementById('button-loader');
+            
+            buttonText.style.display = 'none';
+            buttonLoader.style.display = 'inline-block';
+            loginButton.disabled = true;
+            
+            // Aquí es donde conectarás con Supabase
+            // Por ahora simulamos un login exitoso después de 1.5 segundos
+            setTimeout(async () => {
+                try {
+                    // ESTA ES LA PARTE QUE MODIFICARÁS PARA CONECTAR CON SUPABASE
+                    // Simulación de autenticación exitosa
+                    const isValid = await simulateSupabaseLogin(email, password);
+                    
+                    if (isValid) {
+                        showMessage('¡Inicio de sesión exitoso! Redirigiendo...', 'success');
+                        
+                        // Guardar en localStorage si "recordar" está activado
+                        if (rememberMe) {
+                            localStorage.setItem('adminRemembered', 'true');
+                            localStorage.setItem('adminEmail', email);
+                        } else {
+                            sessionStorage.setItem('adminLoggedIn', 'true');
+                        }
+                        
+                        // Redirigir después de 1 segundo
+                        setTimeout(() => {
+                            window.location.href = 'admin.html';
+                        }, 1000);
+                    } else {
+                        showMessage('Credenciales incorrectas. Por favor, verifica tu correo y contraseña.', 'error');
+                        resetLoginButton();
+                    }
+                } catch (error) {
+                    showMessage('Error al conectar con el servidor. Intenta nuevamente.', 'error');
+                    resetLoginButton();
+                }
+            }, 1500);
+        });
+        
+        // Función simulada para Supabase
+        async function simulateSupabaseLogin(email, password) {
+            // ESTO ES SOLO PARA SIMULACIÓN
+            // REEMPLAZA ESTO CON TU CÓDIGO DE SUPABASE
+            
+            // Simulación: credenciales válidas
+            const validCredentials = [
+                { email: 'admin@politecnico.edu', password: 'Admin2024!' },
+                { email: 'director@politecnico.edu', password: 'Director2024' },
+                { email: 'secretaria@politecnico.edu', password: 'Secretaria2024' }
+            ];
+            
+            return validCredentials.some(cred => 
+                cred.email === email && cred.password === password
+            );
+            
+            /* 
+            // EJEMPLO DE CÓDIGO SUPABASE (descomenta y configura):
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+            
+            if (error) throw error;
+            return !!data.user;
+            */
+        }
+        
+        // Función para mostrar mensajes
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('login-message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'flex';
+            
+            // Auto-ocultar mensajes de éxito después de 3 segundos
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        // Función para resetear el botón de login
+        function resetLoginButton() {
+            const loginButton = document.getElementById('login-button');
+            const buttonText = document.getElementById('button-text');
+            const buttonLoader = document.getElementById('button-loader');
+            
+            buttonText.style.display = 'inline';
+            buttonLoader.style.display = 'none';
+            loginButton.disabled = false;
+        }
+        
+        // Función para "olvidé mi contraseña"
+        document.getElementById('forgot-password').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            
+            if (!email) {
+                showMessage('Por favor, ingresa tu correo electrónico para recuperar tu contraseña.', 'error');
+                document.getElementById('email').focus();
+                return;
+            }
+            
+            showMessage(`Se enviarán instrucciones a ${email} (simulado)`, 'success');
+            
+            // Aquí iría la lógica de Supabase para recuperación de contraseña
+            /*
+            const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: 'https://tudominio.com/reset-password',
+            });
+            */
+        });
+        
+        // Cargar correo recordado si existe
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('adminRemembered') === 'true') {
+                const savedEmail = localStorage.getItem('adminEmail');
+                if (savedEmail) {
+                    document.getElementById('email').value = savedEmail;
+                    document.getElementById('remember-me').checked = true;
+                }
+            }
+            
+            // Auto-focus en el campo de correo
+            document.getElementById('email').focus();
+        });
+        
+        // Limpiar localStorage al cerrar sesión (para implementar en admin.html)
+        function logout() {
+            localStorage.removeItem('adminRemembered');
+            localStorage.removeItem('adminEmail');
+            sessionStorage.removeItem('adminLoggedIn');
+            window.location.href = 'login.html';
+        }
+        
+        // Exportar función logout para usar en otras páginas
+        window.logout = logout;
+    </script>
+</body>
+</html>
