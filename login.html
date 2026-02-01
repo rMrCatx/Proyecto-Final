@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión - Panel de Administración | Politecnico</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.umd.js"></script>
+    <script src="js/supabase.js"></script>
     <style>
         * {
             margin: 0;
@@ -390,7 +392,8 @@
             </div>
             
             <div id="login-message" class="message" style="display: none;"></div>
-            
+
+
             <form id="login-form" class="login-form">
                 <div class="form-group">
                     <label for="email" class="form-label">Correo electrónico</label>
@@ -518,67 +521,52 @@
             buttonLoader.style.display = 'inline-block';
             loginButton.disabled = true;
             
-            // Aquí es donde conectarás con Supabase
-            // Por ahora simulamos un login exitoso después de 1.5 segundos
-            setTimeout(async () => {
-                try {
-                    // ESTA ES LA PARTE QUE MODIFICARÁS PARA CONECTAR CON SUPABASE
-                    // Simulación de autenticación exitosa
-                    const isValid = await simulateSupabaseLogin(email, password);
-                    
-                    if (isValid) {
-                        showMessage('¡Inicio de sesión exitoso! Redirigiendo...', 'success');
-                        
-                        // Guardar en localStorage si "recordar" está activado
-                        if (rememberMe) {
-                            localStorage.setItem('adminRemembered', 'true');
-                            localStorage.setItem('adminEmail', email);
-                        } else {
-                            sessionStorage.setItem('adminLoggedIn', 'true');
-                        }
-                        
-                        // Redirigir después de 1 segundo
-                        setTimeout(() => {
-                            window.location.href = 'admin.html';
-                        }, 1000);
-                    } else {
-                        showMessage('Credenciales incorrectas. Por favor, verifica tu correo y contraseña.', 'error');
-                        resetLoginButton();
-                    }
-                } catch (error) {
-                    showMessage('Error al conectar con el servidor. Intenta nuevamente.', 'error');
+            // Esperar a que Supabase esté listo (si corresponde)
+            if (window.supabaseReady && typeof window.supabaseReady.then === 'function') {
+                await window.supabaseReady;
+            }
+
+            if (!supabase) {
+                showMessage('Supabase no está inicializado. Revisa la consola para más detalles.', 'error');
+                resetLoginButton();
+                return;
+            }
+
+            // Conectar con Supabase
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+                if (error) {
+                    // Error de autenticación
+                    showMessage(error.message || 'Credenciales incorrectas. Por favor, verifica.', 'error');
                     resetLoginButton();
+                    return;
                 }
-            }, 1500);
+
+                // Login exitoso
+                showMessage('¡Inicio de sesión exitoso! Redirigiendo...', 'success');
+
+                if (rememberMe) {
+                    localStorage.setItem('adminRemembered', 'true');
+                    localStorage.setItem('adminEmail', email);
+                } else {
+                    sessionStorage.setItem('adminLoggedIn', 'true');
+                }
+
+                // Redirigir despues de breve espera
+                setTimeout(() => {
+                    window.location.href = 'admin.html';
+                }, 900);
+            } catch (error) {
+                showMessage(error.message || 'Error al conectar con el servidor. Intenta nuevamente.', 'error');
+                resetLoginButton();
+            }
         });
         
-        // Función simulada para Supabase
-        async function simulateSupabaseLogin(email, password) {
-            // ESTO ES SOLO PARA SIMULACIÓN
-            // REEMPLAZA ESTO CON TU CÓDIGO DE SUPABASE
-            
-            // Simulación: credenciales válidas
-            const validCredentials = [
-                { email: 'admin@politecnico.edu', password: 'Admin2024!' },
-                { email: 'director@politecnico.edu', password: 'Director2024' },
-                { email: 'secretaria@politecnico.edu', password: 'Secretaria2024' }
-            ];
-            
-            return validCredentials.some(cred => 
-                cred.email === email && cred.password === password
-            );
-            
-            /* 
-            // EJEMPLO DE CÓDIGO SUPABASE (descomenta y configura):
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password
-            });
-            
-            if (error) throw error;
-            return !!data.user;
-            */
-        }
+        // Nota: la autenticación real se realiza en el submit via `supabase.auth.signInWithPassword(...)`
         
         // Función para mostrar mensajes
         function showMessage(text, type) {
@@ -607,24 +595,36 @@
         }
         
         // Función para "olvidé mi contraseña"
-        document.getElementById('forgot-password').addEventListener('click', function(e) {
+        document.getElementById('forgot-password').addEventListener('click', async function(e) {
             e.preventDefault();
             const email = document.getElementById('email').value.trim();
-            
+
             if (!email) {
                 showMessage('Por favor, ingresa tu correo electrónico para recuperar tu contraseña.', 'error');
                 document.getElementById('email').focus();
                 return;
             }
-            
-            showMessage(`Se enviarán instrucciones a ${email} (simulado)`, 'success');
-            
-            // Aquí iría la lógica de Supabase para recuperación de contraseña
-            /*
-            const { error } = await supabase.auth.resetPasswordForEmail(email, {
-                redirectTo: 'https://tudominio.com/reset-password',
-            });
-            */
+
+            try {
+                if (window.supabaseReady && typeof window.supabaseReady.then === 'function') {
+                    await window.supabaseReady;
+                }
+
+                if (!supabase) {
+                    showMessage('Supabase no está inicializado. Revisa la consola para más detalles.', 'error');
+                    return;
+                }
+
+                const { data, error } = await supabase.auth.resetPasswordForEmail(email /*, { redirectTo: 'https://tudominio.com/reset-password' } */);
+                if (error) {
+                    showMessage(error.message || 'No se pudo enviar el correo de recuperación.', 'error');
+                    return;
+                }
+
+                showMessage(`Se enviaron instrucciones a ${email} para restablecer la contraseña. Revisa tu bandeja.`, 'success');
+            } catch (err) {
+                showMessage('Error al solicitar recuperación de contraseña. Intenta nuevamente.', 'error');
+            }
         });
         
         // Cargar correo recordado si existe
@@ -639,6 +639,29 @@
             
             // Auto-focus en el campo de correo
             document.getElementById('email').focus();
+            
+            // Esperar a que `window.supabaseReady` se resuelva y mostrar error solo mediante `showMessage` si falla
+            if (window.supabaseReady && typeof window.supabaseReady.then === 'function') {
+                window.supabaseReady.then(client => {
+                    if (!client) {
+                        showMessage('Supabase no está inicializado. Revisa `js/supabase.js` y la conexión al CDN.', 'error');
+                        const loginButton = document.getElementById('login-button');
+                        if (loginButton) loginButton.disabled = true;
+                    } else {
+                        console.info('Supabase listo:', client);
+                    }
+                }).catch(err => {
+                    console.error('Error en supabaseReady:', err);
+                    showMessage('Error inicializando Supabase. Ver consola.', 'error');
+                });
+            } else {
+                // Fallback: verificación síncrona (por compatibilidad)
+                if (typeof supabase === 'undefined' || supabase === null) {
+                    showMessage('Supabase no está inicializado. Revisa `js/supabase.js` y las claves.', 'error');
+                    const loginButton = document.getElementById('login-button');
+                    if (loginButton) loginButton.disabled = true;
+                }
+            }
         });
         
         // Limpiar localStorage al cerrar sesión (para implementar en admin.html)
