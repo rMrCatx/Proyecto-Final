@@ -162,15 +162,16 @@
             font-size: 0.9rem;
         }
         /* Estilos para navegación entre páginas */
+/* Estilos para navegación entre páginas (estilo oscuro uniforme) */
 .navbar {
-    background-color: white;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 15px 0;
+    padding: 10px 0;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
 }
 
 .nav-container {
@@ -185,19 +186,31 @@
 .logo {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 
-.logo-placeholder {
-    width: 60px;
-    height: 60px;
-    color: rgb(19, 19, 19);
+.logo-image {
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
     border-radius: 10px;
+    overflow: hidden;
+}
+
+.logo-text h1 {
+    font-size: 1.3rem;
+    margin: 0;
+    color: white;
+    font-weight: 600;
+}
+
+.logo-text p {
+    font-size: 0.8rem;
+    margin: 0;
+    color: #ecf0f1;
+    opacity: 0.9;
 }
 
 .logo-text h1 {
@@ -222,20 +235,26 @@
 
 .nav-menu li a {
     text-decoration: none;
-    color: #4b5563;
-    font-weight: 600;
-    font-size: 1rem;
+    color: #ecf0f1;
+    font-weight: 500;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 15px;
+    gap: 6px;
+    padding: 8px 16px;
     border-radius: 8px;
     transition: all 0.3s;
 }
 
 .nav-menu li a:hover {
-    background-color: #f3f4f6;
-    color: #8B5CF6;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #3498db;
+}
+
+.nav-menu li a.active {
+    background-color: #3498db;
+    color: white;
+    box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
 }
 
 
@@ -260,7 +279,7 @@
         top: 90px;
         left: 0;
         right: 0;
-        background-color: white;
+        background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
         flex-direction: column;
         padding: 20px;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -293,8 +312,8 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
-            <div class="logo-placeholder">
-                PVAS
+            <div class="logo-image">
+                <img src="../imagenes/favicon.ico" alt="Logo PVAS">
             </div>
             <div class="logo-text">
                 <h1>Politecnico</h1>
