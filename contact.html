@@ -812,7 +812,7 @@
                         
                         <div class="form-group">
                             <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono" placeholder="+503 0000-0000">
+                            <input type="tel" id="telefono" name="telefono" placeholder="+1 809-555-1234">
                         </div>
                     </div>
                     
@@ -866,8 +866,8 @@
                         </div>
                         <div class="info-content">
                             <h3>Teléfonos</h3>
-                            <p>Admisiones: <a href="tel:+50322220000">2222-0000</a></p>
-                            <p>Administración: <a href="tel:+50322220001">2222-0001</a></p>
+                            <p>Admisiones: <a href="tel:+18096663654">809-666-3654</a></p>
+                            <p>Administración: <a href="tel:+18096634865">809-663-4865</a></p>
                         </div>
                     </div>
                     
@@ -999,288 +999,277 @@
         </div>
     </main>
     
-    <script>// Toggle del menú móvil
-const menuToggle = document.getElementById('menu-toggle');
-const navMenu = document.getElementById('nav-menu');
+    <script src="js/supabase.umd.js"></script>
+    <script>
+    // Supabase configuration — REPLACE with your values
+const SUPABASE_URL = 'https://kkfdqevjhygerqyenbhf.supabase.co'; // Ej: https://xyz.supabase.co
+const SUPABASE_ANON_KEY = 'sb_publishable_bY7wAvoRMXTEBLl3oOacjw_j83lfLKE';
 
-menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    menuToggle.innerHTML = navMenu.classList.contains('active') 
-        ? '<i class="fas fa-times"></i>' 
-        : '<i class="fas fa-bars"></i>';
-});
+    // Initialize supabase client if the UMD bundle is available
+    let supabaseClient = null;
+    if (window.supabase && SUPABASE_URL && SUPABASE_ANON_KEY) {
+        supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    } else {
+        console.warn('Supabase UMD not found or keys missing. Replace SUPABASE_URL and SUPABASE_ANON_KEY and ensure js/supabase.umd.js is served.');
+    }
 
-// Cerrar menú al hacer clic en un enlace
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    // Toggle del menú móvil
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        menuToggle.innerHTML = navMenu.classList.contains('active') 
+            ? '<i class="fas fa-times"></i>' 
+            : '<i class="fas fa-bars"></i>';
     });
-});
 
-// Cerrar menú al hacer clic fuera de él
-document.addEventListener('click', (event) => {
-    if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
-        navMenu.classList.remove('active');
-        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-    }
-});
-
-// FAQ Accordion
-document.querySelectorAll('.faq-question').forEach(question => {
-    question.addEventListener('click', () => {
-        const item = question.parentElement;
-        item.classList.toggle('active');
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        });
     });
-});
 
-// Formulario de contacto
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Validación básica
-    const nombre = document.getElementById('nombre').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const asunto = document.getElementById('asunto').value;
-    const mensaje = document.getElementById('mensaje').value.trim();
-    
-    // Validaciones
-    if (!nombre) {
-        alert('Por favor ingresa tu nombre completo.');
-        return;
-    }
-    
-    if (!email) {
-        alert('Por favor ingresa tu email.');
-        return;
-    }
-    
-    // Validación simple de email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Por favor ingresa un email válido.');
-        return;
-    }
-    
-    if (!asunto) {
-        alert('Por favor selecciona un asunto.');
-        return;
-    }
-    
-    if (!mensaje || mensaje.length < 10) {
-        alert('Por favor escribe un mensaje de al menos 10 caracteres.');
-        return;
-    }
-    
-    // Simular envío del formulario
-    const submitBtn = this.querySelector('.submit-btn');
-    const originalText = submitBtn.innerHTML;
-    
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-    submitBtn.disabled = true;
-    
-    // Simular tiempo de envío
-    setTimeout(() => {
-        // Mostrar mensaje de éxito
-        const successMessage = document.createElement('div');
-        successMessage.className = 'success-message';
-        successMessage.innerHTML = `
-            <i class="fas fa-check-circle"></i>
-            <div>
-                <h4>¡Mensaje enviado con éxito!</h4>
-                <p>Te contactaremos en menos de 24 horas.</p>
-            </div>
-        `;
-        successMessage.style.cssText = `
-            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            animation: fadeIn 0.5s ease;
-        `;
-        
-        const formMessage = document.getElementById('formMessage');
-        if (formMessage) {
-            formMessage.innerHTML = '';
-            formMessage.appendChild(successMessage);
+    // Cerrar menú al hacer clic fuera de él
+    document.addEventListener('click', (event) => {
+        if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+            navMenu.classList.remove('active');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
         }
-        
-        // Restaurar botón
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        
-        // Resetear formulario
-        this.reset();
-        
-        // Hacer scroll al mensaje de éxito
-        successMessage.scrollIntoView({ behavior: 'smooth' });
-        
-        // Remover mensaje después de 5 segundos
-        setTimeout(() => {
-            if (successMessage.parentElement) {
-                successMessage.remove();
-            }
-        }, 5000);
-        
-    }, 1500);
-});
-
-// Ver mapa en Google Maps
-document.getElementById('viewMapBtn').addEventListener('click', function() {
-    const mapUrl = 'https://www.google.com/maps?q=Politecnico+Vicente+Aquilino+Santos+San+Salvador';
-    
-    // Mostrar confirmación
-    const confirmed = confirm('¿Deseas abrir la ubicación en Google Maps?');
-    
-    if (confirmed) {
-        window.open(mapUrl, '_blank');
-    }
-});
-
-// Efectos hover para tarjetas de información
-document.querySelectorAll('.info-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transition = 'all 0.3s ease';
     });
-});
 
-// Animar elementos al cargar la página
-document.addEventListener('DOMContentLoaded', function() {
-    // Animación de entrada para elementos
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.info-card, .social-icon, .faq-item');
-        
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.2;
-            
-            if (elementPosition < screenPosition) {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            item.classList.toggle('active');
+        });
+    });
+
+    // Formulario de contacto (nuevo handler — inserta en Supabase)
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        // Validación básica (igual que antes)
+        const nombre = document.getElementById('nombre').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const telefono = document.getElementById('telefono').value.trim();
+        const asunto = document.getElementById('asunto').value;
+        const mensaje = document.getElementById('mensaje').value.trim();
+        const newsletter = document.getElementById('newsletter').checked;
+
+        if (!nombre) { alert('Por favor ingresa tu nombre completo.'); return; }
+        if (!email) { alert('Por favor ingresa tu email.'); return; }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) { alert('Por favor ingresa un email válido.'); return; }
+        if (!asunto) { alert('Por favor selecciona un asunto.'); return; }
+        if (!mensaje || mensaje.length < 10) { alert('Por favor escribe un mensaje de al menos 10 caracteres.'); return; }
+
+        // Botón estado
+        const submitBtn = this.querySelector('.submit-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        submitBtn.disabled = true;
+
+        // Si supabaseClient no está inicializado, mostrar error local
+        if (!supabaseClient) {
+            alert('Error: Supabase no está inicializado. Ver consola para más detalles.');
+            console.error('Supabase client no inicializado. Verifica SUPABASE_URL, SUPABASE_ANON_KEY y que js/supabase.umd.js exista.');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            return;
+        }
+
+        try {
+            // Insertar en la tabla contactos
+            const payload = {
+                nombre,
+                email,
+                telefono: telefono || null,
+                asunto,
+                mensaje,
+                newsletter: !!newsletter,
+                user_agent: navigator.userAgent || null
+            };
+
+            const { data, error } = await supabaseClient.from('contactos').insert([payload]);
+
+            if (error) {
+                console.error('Supabase insert error:', error);
+                alert('Error al enviar el mensaje. Intenta nuevamente.');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                return;
+            }
+
+            // Mostrar mensaje de éxito (manteniendo estilo original)
+            const successMessage = document.createElement('div');
+            successMessage.className = 'success-message';
+            successMessage.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <h4>¡Mensaje enviado con éxito!</h4>
+                    <p>Te contactaremos en menos de 24 horas.</p>
+                </div>
+            `;
+            successMessage.style.cssText = `
+                background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+                color: white;
+                padding: 20px;
+                border-radius: 10px;
+                margin-top: 20px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                animation: fadeIn 0.5s ease;
+            `;
+
+            const formMessage = document.getElementById('formMessage');
+            if (formMessage) {
+                formMessage.innerHTML = '';
+                formMessage.appendChild(successMessage);
+            } else {
+                // si no existe contenedor, insertar después del formulario
+                this.parentElement.insertBefore(successMessage, this.nextSibling);
+            }
+
+            // Restaurar y resetear
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            this.reset();
+            successMessage.scrollIntoView({ behavior: 'smooth' });
+
+            // Remover mensaje después de 5s
+            setTimeout(() => { if (successMessage.parentElement) successMessage.remove(); }, 5000);
+
+        } catch (err) {
+            console.error(err);
+            alert('Error inesperado al enviar. Revisa la consola.');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    // Ver mapa en Google Maps
+    const viewMapBtn = document.getElementById('viewMapBtn');
+    if (viewMapBtn) {
+        viewMapBtn.addEventListener('click', function() {
+            const mapUrl = 'https://www.google.com/maps?q=Politecnico+Vicente+Aquilino+Santos+San+Salvador';
+            const confirmed = confirm('¿Deseas abrir la ubicación en Google Maps?');
+            if (confirmed) window.open(mapUrl, '_blank');
+        });
+    }
+
+    // Efectos hover para tarjetas de información
+    document.querySelectorAll('.info-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transition = 'all 0.3s ease';
+        });
+    });
+
+    // Animar elementos al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.info-card, .social-icon, .faq-item');
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        document.querySelectorAll('.info-card, .social-icon, .faq-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        animateOnScroll();
+        window.addEventListener('scroll', animateOnScroll);
+
+        const title = document.querySelector('.contact-header h1');
+        title.style.opacity = '0';
+        title.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            title.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            title.style.opacity = '1';
+            title.style.transform = 'translateY(0)';
+        }, 300);
+    });
+
+    // Validación en tiempo real para formulario
+    document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea').forEach(input => {
+        input.addEventListener('input', function() {
+            if (this.checkValidity()) {
+                this.style.borderColor = '#2ecc71';
+                this.style.boxShadow = '0 0 0 3px rgba(46, 204, 113, 0.1)';
+            } else {
+                this.style.borderColor = '#e74c3c';
+                this.style.boxShadow = '0 0 0 3px rgba(231, 76, 60, 0.1)';
             }
         });
-    };
-    
-    // Inicializar elementos con opacidad 0
-    document.querySelectorAll('.info-card, .social-icon, .faq-item').forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        input.addEventListener('blur', function() {
+            if (!this.value && this.required) {
+                this.style.borderColor = '#e74c3c';
+                this.style.boxShadow = '0 0 0 3px rgba(231, 76, 60, 0.1)';
+            }
+        });
     });
-    
-    // Ejecutar animación al cargar y al hacer scroll
-    animateOnScroll();
-    window.addEventListener('scroll', animateOnScroll);
-    
-    // Efecto de escritura para el título
-    const title = document.querySelector('.contact-header h1');
-    const originalText = title.innerHTML;
-    
-    title.style.opacity = '0';
-    title.style.transform = 'translateY(20px)';
-    
-    setTimeout(() => {
-        title.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-        title.style.opacity = '1';
-        title.style.transform = 'translateY(0)';
-    }, 300);
-});
 
-// Validación en tiempo real para formulario
-document.querySelectorAll('#contactForm input, #contactForm select, #contactForm textarea').forEach(input => {
-    input.addEventListener('input', function() {
-        if (this.checkValidity()) {
-            this.style.borderColor = '#2ecc71';
-            this.style.boxShadow = '0 0 0 3px rgba(46, 204, 113, 0.1)';
-        } else {
-            this.style.borderColor = '#e74c3c';
-            this.style.boxShadow = '0 0 0 3px rgba(231, 76, 60, 0.1)';
+    // Animación para el botón de llamada
+    const ctaPhone = document.querySelector('.cta-phone');
+    if (ctaPhone) {
+        ctaPhone.addEventListener('mouseenter', function() {
+            const icon = this.querySelector('i');
+            icon.style.transform = 'scale(1.2) rotate(10deg)';
+            icon.style.transition = 'transform 0.3s ease';
+        });
+        ctaPhone.addEventListener('mouseleave', function() {
+            const icon = this.querySelector('i');
+            icon.style.transform = 'scale(1) rotate(0deg)';
+        });
+    }
+
+    // Efecto para iconos de redes sociales
+    document.querySelectorAll('.social-icon').forEach(icon => {
+        icon.addEventListener('mouseenter', function() {
+            const i = this.querySelector('i');
+            i.style.transform = 'scale(1.3)';
+            i.style.transition = 'transform 0.3s ease';
+        });
+        icon.addEventListener('mouseleave', function() {
+            const i = this.querySelector('i');
+            i.style.transform = 'scale(1)';
+        });
+    });
+
+    // Verificar que todos los elementos necesarios existan
+    function checkRequiredElements() {
+        const requiredIds = ['menu-toggle', 'nav-menu', 'contactForm', 'viewMapBtn'];
+        let allExist = true;
+        requiredIds.forEach(id => { if (!document.getElementById(id)) { console.error(`❌ Elemento con id "${id}" no encontrado`); allExist = false; } });
+        if (allExist) console.log('✅ Todos los elementos necesarios están presentes');
+        return allExist;
+    }
+    window.addEventListener('load', checkRequiredElements);
+
+    // Agregar CSS para animaciones
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-    });
-    
-    input.addEventListener('blur', function() {
-        if (!this.value && this.required) {
-            this.style.borderColor = '#e74c3c';
-            this.style.boxShadow = '0 0 0 3px rgba(231, 76, 60, 0.1)';
-        }
-    });
-});
-
-// Animación para el botón de llamada
-const ctaPhone = document.querySelector('.cta-phone');
-if (ctaPhone) {
-    ctaPhone.addEventListener('mouseenter', function() {
-        const icon = this.querySelector('i');
-        icon.style.transform = 'scale(1.2) rotate(10deg)';
-        icon.style.transition = 'transform 0.3s ease';
-    });
-    
-    ctaPhone.addEventListener('mouseleave', function() {
-        const icon = this.querySelector('i');
-        icon.style.transform = 'scale(1) rotate(0deg)';
-    });
-}
-
-// Efecto para iconos de redes sociales
-document.querySelectorAll('.social-icon').forEach(icon => {
-    icon.addEventListener('mouseenter', function() {
-        const i = this.querySelector('i');
-        i.style.transform = 'scale(1.3)';
-        i.style.transition = 'transform 0.3s ease';
-    });
-    
-    icon.addEventListener('mouseleave', function() {
-        const i = this.querySelector('i');
-        i.style.transform = 'scale(1)';
-    });
-});
-
-// Verificar que todos los elementos necesarios existan
-function checkRequiredElements() {
-    const requiredIds = ['menu-toggle', 'nav-menu', 'contactForm', 'viewMapBtn'];
-    let allExist = true;
-    
-    requiredIds.forEach(id => {
-        if (!document.getElementById(id)) {
-            console.error(`❌ Elemento con id "${id}" no encontrado`);
-            allExist = false;
-        }
-    });
-    
-    if (allExist) {
-        console.log('✅ Todos los elementos necesarios están presentes');
-    }
-    
-    return allExist;
-}
-
-// Ejecutar verificación cuando cargue la página
-window.addEventListener('load', checkRequiredElements);
-
-// Agregar CSS para animaciones
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .success-message {
-        animation: fadeIn 0.5s ease !important;
-    }
-    
-    .shake {
-        animation: shake 0.5s ease;
-    }
-    
-    @keyframes shake {
-        0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(-5px); }
-        75% { transform: translateX(5px); }
-    }
-`;
-document.head.appendChild(style);
+        .success-message { animation: fadeIn 0.5s ease !important; }
+        .shake { animation: shake 0.5s ease; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    `;
+    document.head.appendChild(style);
+    </script>
+</body>
+</html>
