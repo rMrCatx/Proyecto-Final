@@ -6,156 +6,121 @@
     <title>Galería Multimedia - Politecnico Vicente Aquilino Santos</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Estilos específicos para la galería */
-        .gallery-container {
-            margin-top: 40px;
-        }
-        
-        .gallery-filters {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .filter-btn {
-            padding: 10px 20px;
-            border: 2px solid #e5e7eb;
-            background: white;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .filter-btn.active {
-            background-color: #8B5CF6;
-            color: white;
-            border-color: #8B5CF6;
-        }
-        
-        .filter-btn:hover:not(.active) {
-            border-color: #10B981;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .gallery-item {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            height: 250px;
-            cursor: pointer;
-        }
-        
-        .gallery-item img, .gallery-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .gallery-item:hover img, .gallery-item:hover video {
-            transform: scale(1.05);
-        }
-        
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-        
-        .gallery-category {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: rgba(139, 92, 246, 0.9);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-        }
-        
-        .modal-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255,255,255,0.2);
-            color: white;
-            border: none;
-            padding: 15px;
-            cursor: pointer;
-            font-size: 1.5rem;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-prev {
-            left: 20px;
-        }
-        
-        .modal-next {
-            right: 20px;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
+    <style>/* ============================================
+   ESTILOS ESPECÍFICOS PARA CADA ELEMENTO DE LA GALERÍA
+   ============================================ */
+
+/* Elemento 1: Ceremonia de Graduación 2024 */
+.gallery-item:nth-child(1) {
+    background-image: url('../imagenes/graduacion\ 2024\ 2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Elemento 2: Taller de Robótica */
+.gallery-item:nth-child(2) {
+    background-image: url('../imagenes/taller\ de\ robotica.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Elemento 3: Promoción 2023 */
+.gallery-item:nth-child(3) {
+    background-image: url('../imagenes/promocion.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Elemento 4: Carpintería Avanzada */
+.gallery-item:nth-child(4) {
+    background-image: url('../imagenes/carpinteria\ moderna.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Elemento 5: Torneo Intercarreras */
+.gallery-item:nth-child(5) {
+    background-image: url('../imagenes/dia\ de\ no\ violencia\ contra\ la\ mujer.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Elemento 6: Nuevo Laboratorio de Redes */
+.gallery-item:nth-child(6) {
+    background-image: url('../imagenes/maraton\ biblico.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Elemento 7: Día del Estudiante */
+.gallery-item:nth-child(7) {
+    background-image: url('../imagenes/dia\ del\ estudiante.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Elemento 8: Feria de Ciencias */
+.gallery-item:nth-child(8) {
+    background-image: url('../imagenes/feria\ de\ ciencias.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Elemento 9: Electrónica Básica */
+.gallery-item:nth-child(9) {
+    background-image: url('../imagenes/mes\ de\ la\ biblia.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Elemento 10: Entrega de Diplomas */
+.gallery-item:nth-child(10) {
+    background-image: url('../imagenes/entrega\ de\ diplomas\ 2.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Elemento 11: Equipo de Baloncesto */
+.gallery-item:nth-child(11) {
+    background-image: url('../imagenes/promo\ basket.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Elemento 12: Biblioteca Renovada */
+.gallery-item:nth-child(12) {
+    background-image: url('../imagenes/coro\ pvas.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ============================================
+   ESTILOS COMUNES PARA TODOS LOS ELEMENTOS
+   ============================================ */
+
+/* Fondo semi-transparente para mejor legibilidad del texto */
+.gallery-item > div:first-child {
+    background: rgba(0, 0, 0, 0.4) !important;
+    color: white !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Hover effect para todos */
+.gallery-item:hover > div:first-child {
+    background: rgba(0, 0, 0, 0.6) !important;
+}
         .video-section {
             margin-top: 50px;
         }
@@ -488,7 +453,7 @@
             {
                 id: 3,
                 category: 'graduaciones',
-                title: 'Promoción 2023',
+                title: 'Promoción 2025',
                 desc: 'Fotos grupales de la promoción de graduados del año pasado',
                 date: '20 Junio 2023',
                 author: 'Fotografía Estudiantil',
@@ -506,7 +471,7 @@
             {
                 id: 5,
                 category: 'deportes',
-                title: 'Torneo Intercarreras',
+                title: 'dia no violencia contra la mujer',
                 desc: 'Competencia deportiva anual entre las diferentes carreras',
                 date: '22 Marzo 2024',
                 author: 'Comité Deportivo',
@@ -515,7 +480,7 @@
             {
                 id: 6,
                 category: 'infraestructura',
-                title: 'Nuevo Laboratorio de Redes',
+                title: 'maraton biblico',
                 desc: 'Inauguración del moderno laboratorio de redes CISCO',
                 date: '15 Febrero 2024',
                 author: 'Dirección General',
@@ -542,7 +507,7 @@
             {
                 id: 9,
                 category: 'talleres',
-                title: 'Electrónica Básica',
+                title: 'mes de la biblia',
                 desc: 'Estudiantes trabajando en circuitos electrónicos',
                 date: '30 Enero 2024',
                 author: 'Ing. Marta Sánchez',
@@ -569,7 +534,7 @@
             {
                 id: 12,
                 category: 'infraestructura',
-                title: 'Biblioteca Renovada',
+                title: 'coro pvas',
                 desc: 'Espacio modernizado para estudio e investigación',
                 date: '12 Enero 2024',
                 author: 'Biblioteca Central',
