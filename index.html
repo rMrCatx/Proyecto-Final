@@ -489,7 +489,7 @@
         <!-- MENÚ SIMPLE CON TUS 5 OPCIONES -->
         <ul class="nav-menu" id="nav-menu">
             <li><a href="index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
-            <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin</a></li>
+            <li><a href="login.html"><i class="fas fa-user-shield"></i> Admin</a></li>
             <li><a href="contact.html"><i class="fas fa-envelope"></i> Contacto</a></li>
             <li><a href="categorias/calentario.html"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
             <li><a href="historia.html"><i class="fas fa-history"></i> Historia</a></li>
@@ -591,37 +591,80 @@
         
         <!-- Sección de galería destacada -->
         <section class="featured-gallery" style="padding: 60px 0;">
-            <div class="section-header">
-                <h2><i class="fas fa-images"></i> Galería Destacada</h2>
-                <a href="categorias/galeria.html" class="info-link">
-                    Ver galería completa <i class="fas fa-arrow-right"></i>
-                </a>
+    <div class="section-header">
+        <h2><i class="fas fa-images"></i> Galería Destacada</h2>
+        <a href="categorias/galeria.html" class="info-link">
+            Ver galería completa <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+    <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px;">
+        
+        <!-- ITEM 1: FERIA TECNOLÓGICA 2024 -->
+        <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
+            <img src="C:\Users\LENOVO\Desktop\proyecto leonal\Proyecto-Final\imagenes\feria tecnologica 2024.jpg" alt="Feria Tecnológica 2024" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px; background: rgba(0,0,0,0.3);">
+                Feria Tecnológica 2024
             </div>
-            <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px;">
-                <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #8B5CF6 0%, #ffffff 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px;">
-                        Feria Tecnológica 2024
-                    </div>
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; text-align: center;">
-                        Proyectos innovadores de estudiantes
-                    </div>
-                </div>
-                <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #10B981 0%, #ffffff 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px;">
-                        Graduación 2023
-                    </div>
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; text-align: center;">
-                        Ceremonia de entrega de diplomas
-                    </div>
-                </div>
-                <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #3B82F6 0%, #ffffff 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px;">
-                        Talleres Prácticos
-                    </div>
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; text-align: center;">
-                        Aprendizaje hands-on en laboratorios
-                    </div>
-                </div>
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; text-align: center;">
+                Proyectos innovadores de estudiantes
+            </div>
+        </div>
+        
+        <!-- ITEM 2: GRADUACIÓN 2023 -->
+        <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
+            <img src="C:\Users\LENOVO\Desktop\proyecto leonal\Proyecto-Final\imagenes\graduacion 2023.jpg" alt="Graduación 2023" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px; background: rgba(0,0,0,0.3);">
+                Graduación 2023
+            </div>
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; text-align: center;">
+                Ceremonia de entrega de diplomas
+            </div>
+        </div>
+        
+        <!-- ITEM 3: TALLERES PRÁCTICOS -->
+        <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
+            <img src="C:\Users\LENOVO\Desktop\proyecto leonal\Proyecto-Final\imagenes\taller de mecanica.webp" alt="Talleres Prácticos" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px; background: rgba(0,0,0,0.3);">
+                Talleres Prácticos
+            </div>
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; text-align: center;">
+                Aprendizaje hands-on en laboratorios
+            </div>
+        </div>
+        
+        <!-- ITEM 4: CONFERENCIAS ACADÉMICAS -->
+        <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
+            <img src="imagenes/Charla-Impuestos-Interno.jpg" alt="Conferencias Académicas" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px; background: rgba(0,0,0,0.3);">
+                Conferencias Académicas
+            </div>
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; text-align: center;">
+                Expertos compartiendo conocimientos
+            </div>
+        </div>
+        
+        <!-- ITEM 5: ACTIVIDADES DEPORTIVAS -->
+        <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
+            <img src="imagenes/deporte promo basket.jpg" alt="Actividades Deportivas" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px; background: rgba(0,0,0,0.3);">
+                Actividades Deportivas
+            </div>
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; text-align: center;">
+                Competencias y torneos estudiantiles
+            </div>
+        </div>
+        
+        <!-- ITEM 6: VISITAS INDUSTRIALES -->
+        <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
+            <img src="imagenes/visita industrial.jfif" alt="Visitas Industriales" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px; background: rgba(0,0,0,0.3);">
+                Visitas Industriales
+            </div>
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; text-align: center;">
+                Experiencia práctica en empresas
+            </div>
+        </div>
+        
             </div>
         </section>
         
@@ -746,73 +789,80 @@
     <script src="js/main.js"></script>
     <script>
         // Datos de publicaciones (simulados)
-        const posts = [
-            {
-                id: 1,
-                title: "Inauguración del nuevo laboratorio de programación",
-                excerpt: "El centro ha inaugurado un moderno laboratorio de programación equipado con computadoras de última generación y software especializado para el desarrollo de aplicaciones web y móviles.",
-                category: "noticias",
-                date: "10 Mayo 2024",
-                author: "Departamento de Informática",
-                color: "#8B5CF6",
-                likes: 24,
-                comments: 8
-            },
-            {
-                id: 2,
-                title: "Taller de ebanistería para principiantes - Inscripciones abiertas",
-                excerpt: "Este sábado se realizará un taller gratuito de ebanistería para estudiantes interesados en aprender las técnicas básicas del trabajo con madera. Cupos limitados.",
-                category: "actividades",
-                date: "8 Mayo 2024",
-                author: "Departamento de Ebanistería",
-                color: "#10B981",
-                likes: 18,
-                comments: 5
-            },
-            {
-                id: 3,
-                title: "AVISO IMPORTANTE: Calendario de exámenes finales",
-                excerpt: "Se informa a todos los estudiantes que el período de exámenes finales se llevará a cabo del 22 al 30 de mayo. Consulten el calendario oficial para horarios específicos.",
-                category: "avisos",
-                date: "5 Mayo 2024",
-                author: "Dirección Académica",
-                color: "#EF4444",
-                likes: 42,
-                comments: 15
-            },
-            {
-                id: 4,
-                title: "Estudiantes ganan primer lugar en competencia nacional de redes",
-                excerpt: "Nuestros estudiantes del técnico en Redes obtuvieron el primer lugar en la competencia nacional de configuración de redes y seguridad informática. ¡Felicidades!",
-                category: "logros",
-                date: "3 Mayo 2024",
-                author: "Departamento de Redes",
-                color: "#3B82F6",
-                likes: 56,
-                comments: 22
-            },
-            {
-                id: 5,
-                title: "Charla sobre refrigeración comercial sostenible",
-                excerpt: "El próximo jueves tendremos una charla sobre las últimas tendencias en refrigeración comercial sostenible, impartida por expertos del sector. Entrada libre.",
-                category: "actividades",
-                date: "1 Mayo 2024",
-                author: "Departamento de Refrigeración",
-                color: "#F59E0B",
-                likes: 31,
-                comments: 7
-            },
-            {
-                id: 6,
-                title: "Nuevo convenio con empresas locales para prácticas profesionales",
-                excerpt: "Firmamos un convenio con 5 empresas locales para ofrecer prácticas profesionales a nuestros estudiantes. Una gran oportunidad para experiencia laboral real.",
-                category: "noticias",
-                date: "28 Abril 2024",
-                author: "Vinculación Laboral",
-                color: "#8B5CF6",
-                likes: 38,
-                comments: 12
-            }
+       const posts = [
+    {
+        id: 1,
+        title: "Inauguración del nuevo laboratorio de programación",
+        excerpt: "El centro ha inaugurado un moderno laboratorio de programación equipado con computadoras de última generación y software especializado para el desarrollo de aplicaciones web y móviles.",
+        category: "noticias",
+        date: "10 Mayo 2024",
+        author: "Departamento de Informática",
+        color: "#8B5CF6",
+        likes: 24,
+        comments: 8,
+        image: "imagenes/laboratorio-programacion.jpg"
+    },
+    {
+        id: 2,
+        title: "Taller de ebanistería para principiantes - Inscripciones abiertas",
+        excerpt: "Este sábado se realizará un taller gratuito de ebanistería para estudiantes interesados en aprender las técnicas básicas del trabajo con madera. Cupos limitados.",
+        category: "actividades",
+        date: "8 Mayo 2024",
+        author: "Departamento de Ebanistería",
+        color: "#10B981",
+        likes: 18,
+        comments: 5,
+        image: "imagenes/taller-ebanisteria.jpg"
+    },
+    {
+        id: 3,
+        title: "AVISO IMPORTANTE: Calendario de exámenes finales",
+        excerpt: "Se informa a todos los estudiantes que el período de exámenes finales se llevará a cabo del 22 al 30 de mayo. Consulten el calendario oficial para horarios específicos.",
+        category: "avisos",
+        date: "5 Mayo 2024",
+        author: "Dirección Académica",
+        color: "#EF4444",
+        likes: 42,
+        comments: 15,
+        image: "imagenes/calendario-examenes.jpg"
+    },
+    {
+        id: 4,
+        title: "Estudiantes ganan primer lugar en competencia nacional de redes",
+        excerpt: "Nuestros estudiantes del técnico en Redes obtuvieron el primer lugar en la competencia nacional de configuración de redes y seguridad informática. ¡Felicidades!",
+        category: "logros",
+        date: "3 Mayo 2024",
+        author: "Departamento de Redes",
+        color: "#3B82F6",
+        likes: 56,
+        comments: 22,
+        image: "imagenes/ganadores-redes.jpg"
+    },
+    {
+        id: 5,
+        title: "Charla sobre refrigeración comercial sostenible",
+        excerpt: "El próximo jueves tendremos una charla sobre las últimas tendencias en refrigeración comercial sostenible, impartida por expertos del sector. Entrada libre.",
+        category: "actividades",
+        date: "1 Mayo 2024",
+        author: "Departamento de Refrigeración",
+        color: "#F59E0B",
+        likes: 31,
+        comments: 7,
+        image: "imagenes/charla-refrigeracion.jpg"
+    },
+    {
+        id: 6,
+        title: "Nuevo convenio con empresas locales para prácticas profesionales",
+        excerpt: "Firmamos un convenio con 5 empresas locales para ofrecer prácticas profesionales a nuestros estudiantes. Una gran oportunidad para experiencia laboral real.",
+        category: "noticias",
+        date: "28 Abril 2024",
+        author: "Vinculación Laboral",
+        color: "#8B5CF6",
+        likes: 38,
+        comments: 12,
+        image: "imagenes/convenio-empresas.jpg"
+    }
+
         ];
 
         document.addEventListener('DOMContentLoaded', function() {
