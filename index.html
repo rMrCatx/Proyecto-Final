@@ -333,16 +333,16 @@
             margin-bottom: 20px;
             color: #d1d5db;
         }
-        /* Estilos para navegación entre páginas (estilo oscuro uniforme) */
+        /* Estilos para navegación entre páginas */
 .navbar {
-    background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 10px 0;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+    padding: 15px 0;
 }
 
 .nav-container {
@@ -357,37 +357,25 @@
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
 }
 
-.logo-image {
-    width: 48px;
-    height: 48px;
+.logo-placeholder {
+    width: 60px;
+    height: 60px;
+    color: rgb(19, 19, 19);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
     border-radius: 10px;
-    overflow: hidden;
-}
-
-.logo-text h1 {
-    font-size: 1.3rem;
-    margin: 0;
-    color: white;
-    font-weight: 600;
-}
-
-.logo-text p {
-    font-size: 0.8rem;
-    margin: 0;
-    color: #ecf0f1;
-    opacity: 0.9;
 }
 
 .logo-text h1 {
     font-size: 1.5rem;
     margin: 0;
-    color: #ecf0f1;
+    color: #1f2937;
 }
 
 .logo-text p {
@@ -406,37 +394,25 @@
 
 .nav-menu li a {
     text-decoration: none;
-    color: #ecf0f1;
-    font-weight: 500;
-    font-size: 0.9rem;
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 1rem;
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
+    gap: 8px;
+    padding: 10px 15px;
     border-radius: 8px;
     transition: all 0.3s;
 }
 
 .nav-menu li a:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: #3498db;
+    background-color: #f3f4f6;
+    color: #8B5CF6;
 }
 
 .nav-menu li a.active {
-    background-color: #3498db;
+    background-color: #8B5CF6;
     color: white;
-    box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
-} 
-
-.nav-menu li a:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: #3498db;
-        }
-
-.nav-menu li a.active {
-            background-color: #3498db;
-            color: white;
-            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
 }
 
 .nav-menu li a.active:hover {
@@ -464,7 +440,7 @@
         top: 90px;
         left: 0;
         right: 0;
-        background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
+        background-color: white;
         flex-direction: column;
         padding: 20px;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -497,8 +473,8 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
-            <div class="logo-image">
-                <img src="imagenes/favicon.ico" alt="Logo PVAS">
+            <div class="logo-placeholder">
+                PVAS
             </div>
             <div class="logo-text">
                 <h1>Politecnico</h1>
@@ -658,7 +634,7 @@
         
         <!-- ITEM 4: CONFERENCIAS ACADÉMICAS -->
         <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
-            <img src="imagenes/conferencias-academicas.jpg" alt="Conferencias Académicas" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="imagenes/Charla-Impuestos-Interno.jpg" alt="Conferencias Académicas" style="width: 100%; height: 100%; object-fit: cover;">
             <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px; background: rgba(0,0,0,0.3);">
                 Conferencias Académicas
             </div>
@@ -669,7 +645,7 @@
         
         <!-- ITEM 5: ACTIVIDADES DEPORTIVAS -->
         <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
-            <img src="imagenes/actividades-deportivas.jpg" alt="Actividades Deportivas" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="imagenes/deporte promo basket.jpg" alt="Actividades Deportivas" style="width: 100%; height: 100%; object-fit: cover;">
             <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px; background: rgba(0,0,0,0.3);">
                 Actividades Deportivas
             </div>
@@ -680,7 +656,7 @@
         
         <!-- ITEM 6: VISITAS INDUSTRIALES -->
         <div class="gallery-item" style="position: relative; border-radius: 10px; overflow: hidden; height: 250px; cursor: pointer;" onclick="window.location.href='categorias/galeria.html'">
-            <img src="imagenes/visitas-industriales.jpg" alt="Visitas Industriales" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="imagenes/visita industrial.jfif" alt="Visitas Industriales" style="width: 100%; height: 100%; object-fit: cover;">
             <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; text-align: center; padding: 20px; background: rgba(0,0,0,0.3);">
                 Visitas Industriales
             </div>

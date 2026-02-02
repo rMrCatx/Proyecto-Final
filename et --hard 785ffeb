@@ -1,0 +1,104 @@
+[33mcommit 92b8c55dec2a68092b7b6045bf189324478c77e6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelop[m[33m)[m
+Merge: 785ffeb 7d9612d
+Author: samuel <samuelmartereynoso@gmail.com>
+Date:   Mon Feb 2 08:22:26 2026 -0400
+
+    Merge branch 'develop' of https://github.com/rMrCatx/Proyecto-Final into develop
+    Si
+
+[33mcommit 785ffebcaa5deb2f20de4a2908a9bc9b5e5d5330[m
+Author: samuel <samuelmartereynoso@gmail.com>
+Date:   Sun Feb 1 22:21:16 2026 -0400
+
+    nuevos cambios
+
+[33mcommit 7d9612d45374a94a3b9f14f9c979bb7ecdde1ae3[m[33m ([m[1;31morigin/develop[m[33m)[m
+Author: rMrCatx <xxaguaxx6@gmail.com>
+Date:   Sat Jan 31 22:38:11 2026 -0400
+
+    cambios al menu y logo
+
+[33mcommit 95f12de953e4118bcc2af42f0015523a20317fc2[m
+Author: rMrCatx <xxaguaxx6@gmail.com>
+Date:   Sat Jan 31 21:52:29 2026 -0400
+
+    login añadido y funcional
+
+[33mcommit e6d662f9c4d9f81fb9dc987713644f4c69b0a2ad[m
+Author: rMrCatx <xxaguaxx6@gmail.com>
+Date:   Sat Jan 31 10:46:29 2026 -0400
+
+    login
+
+[33mcommit 16dce65cf0726ccc232d85ed2b15d83958804704[m
+Author: samuel <samuelmartereynoso@gmail.com>
+Date:   Sat Jan 31 04:56:09 2026 -0400
+
+    imagenes
+
+[33mcommit 84529462c677b36304388261e6210845c62c10b8[m
+Author: samuel <samuelmartereynoso@gmail.com>
+Date:   Thu Jan 29 09:27:20 2026 -0400
+
+    imagenes leo
+
+[33mcommit 7dc78bbfa96c3a2d84c9bfb40582ab5122f71c89[m
+Author: samuel <samuelmartereynoso@gmail.com>
+Date:   Thu Jan 29 06:49:27 2026 -0400
+
+    cambios
+
+[33mcommit eb6ca8429e512f2cd9fc2c636e750d5ce3464a04[m
+Author: samuel <samuelmartereynoso@gmail.com>
+Date:   Wed Jan 28 00:40:50 2026 -0400
+
+    subi nuevos cambios
+
+[33mcommit 3f1fe08163b932e6db3683034a21105970de34d6[m
+Author: rMrCatx <xxaguaxx6@gmail.com>
+Date:   Tue Jan 27 22:59:58 2026 -0400
+
+    version 1.9
+
+[33mcommit fa8644cec7f658fd0fe54310c7b31db806b85036[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: samuel <samuelmartereynoso@gmail.com>
+Date:   Tue Jan 27 00:12:09 2026 -0400
+
+    Tu mensaje de commit
+
+[33mcommit 14e6cf79edc3021defc58a75f847e83349471432[m
+Author: samuel <samuelmartereynoso@gmail.com>
+Date:   Fri Jan 23 08:56:33 2026 -0400
+
+    ok
+
+[33mcommit f2fc579a04d5f8ef101d805de86ee09f7a58bb01[m
+Merge: cb99309 2d76841
+Author: samuel <samuelmartereynoso@gmail.com>
+Date:   Mon Jan 19 14:39:34 2026 -0400
+
+    Merge branch 'main' of https://github.com/rMrCatx/Proyecto-Final into develop
+
+[33mcommit cb99309d122cd53d182f538abcf9ea50959f50aa[m
+Author: samuel <samuelmartereynoso@gmail.com>
+Date:   Sun Jan 18 01:23:06 2026 -0400
+
+    leonal revisa el menu
+
+[33mcommit 2d76841e4ea4d660c44c936b0870fc58043aca39[m
+Author: samuel <samuelmartereynoso@gmail.com>
+Date:   Sat Jan 17 16:03:44 2026 -0400
+
+    Agrego imagen con URL base64 en HTML
+
+[33mcommit aaccfea54ae606dcf2b7ce4d40b5a4f18fbceab5[m
+Author: rMrCatx <xxaguaxx6@gmail.com>
+Date:   Wed Jan 14 22:29:50 2026 -0400
+
+    beta 0.0.1
+
+[33mcommit f3d0520e84689d5aff7156bf79c5db1a80bd8856[m
+Author: rMrCatx <xxaguaxx6@gmail.com>
+Date:   Sun Jan 11 21:54:15 2026 -0400
+
+    Primera vez de la pagina en github
