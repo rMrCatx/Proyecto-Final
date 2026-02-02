@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Politecnico V. A. Santos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <style>
         * {
             margin: 0;
@@ -18,103 +19,6 @@
             min-height: 100vh;
             color: #333;
             padding-top: 70px;
-        }
-        
-        /* Navegación - Estilo uniforme */
-        .navbar {
-            background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 10px 0;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
-        }
-        
-        .logo-text h1 {
-            font-size: 1.3rem;
-            margin: 0;
-            color: white;
-            font-weight: 600;
-        }
-        
-        .logo-text p {
-            font-size: 0.8rem;
-            margin: 0;
-            color: #ecf0f1;
-            opacity: 0.9;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 5px;
-        }
-        
-        .nav-menu li a {
-            text-decoration: none;
-            color: #ecf0f1;
-            font-weight: 500;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-        
-        .nav-menu li a:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            color: #3498db;
-        }
-        
-        .nav-menu li a.active {
-            background-color: #3498db;
-            color: white;
-            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
-        }
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.3rem;
-            color: white;
-            cursor: pointer;
-            padding: 6px;
         }
         
         /* Contenido principal - Estilo uniforme */
@@ -736,11 +640,7 @@
                 font-size: 1.1rem;
             }
             
-            .logo-icon {
-                width: 42px;
-                height: 42px;
-                font-size: 1.1rem;
-            }
+
             
             .cta-phone {
                 font-size: 1.1rem;
@@ -758,8 +658,8 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <div class="logo-icon">
-                    PVAS
+                <div class="logo-image">
+                    <img src="imagenes/favicon.ico" alt="Logo PVAS">
                 </div>
                 <div class="logo-text">
                     <h1>Politecnico</h1>
@@ -774,7 +674,7 @@
             <!-- Menú de navegación -->
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="admin.html"><i class="fas fa-user-shield"></i> Admin</a></li>
+                <li><a href="login.html"><i class="fas fa-user-shield"></i> Admin</a></li>
                 <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contacto</a></li>
                 <li><a href="categorias/calentario.html"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
                 <li><a href="historia.html"><i class="fas fa-history"></i> Historia</a></li>

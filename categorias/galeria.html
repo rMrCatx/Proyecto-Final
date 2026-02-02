@@ -243,7 +243,31 @@
     </style>
 </head>
 <body>
-    <div id="navbar-container"></div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-image">
+                    <img src="../imagenes/favicon.ico" alt="Logo PVAS">
+                </div>
+                <div class="logo-text">
+                    <h1>Politecnico</h1>
+                    <p>Vicente Aquilino Santos</p>
+                </div>
+            </div>
+
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="../index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="../login.html"><i class="fas fa-user-shield"></i> Admin</a></li>
+                <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contacto</a></li>
+                <li><a href="calentario.html"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
+                <li><a href="../historia.html"><i class="fas fa-history"></i> Historia</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <main class="container">
         <div class="page-header">
@@ -552,24 +576,66 @@
             
             // Inicializar galería
             initGallery();
+
+            // Menú móvil (si existe en la página)
+            const menuToggle = document.getElementById('menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    menuToggle.innerHTML = navMenu.classList.contains('active') 
+                        ? '<i class="fas fa-times"></i>' 
+                        : '<i class="fas fa-bars"></i>';
+                });
+
+                // Cerrar menú al hacer clic en un enlace
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    });
+                });
+            }
         });
 
         function loadComponents() {
-            // Cargar navbar
-            fetch('../components/navbar.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('navbar-container').innerHTML = data;
-                    if (typeof initNavbar === 'function') initNavbar();
-                })
-                .catch(error => {
-                    console.error('Error cargando navbar:', error);
-                    document.getElementById('navbar-container').innerHTML = `
-                        <div style="background: #f8fafc; padding: 20px; text-align: center; color: #666;">
-                            <p>Error cargando menú de navegación. <a href="../index.html">Ir al inicio</a></p>
-                        </div>
-                    `;
-                });
+            // Cargar navbar (si no está presente en el HTML)
+            if (!document.querySelector('.navbar')) {
+                fetch('../components/navbar.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        const container = document.getElementById('navbar-container');
+                        if (container) {
+                            container.innerHTML = data;
+
+                            // Ejecutar scripts embebidos del navbar para que funciones como initNavbar queden disponibles
+                            container.querySelectorAll('script').forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                if (oldScript.src) {
+                                    newScript.src = oldScript.src;
+                                    newScript.async = false;
+                                } else {
+                                    newScript.textContent = oldScript.textContent;
+                                }
+                                document.body.appendChild(newScript);
+                                oldScript.remove();
+                            });
+
+                            if (typeof initNavbar === 'function') initNavbar();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error cargando navbar:', error);
+                        const container = document.getElementById('navbar-container');
+                        if (container) {
+                            container.innerHTML = `
+                                <div style="background: #f8fafc; padding: 20px; text-align: center; color: #666;">
+                                    No se pudo cargar el menú de navegación.
+                                </div>
+                            `;
+                        }
+                    });
+            }
             
             // Cargar footer
             fetch('../components/footer.html')

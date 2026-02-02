@@ -157,95 +157,9 @@
             color: white;
             border-radius: 15px;
         }
-        /* Estilos para navegación entre páginas */
-.navbar {
-    background-color: white;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    padding: 15px 0;
-}
-
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo-placeholder {
-    width: 60px;
-    height: 60px;
-    color: rgb(19, 19, 19);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    border-radius: 10px;
-}
-
-.logo-text h1 {
-    font-size: 1.5rem;
-    margin: 0;
-    color: #1f2937;
-}
-
-.logo-text p {
-    font-size: 0.9rem;
-    margin: 0;
-    color: #6b7280;
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 25px;
-}
-
-.nav-menu li a {
-    text-decoration: none;
-    color: #4b5563;
-    font-weight: 600;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    transition: all 0.3s;
-}
-
-.nav-menu li a:hover {
-    background-color: #f3f4f6;
-    color: #8B5CF6;
-}
+        /* navbar styles moved to css/style.css */
 
 
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: #4b5563;
-    cursor: pointer;
-    padding: 10px;
-}
-
-/* Estilos responsivos para móviles */
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
@@ -289,8 +203,8 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
-            <div class="logo-placeholder">
-                PVAS
+            <div class="logo-image">
+                <img src="../imagenes/favicon.ico" alt="Logo PVAS">
             </div>
             <div class="logo-text">
                 <h1>Politecnico</h1>
@@ -305,7 +219,7 @@
         <!-- MENÚ SIMPLE CON TUS 5 OPCIONES -->
         <ul class="nav-menu" id="nav-menu">
             <li><a href="../index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
-            <li><a href="../admin.html"><i class="fas fa-user-shield"></i> Admin</a></li>
+            <li><a href="../login.html"><i class="fas fa-user-shield"></i> Admin</a></li>
             <li><a href="../contact.html"><i class="fas fa-envelope"></i> Contacto</a></li>
             <li><a href="calentario.html"><i class="fas fa-calendar-alt"></i> Calendario</a></li>
             <li><a href="../historia.html"><i class="fas fa-history"></i> Historia</a></li>
